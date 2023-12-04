@@ -23,27 +23,27 @@ export class RegistrationComponent {
   //function calling
   private initializeForm() {
     this.regform = this.fb.group({
-      First_name: ['', Validators.required],
-      Last_name: ['', Validators.required],
-      Email: ['', [Validators.required, Validators.email]],
-      DOB: ['', Validators.required],
-      Ph_num: ['', Validators.required],
-      Gender: ['male', Validators.required],
+      firstname: ['', Validators.required],
+      lastname: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      date_of_birth: ['', Validators.required],
+      Phone: ['', Validators.required],
+      gender: ['male', Validators.required],
 
       permanent_address: this.fb.group({
-        Street: ['', Validators.required],
-        Country: ['', Validators.required],
-        City: ['', Validators.required],
-        Region: ['', Validators.required],
-        Postal_code: ['', Validators.required],
+        street: ['', Validators.required],
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        region: ['', Validators.required],
+        postal_code: ['', Validators.required],
       }),
 
       communication_address: this.fb.group({
-        Street: ['', Validators.required],
-        Country: ['', Validators.required],
-        City: ['', Validators.required],
-        Region: ['', Validators.required],
-        Postal_code: ['', Validators.required],
+        street: ['', Validators.required],
+        country: ['', Validators.required],
+        city: ['', Validators.required],
+        region: ['', Validators.required],
+        postal_code: ['', Validators.required],
       }),
       //form array
       skills: this.fb.array([
@@ -57,18 +57,17 @@ export class RegistrationComponent {
     if (!this.addressesAreSame) {
       this.regform.get('communication_address').reset();
     }
-    this.regform.get(['communication_address', 'Country']).setValue('');
+    this.regform.get(['communication_address', 'country']).setValue('');
   }
   //submit
   onSubmit() {
-    const isSubmitted = this.isSubmitted = true
+    const isSubmitted = this.isSubmitted = true;
     const communicationAddressValue = this.addressesAreSame ? this.regform.value.permanent_address : this.regform.value.communication_address;
     this.regform.patchValue({
       communication_address: communicationAddressValue
     });
-
     if (this.regform.valid) {
-
+      this.getFormData()
     } else {
       //scroll if error occurs
       this.regform.markAllAsTouched();
@@ -80,10 +79,42 @@ export class RegistrationComponent {
       }
       //to show ouput isSameAsPermanent true or false
       this.regform.addControl("isSameAsPermanent", new FormControl(this.addressesAreSame));
-      console.log(this.regform.value);
+      
     }
   }
-  //submit ends----------
+  //submit ends---------
+
+  getFormData(){
+    const formData = this.regform.value;
+    // Transforming form values to the desired output format
+ const outputData = {
+   First_name: formData.firstname,
+   Last_name: formData.lastname,
+   Email: formData.email,
+   DOB: formData.date_of_birth,
+   Ph_num: formData.Phone,
+   Gender: formData.gender,
+   Permanent_address: {
+     Street: formData.permanent_address.street,
+     Country: formData.permanent_address.country,
+     City: formData.permanent_address.city,
+     Region: formData.permanent_address.region,
+     Postal_code: formData.permanent_address.postal_code,
+   },
+   isSameAsPermanent: formData.isSameAsPermanent,
+   Communication_address: {
+     Street: formData.communication_address.street,
+     Country: formData.communication_address.country,
+     City: formData.communication_address.city,
+     Region: formData.communication_address.region,
+     Postal_code: formData.communication_address.postal_code,
+   },
+   skill: formData.skills,
+ };
+
+   console.log(outputData)
+
+  }
   //skill 
   get skills() {
     return this.regform.get('skills') as FormArray
@@ -102,16 +133,18 @@ export class RegistrationComponent {
     const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
       "form .ng-invalid"
     );
-
-    window.scroll({
-      top: this.getTopOffset(firstInvalidControl),
-      left: 0,
-      behavior: "smooth"
-    });
+  
+    if (firstInvalidControl) {
+      window.scroll({
+        top: this.getTopOffset(firstInvalidControl),
+        left: 0,
+        behavior: "smooth"
+      });
+    }
   }
+  
   private getTopOffset(controlEl: HTMLElement): number {
-    const labelOffset = 50;
-    return controlEl.getBoundingClientRect().top + window.scrollY - labelOffset;
+    return controlEl.getBoundingClientRect().top + window.scrollY - 50;
   }
   //To disable future calender dates
   getToday(): string {
@@ -119,12 +152,12 @@ export class RegistrationComponent {
     return today.toISOString().split('T')[0];
   }
   validateDate() {
-    const selectedDate = new Date(this.regform.get('DOB').value);
+    const selectedDate = new Date(this.regform.get('date_of_birth').value);
     const today = new Date();
     if (selectedDate > today) {
-      this.regform.get('DOB').setErrors({ 'invalidDate': true });
+      this.regform.get('date_of_birth').setErrors({ 'invalidDate': true });
     } else {
-      this.regform.get('DOB').setErrors(null);
+      this.regform.get('date_of_birth').setErrors(null);
     }
   }
 }
