@@ -1,0 +1,238 @@
+<div class="container">
+    <form class="form" [formGroup]="regform" (ngSubmit)="onSubmit()">
+        <div class="mb-4">
+            <h3>Registration Form</h3>
+            <!---------------Contact information------------------------------------------ -->
+            <div class="row input-box">
+                <!-- first name -->
+                <div class="form-group col-md-6">
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstname" trim/>
+                    <div
+                        *ngIf="regform.get('firstname').invalid && (regform.get('firstname').touched || regform.get('firstname').dirty)">
+                        <small class="text-danger">*First Name is Required</small>
+                    </div>
+                </div>
+                <!-- last name -->
+                <div class="form-group col-md-6 ">
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastname" />
+                    <div
+                        *ngIf="regform.get('lastname').invalid && (regform.get('lastname').touched || regform.get('lastname').dirty)">
+                        <small class="text-danger">*Last Name is Required</small>
+                    </div>
+                </div>
+            </div>
+            <!-----------second row------------>
+            <div class="row">
+                <!-- email -->
+                <div class="col-md-12 form-group input-box">
+                    <input type="email" class="form-control" placeholder="Email" formControlName="email" />
+                    <div *ngIf="regform.get('email').hasError('required') && (regform.get('email').touched || regform.get('email').dirty)">
+                        <small class="text-danger">*Email is required</small>
+                    </div>
+                    <div *ngIf="regform.get('email').hasError('email') && (regform.get('email').touched || regform.get('email').dirty)">
+                        <small class="text-danger">*Email is invalid</small>
+                    </div>
+                </div>
+            </div>
+            <!--third row----------------------->
+            <div class="row input-box ">
+                <!-- date -->
+                <div class="form-group col-md-6">
+                    <div>
+                      <span class="">
+                        <input
+                          type="date"
+                          class="form-control"
+                          placeholder="dd-mm-yyyy"
+                          formControlName="date_of_birth"
+                          [max]="getToday()"
+                          (input)="validateDate()"
+                        />
+                      </span>
+                      <i class="fa fa-calendar cal-position" aria-hidden="true"></i>
+                    </div>
+                  
+                    <div *ngIf="regform.get('date_of_birth').invalid && (regform.get('date_of_birth').touched || regform.get('date_of_birth').dirty)">
+                      <small class="text-danger">*Date is Required</small>
+                    </div>
+                  </div>
+                <!-- phone number -->
+                <div class="form-group col-md-6 ">
+                    <input type="text" class="form-control" placeholder="Contact Information" formControlName="Phone"
+                        mask='(000)-000-0000' />
+                    <div
+                        *ngIf="regform.get('Phone').invalid && (regform.get('Phone').touched || regform.get('Phone').dirty)">
+                        <small class="text-danger">*Phone Number is Required</small>
+                    </div>
+                </div>
+            </div>
+            <!--gender-->
+            <div class="row form-group  gender-box">
+                <h6>Gender</h6>
+                <div class="col-md-2 gender-option">
+                    <input type="radio" class="form-check-input" id="male" value="male" formControlName="gender"
+                        value="male" checked/>
+                    <label for="male" class="form-check-label margin-left">male</label>
+                </div>
+                <div class="col-md-2">
+                    <input type="radio" class="form-check-input" id="female" value="female" formControlName="gender" />
+                    <label for="female" class="form-check-label margin-left">female</label>
+                </div>
+                <div class="col-md-4">
+                    <input type="radio" class="form-check-input" id="other" value="other" formControlName="gender" />
+                    <label for="other" class="form-check-label margin-left">Prefer Not to Say</label>
+                </div>
+            </div>
+            <!---------------------------------------permanent address-------------------------------------------------------->
+            <div class="mb-4" formGroupName="permanent_address">
+                <h6 class="mb-4">Permanent address</h6>
+                <!--first row------------------------------>
+                <!-- street -->
+                <div>
+                    <div class="form-group input-box">
+                        <input type="text" class="form-control" placeholder="Street Address" formControlName="street" />
+                        <div
+                            *ngIf="regform.get(['permanent_address','street']).invalid && (regform.get(['permanent_address','street']).touched || regform.get(['permanent_address','street']).dirty)">
+                            <small class="text-danger">*Enter your Address</small>
+                        </div>
+                    </div>
+                </div>
+                <!-- second row--------------------------- -->
+                <!--Country-->
+                <div class="row input-box">
+                    <div class="form-group col-md-6 ">
+                        <select id="country" formControlName="country" class="form-select">
+                            <option value="" disabled selected> Select country</option>
+                            <option value="usa">United States</option>
+                            <option value="canada">Canada</option>
+                            <option value="IN">India</option>
+                        </select>
+                        <div
+                            *ngIf="regform.get(['permanent_address','country']).invalid && (regform.get(['permanent_address','country']).touched || regform.get(['permanent_address','country']).dirty)">
+                            <small class="text-danger">*Enter your Country</small>
+                        </div>
+                    </div>
+                    <!-- city -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city" />
+                        <div
+                            *ngIf="regform.get(['permanent_address','city']).invalid && (regform.get(['permanent_address','city']).touched || regform.get(['permanent_address','city']).dirty)">
+                            <small class="text-danger">*Enter your city</small>
+                        </div>
+                    </div>
+                </div>
+                <!--third row--------------------------------->
+                <div class="row input-box">
+                    <!-- region -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="Region" formControlName="region" />
+                        <div
+                            *ngIf="regform.get(['permanent_address','region']).invalid && (regform.get(['permanent_address','region']).touched || regform.get(['permanent_address','region']).dirty)">
+                            <small class="text-danger">*Enter your region</small>
+                        </div>
+                    </div>
+                    <!-- postal code -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="Postal Code" formControlName="postal_code"
+                            mask='00000-0000' />
+                        <div
+                            *ngIf="regform.get(['permanent_address','postal_code']).invalid && (regform.get(['permanent_address','postal_code']).touched || regform.get(['permanent_address','postal_code']).dirty)">
+                            <small class="text-danger">*Enter your Postal Code</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- check box -->
+            <div class="d-flex input-box">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="addressesAreSame" [checked]="addressesAreSame" (change)="onCheckboxChange($event)" />
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Same as permanenent Address
+                    </label>
+                </div>
+            </div>  
+            <!-------------------------------------Communication Address------------------------------------------------------------->
+            <div *ngIf="!addressesAreSame" class="mb-4" formGroupName="communication_address">
+                <h6 class="mb-4">Communication address</h6>
+                <!-- first row----------------------- -->
+                <!-- street -->
+                <div>
+                    <div class="form-group input-box">
+                        <input type="text" class="form-control" placeholder="Street Address" formControlName="street" />
+                        <div
+                            *ngIf="regform.get(['communication_address','street']).invalid && (regform.get(['communication_address','street']).touched || regform.get(['communication_address','street']).dirty)">
+                            <small class="text-danger">*Enter your Address</small>
+                        </div>
+                    </div>
+                </div>
+                <!--second row--------------------------->
+                <div class="row input-box">
+                    <!-- country -->
+                    <div class="form-group col-md-6 ">
+                        <select id="country" formControlName="country" class="form-select">
+                            <option value="" disabled selected>Select country</option>
+                            <option value="usa">United States</option>
+                            <option value="canada">Canada</option>
+                            <option value="IN">India</option>
+                        </select>
+                        <div
+                            *ngIf="regform.get(['communication_address','country']).invalid && (regform.get(['communication_address','country']).touched || regform.get(['communication_address','country']).dirty)">
+                            <small class="text-danger">*Enter your Country</small>
+                        </div>
+                    </div>
+                    <!-- city -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="City" formControlName="city" />
+                        <div
+                            *ngIf="regform.get(['communication_address','city']).invalid && (regform.get(['communication_address','city']).touched || regform.get(['communication_address','city']).dirty)">
+                            <small class="text-danger">*Enter your city</small>
+                        </div>
+                    </div>
+                </div>
+                <!--third row-------------------------------->
+                <div class="row input-box">
+                    <!-- region -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="Region" formControlName="region" />
+                        <div
+                            *ngIf="regform.get(['communication_address','region']).invalid && (regform.get(['communication_address','region']).touched || regform.get(['communication_address','region']).dirty)">
+                            <small class="text-danger">*Enter your region</small>
+                        </div>
+                    </div>
+                    <!-- postal code -->
+                    <div class="form-group col-md-6 ">
+                        <input type="text" class="form-control" placeholder="Postal Code" formControlName="postal_code"
+                            mask='00000-0000' />
+                        <div
+                            *ngIf="regform.get(['communication_address','postal_code']).invalid && (regform.get(['communication_address','postal_code']).touched || regform.get(['communication_address','postal_code']).dirty)">
+                            <small class="text-danger">*Enter your Postal Code</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--skills start-->
+            <div formArrayName="skills">
+                <div class="row mt-5">
+                    <div class="col form-inline">
+                        <label for="Address" class="form-label heading">Add Skill
+                            <button type="button" (click)="addSKill()" class="btn btn-sm btn-primary">Add New Skill</button>
+                        </label>
+                    </div>
+                </div>
+                <div class="row mt-1">
+                    <div class="" *ngFor="let skill of skills.controls; let i=index">
+                        <div class="d-flex">
+                            <input type="text" class="form-control mt-3" placeholder="Skill" [formControlName]="i">
+                            <i class="fa fa-trash bin " aria-hidden="true" (click)="delete(i)" [attr.disabled]="skills.controls.length <= 1 ? true : null" [style.cursor]="skills.controls.length <= 1 ? 'not-allowed' : 'pointer'"></i>
+                        </div>
+                        <div class="skill" *ngIf="skills.controls[i].invalid && skills.controls[i].touched">
+                            <small class="text-danger">*Skill is required</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- submit -->
+        <button type="submit"  class="submit-btn" >Submit</button>
+    </form>
+</div>
