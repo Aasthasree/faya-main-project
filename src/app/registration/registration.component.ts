@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -11,7 +13,7 @@ export class RegistrationComponent {
   isSubmitted: boolean = false
   disableDeleteIcon = false;
 
-  constructor(private fb: FormBuilder, private el: ElementRef) { }
+  constructor(private fb: FormBuilder, private el: ElementRef, private router: Router) { }
   get skillControls() {
     return (<FormArray>this.regform.get('skills')).controls;
   }
@@ -68,6 +70,7 @@ export class RegistrationComponent {
     });
     if (this.regform.valid) {
       this.getFormData()
+      this.router.navigate(['/login'])
     } else {
       //scroll if error occurs
       this.regform.markAllAsTouched();
