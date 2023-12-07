@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="!go_login">
     <form class="form" [formGroup]="regform" (ngSubmit)="onSubmit()">
         <div class="mb-4">
             <h3>Registration Form</h3>
@@ -235,4 +235,8 @@
         <!-- submit -->
         <button type="submit"  class="submit-btn" >Submit</button>
     </form>
+</div>
+<!-- To render login component -->
+<div *ngIf="go_login">
+    <app-login  [regValue]="regform_output" ></app-login>
 </div>

@@ -1,0 +1,31 @@
+<h2>Details</h2>
+<div>
+  <label for="">Customer No: </label>
+
+</div>
+<div>
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" [(ngModel)]='name'>
+</div>
+
+<div>
+  <label for="address">Address:</label>
+  <input type="text" id="address" name="address" [(ngModel)]="address">
+</div>
+
+<div>
+  <label for="city">City:</label>
+  <input type="text" id="city" name="city" [(ngModel)]="city">
+</div>
+
+<div>
+  <label for="state">State:</label>
+  <input type="text" id="state" name="state" [(ngModel)]="state">
+</div>
+
+<div>
+  <label for="country">Country:</label>
+  <input type="text" id="country" name="country" [(ngModel)]="country">
+</div>
+<!-- This is a submit button triggering the 'onClickUpdate' method when clicked -->
+<button type="submit" (click)="onClickUpdate()">Update</button>
