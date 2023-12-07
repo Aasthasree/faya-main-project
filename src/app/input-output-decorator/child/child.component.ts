@@ -7,9 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class ChildComponent {
   //Define an input property to receive data from the parent component
-  @Input() selectedCustomer: { name: string, address: string, city: string, state: string, country: string };
+  @Input() selectedCustomer: any;
   // @Output decorator to create an event emitter for communicating changes to the parent component
-  @Output() updateCustomer = new EventEmitter<{ name: string, address: string, city: string, state: string, country: string }>();
+  @Output() updateCustomer = new EventEmitter<any>();
 
   // Variables to store customer details locally in the child component,used for two-way binding in the child component's template.
   name: any = '';

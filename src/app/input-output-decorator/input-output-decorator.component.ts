@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./input-output-decorator.component.scss']
 })
 export class InputOutputDecoratorComponent {
-  customers: { name: string, address: string, city: string, state: string, country: string }[] = [
+  customers: any [] = [
     { name: 'Rahul Dravid', address: '', city: 'Bangalore', state: 'Karnataka', country: 'India' },
     { name: 'Sachin Tendulkar', address: '', city: 'Mumbai', state: 'Maharashtra', country: 'India' },
     { name: 'Sourav Ganguly', address: '', city: 'Kolkata', state: 'West Bengal', country: 'India' },
@@ -14,14 +14,14 @@ export class InputOutputDecoratorComponent {
     { name: 'Virat Kohli', address: '', city: 'Delhi', state: 'Delhi', country: 'India' },
   ];
   //a property that represents customer that is currently selected
-  selectedCustomer: { name: string, address: string, city: string, state: string, country: string };
+  selectedCustomer: any;
 
   onEdit(people: any) {
     // Set the selected customer for editing
     this.selectedCustomer = people;
   }
 
-  updateCustomerInParent(updatedCustomer: { name: string, address: string, city: string, state: string, country: string }) {
+  updateCustomerInParent(updatedCustomer:any) {
     // Find the index of the selected customer and update the array
     const index = this.customers.findIndex(customer => customer.name === this.selectedCustomer.name);
     if (index !== -1) {
