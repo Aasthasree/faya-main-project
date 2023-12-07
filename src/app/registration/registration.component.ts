@@ -1,6 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component,ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +13,7 @@ export class RegistrationComponent {
   go_login: boolean = false;//To render login component
   regform_output: any;//object initializing globally
 
-  constructor(private fb: FormBuilder, private el: ElementRef, private router: Router) { }
+  constructor(private fb: FormBuilder, private el: ElementRef) { }
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
     return (<FormArray>this.regform.get('skills')).controls;

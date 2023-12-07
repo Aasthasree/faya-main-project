@@ -14,8 +14,8 @@
     </tr>
   </thead>
   <!-- dynamically generating table rows based on the data in the customers array. -->
-  <tbody *ngFor="let people of customers; let i=index;">
-    <tr>
+  <tbody>
+    <tr *ngFor="let people of customers; let i=index;">
       <td>{{i+1}}</td>
       <td>{{people.name}}</td>
       <td>{{people.address}}</td>
