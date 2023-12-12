@@ -1,5 +1,6 @@
-<!-- Heading -->
-<h2>List of Customers</h2>
+<div class="header-container">
+  <h2>List of Students</h2>
+  <!-- Gender Dropdown with Label -->
 <!-- Table -->
 <table>
   <thead>
@@ -7,25 +8,31 @@
       <th>No</th>
       <th>Name</th>
       <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-      <th>Edit</th>
+      <th>DOB</th>
+      <th>Gender</th>
+      <th>Course</th>
+      <th>Mark</th>
+      <th>Percentage</th>
+      <th>Fees</th>
+      <!-- <th>Edit</th> -->
     </tr>
   </thead>
   <!-- dynamically generating table rows based on the data in the customers array. -->
   <tbody>
-    <tr *ngFor="let people of customers; let i=index;">
+    <tr *ngFor="let people of customers; let i=index;" [ngClass]="{'white-row':i % 2 == 0,'black-row':i % 2 !== 0}">
       <td>{{i+1}}</td>
-      <td>{{people.name}}</td>
+      <td>{{people.name|lowercase}}</td>
       <td>{{people.address}}</td>
-      <td>{{people.city}}</td>
-      <td>{{people.state}}</td>
-      <td>{{people.country}}</td>
-      <td><button type="button" (click)="onEdit(people)">Edit</button></td>
+      <td>{{people.dob|date: 'longDate'}}</td>
+      <td [ngStyle]="{ 'color': people.gender === 'Male' ? 'red' : 'green' }">{{people.gender}}</td>
+      <td>{{people.course|uppercase}}</td>
+      <td>{{people.mark}}</td>
+      <td>{{people.percentage}}</td>
+      <td>{{people.fees|currency}}</td>
+      <!-- <td><button type="button" (click)="onEdit(people)">Edit</button></td> -->
     </tr>
   </tbody>
 </table>
 <!-- used to pass data from the parent component to its child component. -->
 <!-- 'updateCustomer' is an output event binding -->
-<app-child [selectedCustomer]="selectedCustomer" (updateCustomer)="updateCustomerInParent($event)"></app-child>
+<!-- <app-child [selectedCustomer]="selectedCustomer" (updateCustomer)="updateCustomerInParent($event)"></app-child> -->

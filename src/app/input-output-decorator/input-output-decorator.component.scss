@@ -33,3 +33,14 @@ button:hover {
 app-child {
   margin-top: 20px;
 }
+//ngclass
+
+.white-row {
+  background-color: #ffffff; /* White for odd rows */
+}
+
+.black-row {
+  background-color: #000000; /* Black for even rows */
+  color: #ffffff; /* White text for even rows */
+}
+

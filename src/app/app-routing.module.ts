@@ -5,9 +5,11 @@ import { InputOutputDecoratorComponent } from './input-output-decorator/input-ou
 import { LoginComponent } from './login/login.component';
 
 
+
 const routes: Routes = [
   {path:'',component:RegistrationComponent},
-  {path:'input-output',component:InputOutputDecoratorComponent}
+  {path:'input-output',component:InputOutputDecoratorComponent},
+
 ];
 
 @NgModule({
