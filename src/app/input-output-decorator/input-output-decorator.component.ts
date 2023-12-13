@@ -7,12 +7,12 @@ import { Component } from '@angular/core';
 })
 export class InputOutputDecoratorComponent {
   customers: any [] = [
-    { name: 'John Smith', address: '',dob:'Wed Nov 12 1997 00:00:00 GMT+0530(India Standard Time)',course:'mba',mark:'520',percentage:'0.86666666666666666667',gender:'Male',fees:'1899'},
-    { name: 'Mark Vought', address: '',dob:'Tue Oct 06 1998 00:00:00 GMT+0530(India Standard Time)',course:'B.tech',mark:'420',percentage:'0.7' ,gender:'Male',fees:'2899'},
-    { name: 'Sarah King', address: '',dob:'Sun Sep 22 1996 00:00:00 GMT+0530(India Standard Time)',course:'B.tech',mark:'540',percentage:'0.9',gender:'Female',fees:'2899' },
-    { name: 'Merry Jane', address: '',dob:'Mon Jun 12 1995 00:00:00 GMT+0530(India Standard Time)',course:'mba',mark:'380' ,percentage:'0.633333333333333',gender:'Female',fees:'1899'},
-    { name: 'Steve Smith', address: '',dob:'Tue Dec 21 1999 00:00:00 GMT+0530(India Standard Time)',course:'m.sc',mark:'430',percentage:'0.71666666666',gender:'Male',fees:'799'},
-    { name: 'Jonas Weber', address: '',dob:'Wed Jun 18 1997 00:00:00 GMT+0530(India Standard Time)',course:'m.sc',mark:'320',percentage:'0.533333333333',gender:'Male',fees:'799'},
+    { name: 'JOHN Smith', address: '',dob:'Wed Nov 12 1997 00:00:00 GMT+0530(India Standard Time)',course:'mba',mark:'520',percentage:'',gender:'Male',fees:'1899'},
+    { name: 'Mark Vought', address: '',dob:'Tue Oct 06 1998 00:00:00 GMT+0530(India Standard Time)',course:'B.tech',mark:'420',percentage:'' ,gender:'Male',fees:'2899'},
+    { name: 'Sarah King', address: '',dob:'Sun Sep 22 1996 00:00:00 GMT+0530(India Standard Time)',course:'B.tech',mark:'540',percentage:'',gender:'Female',fees:'2899' },
+    { name: 'Merry Jane', address: '',dob:'Mon Jun 12 1995 00:00:00 GMT+0530(India Standard Time)',course:'mba',mark:'380' ,percentage:'',gender:'Female',fees:'1899'},
+    { name: 'Steve Smith', address: '',dob:'Tue Dec 21 1999 00:00:00 GMT+0530(India Standard Time)',course:'m.sc',mark:'430',percentage:'',gender:'Male',fees:'799'},
+    { name: 'Jonas Weber', address: '',dob:'Wed Jun 18 1997 00:00:00 GMT+0530(India Standard Time)',course:'m.sc',mark:'320',percentage:'',gender:'Male',fees:'799'},
     
   ];
 

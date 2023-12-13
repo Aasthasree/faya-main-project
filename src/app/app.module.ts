@@ -15,6 +15,7 @@ import { LoginComponent } from './login/login.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { LoginComponent } from './login/login.component';
     InputOutputDecoratorComponent,
     ChildComponent,
     LoginComponent,
+
     
   ],
   imports: [

@@ -128,6 +128,13 @@ export class RegistrationComponent {
     this.skills.push(this.fb.control('', Validators.required))
   }
 
+  // removeSKill(){
+  //    this.skills.controls.forEach((skill, i) => {
+  //      this.skills.removeAt(i)
+  //    })
+  //   // this.skills.controls=[]
+  // }
+
   //skill delete icon
   delete(index: number) {
     if (this.skills.length > 1) {
