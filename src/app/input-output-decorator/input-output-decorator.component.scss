@@ -1,15 +1,17 @@
-h2 {
-  margin-bottom: 20px;
+/* Table styles */
+.table-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+  width: 80%;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 td {
-  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
 }
@@ -18,29 +20,78 @@ th {
   background-color: #f2f2f2;
 }
 
-button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
+/* Select box style */
+.select-box {
+  width: 250px;
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px 0;
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
-button:hover {
-  background-color: #45a049;
+/* Hover effect */
+.select-box:hover {
+  border-color: #555;
 }
 
-app-child {
-  margin-top: 20px;
+/* Focus effect */
+.select-box:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
 //ngclass
-
 .white-row {
-  background-color: #ffffff; /* White for odd rows */
+  background-color: #ffffff;
 }
 
 .black-row {
-  background-color: #000000; /* Black for even rows */
-  color: #ffffff; /* White text for even rows */
+  background-color: #000000;
+  color: #ffffff;
 }
 
+.highlight {
+  background-color: #4caf50;
+}
+
+//Header style
+.student-header {
+  margin: 0px 20px;
+  padding: 20px 50px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.student-header-filter {
+  margin: 20px 200px;
+}
+
+.student-header-title {
+  margin: 0px 20px;
+  font-size: 50px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+// button {
+//   background-color: #4caf50;
+//   color: white;
+//   padding: 10px 15px;
+//   border: none;
+//   cursor: pointer;
+// }
+
+// button:hover {
+//   background-color: #45a049;
+// }
+
+// app-child {
+//   margin-top: 20px;
+// }
+
+//ngclass

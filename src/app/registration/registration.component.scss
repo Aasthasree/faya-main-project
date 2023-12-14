@@ -29,6 +29,13 @@ h3 {
 
 .form .gender-box {
   margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+
+}
+
+.address-name{
+  font-weight: bold;
 }
 
 .gender-box label {
@@ -110,6 +117,19 @@ input[type="date"]::-webkit-clear-button {
 
 label {
   font-weight: bold;
+}
+
+.form-check {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+//To make Border of i/p box red if it is invalid
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+}
+
+select.ng-invalid.ng-touched {
+  border: 1px solid red;
 }
 
 

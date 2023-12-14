@@ -11,6 +11,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
+import { PercentagePipe } from './percentage.pipe';
+import { FilterPipePipe } from './filter-pipe.pipe';
+
 
 
 
@@ -23,8 +26,8 @@ import { LoginComponent } from './login/login.component';
     InputOutputDecoratorComponent,
     ChildComponent,
     LoginComponent,
-
-    
+    PercentagePipe,
+    FilterPipePipe,
   ],
   imports: [
     BrowserModule,
