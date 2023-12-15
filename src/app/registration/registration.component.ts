@@ -29,7 +29,7 @@ export class RegistrationComponent {
     this.regform = this.fb.group({
       firstname: ['', Validators.required],
       lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
       date_of_birth: ['', Validators.required],
       Phone: ['', Validators.required],
       gender: ['male', Validators.required],
@@ -54,6 +54,7 @@ export class RegistrationComponent {
       ])
     });
   }
+
 
   //checkbox reset
   onCheckboxChange(event: any) {

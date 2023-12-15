@@ -8,7 +8,7 @@
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size:30px;
   color: lightslategrey;
   font-weight: 500;
   text-align: center;
@@ -25,13 +25,24 @@ h3 {
 .form-control {
   border-radius: 0;
   color: lightsl;
+  padding: 10px;
 }
 
-.form .gender-box {
-  margin-top: 20px;
+.form-group {
   margin-bottom: 10px;
-  padding-bottom: 10px;
+}
 
+.form-select{
+  padding: 10px;
+}
+
+
+
+.form .gender-box {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 0px;
+  
 }
 
 .address-name{
@@ -49,6 +60,7 @@ h3 {
   font-weight: bold;
 }
 
+
 .form .submit-btn {
   height: 55px;
   width: 100%;
@@ -60,6 +72,8 @@ h3 {
   cursor: pointer;
   transition: all 0.2s ease;
   background: #E7005E;
+  margin: 30px auto;
+  display: block;
 }
 
 .margin-left {
@@ -73,7 +87,7 @@ h3 {
 
 .skill {
   display: flex;
-  flex-direction: column !important
+  flex-direction: column !important;
 }
 
 input[type="date"] {
@@ -117,6 +131,7 @@ input[type="date"]::-webkit-clear-button {
 
 label {
   font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .form-check {
@@ -131,5 +146,6 @@ input.ng-invalid.ng-touched {
 select.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
 
 

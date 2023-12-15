@@ -13,6 +13,7 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { PercentagePipe } from './percentage.pipe';
 import { FilterPipePipe } from './filter-pipe.pipe';
+import { CustomValidatorComponent } from './custom-validator/custom-validator.component';
 
 
 
@@ -28,6 +29,7 @@ import { FilterPipePipe } from './filter-pipe.pipe';
     LoginComponent,
     PercentagePipe,
     FilterPipePipe,
+    CustomValidatorComponent,
   ],
   imports: [
     BrowserModule,
