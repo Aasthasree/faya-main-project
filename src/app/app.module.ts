@@ -11,12 +11,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
-import { PercentagePipe } from './percentage.pipe';
-import { FilterPipePipe } from './filter-pipe.pipe';
+import { PercentagePipe } from './pipes/percentage.pipe';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { CustomValidatorComponent } from './custom-validator/custom-validator.component';
-
-
-
+import { CapitalizePipe } from './pipes/capitalize.pipe';
 
 
 
@@ -30,6 +28,8 @@ import { CustomValidatorComponent } from './custom-validator/custom-validator.co
     PercentagePipe,
     FilterPipePipe,
     CustomValidatorComponent,
+    CapitalizePipe,
+    
   ],
   imports: [
     BrowserModule,
