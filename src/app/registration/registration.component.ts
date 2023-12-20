@@ -1,6 +1,6 @@
 import { Component,ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
-import { UsernameValidator } from './username.validator';
+import { CustomValidator } from '../validators/custom.validator';
 
 @Component({
   selector: 'app-registration',
@@ -28,30 +28,30 @@ export class RegistrationComponent {
   //function calling
   private initializeForm() {
     this.regform = this.fb.group({
-      firstname: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
-      lastname: ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),UsernameValidator.cannotContainSpace]],
+      firstname: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      lastname: ['', [Validators.required,CustomValidator.cannotContainSpace]],
+      email: ['', [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),CustomValidator.cannotContainSpace]],
       date_of_birth: ['',Validators.required],
       Phone: ['',Validators.required],
       gender: ['male',Validators.required],
       
       permanent_address: this.fb.group({
-        street:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+        street:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
         country:  ['',Validators.required],
-        city:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-        region:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+        city:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
+        region:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
         postal_code:  ['',Validators.required],
       }),
       communication_address: this.fb.group({
-        street:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+        street:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
         country:  ['',Validators.required],
-        city:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
-        region:  ['', [Validators.required,UsernameValidator.cannotContainSpace]],
+        city:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
+        region:  ['', [Validators.required,CustomValidator.cannotContainSpace]],
         postal_code:  ['',Validators.required],
       }),
       //form array
       skills: this.fb.array([
-        this.fb.control('', [Validators.required,UsernameValidator.cannotContainSpace])
+        this.fb.control('', [Validators.required,CustomValidator.cannotContainSpace])
       ])
     });
   }

@@ -40,7 +40,7 @@
           <td [ngStyle]="{ 'color': people.gender === 'Male' ? 'red' : 'green' }">{{people.gender}}</td>
           <td>{{people.course|uppercase}}</td>
           <td>{{people.mark}}</td>
-          <td>{{people.mark|percentage:600:2}}</td>
+          <td>{{people.mark|percentage:totalMarks:2}}</td>
           <td>{{people.fees|currency}}</td>
           <!-- <td><button type="button" (click)="onEdit(people)">Edit</button></td> -->
         </tr>

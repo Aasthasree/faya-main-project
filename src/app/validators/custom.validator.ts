@@ -1,6 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export class UsernameValidator {
+export class CustomValidator {
   static cannotContainSpace(control: AbstractControl): ValidationErrors | null {
     const value = control.value as string;
     // value.trim() removes leading and trailing spaces

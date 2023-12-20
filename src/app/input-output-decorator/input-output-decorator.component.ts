@@ -17,6 +17,7 @@ export class InputOutputDecoratorComponent {
   ];
   //filterpipe
   filterText: string = 'All';
+  totalMarks: number = 600;
 
   // //a property that represents customer that is currently selected
   // selectedCustomer: any;

@@ -9,16 +9,16 @@
                     <label for="firstname"><span class="text-danger">*</span>First Name</label>
                     <input type="text" id="firstname" class="form-control" placeholder="First Name"
                         formControlName="firstname" />
-                    <app-custom-validator [control]="regform.get('firstname')"
-                        [key]=" 'First Name'"></app-custom-validator>
+                    <app-validation [control]="regform.get('firstname')"
+                        [key]=" 'First Name'"></app-validation>
                 </div>
                 <!-- last name -->
                 <div class="form-group col-md-6 ">
                     <label for="lastname"><span class="text-danger">*</span>Last Name</label>
                     <input type="text" id="lastname" class="form-control" placeholder="Last Name"
                         formControlName="lastname" />
-                    <app-custom-validator [control]="regform.get('lastname')"
-                        [key]=" 'Last Name'"></app-custom-validator>
+                    <app-validation [control]="regform.get('lastname')"
+                        [key]=" 'Last Name'"></app-validation>
                 </div>
             </div>
             <!-----------second row------------>
@@ -27,7 +27,7 @@
                 <div class="col-md-12 form-group input-box">
                     <label for="email"><span class="text-danger">*</span>Email</label>
                     <input type="email" id="email" class="form-control" placeholder="Email" formControlName="email" />
-                    <app-custom-validator [control]="regform.get('email')" [key]="'Email'"></app-custom-validator>
+                    <app-validation [control]="regform.get('email')" [key]="'Email'"></app-validation>
                 </div>
             </div>
             <!--third row----------------------->
@@ -42,16 +42,16 @@
                         </span>
                         <i class="fa fa-calendar cal-position" aria-hidden="true"></i>
                     </div>
-                    <app-custom-validator [control]="regform.get('date_of_birth')"
-                        [key]=" 'Date of Birth'"></app-custom-validator>
+                    <app-validation [control]="regform.get('date_of_birth')"
+                        [key]=" 'Date of Birth'"></app-validation>
                 </div>
                 <!-- phone number -->
                 <div class="form-group col-md-6 ">
                     <label for="phone"><span class="text-danger">*</span>Contact Information</label>
                     <input type="text" id="phone" class="form-control" placeholder="Contact Information"
                         formControlName="Phone" mask='(000)-000-0000' />
-                    <app-custom-validator [control]="regform.get('Phone')"
-                        [key]=" 'Contact Information'"></app-custom-validator>
+                    <app-validation [control]="regform.get('Phone')"
+                        [key]=" 'Contact Information'"></app-validation>
                 </div>
             </div>
             <!--gender-->
@@ -138,8 +138,8 @@
                 <label for="address"><span class="text-danger">*</span>Street Address</label>
                 <input type="text" id="address" class="form-control" placeholder="Street Address"
                     formControlName="street" />
-                <app-custom-validator [control]="formGroup.get(['street'])"
-                    [key]=" 'Street Address'"></app-custom-validator>
+                <app-validation [control]="formGroup.get(['street'])"
+                    [key]=" 'Street Address'"></app-validation>
             </div>
         </div>
         <div class="row input-box">
@@ -151,13 +151,13 @@
                     <option value="canada">Canada</option>
                     <option value="IN">India</option>
                 </select>
-                <app-custom-validator [control]="formGroup.get(['country'])" [key]=" 'Country'"></app-custom-validator>
+                <app-validation [control]="formGroup.get(['country'])" [key]=" 'Country'"></app-validation>
             </div>
             <!-- city -->
             <div class="form-group col-md-6 ">
                 <label for="city"><span class="text-danger">*</span>City</label>
                 <input type="text" id="city" class="form-control" placeholder="City" formControlName="city" />
-                <app-custom-validator [control]="formGroup.get(['city'])" [key]=" 'City'"></app-custom-validator>
+                <app-validation [control]="formGroup.get(['city'])" [key]=" 'City'"></app-validation>
             </div>
         </div>
         <!--third row--------------------------------->
@@ -166,15 +166,15 @@
             <div class="form-group col-md-6 ">
                 <label for="region"><span class="text-danger">*</span>Region</label>
                 <input type="text" id="region" class="form-control" placeholder="Region" formControlName="region" />
-                <app-custom-validator [control]="formGroup.get(['region'])" [key]=" 'Region'"></app-custom-validator>
+                <app-validation [control]="formGroup.get(['region'])" [key]=" 'Region'"></app-validation>
             </div>
             <!-- postal code -->
             <div class="form-group col-md-6 ">
                 <label for="postal"><span class="text-danger">*</span>Postal Code</label>
                 <input type="text" id="postal" class="form-control" placeholder="Postal Code"
                     formControlName="postal_code" mask='00000-0000' />
-                <app-custom-validator [control]="formGroup.get(['postal_code'])"
-                    [key]=" 'Postal Code'"></app-custom-validator>
+                <app-validation [control]="formGroup.get(['postal_code'])"
+                    [key]=" 'Postal Code'"></app-validation>
             </div>
         </div>
         <!-- first row------------------------------>

@@ -13,8 +13,8 @@ import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { PercentagePipe } from './pipes/percentage.pipe';
 import { FilterPipePipe } from './pipes/filter-pipe.pipe';
-import { CustomValidatorComponent } from './custom-validator/custom-validator.component';
 import { CapitalizePipe } from './pipes/capitalize.pipe';
+import { ValidationComponent } from './validation/validation.component';
 
 
 
@@ -27,8 +27,8 @@ import { CapitalizePipe } from './pipes/capitalize.pipe';
     LoginComponent,
     PercentagePipe,
     FilterPipePipe,
-    CustomValidatorComponent,
     CapitalizePipe,
+    ValidationComponent,
     
   ],
   imports: [
