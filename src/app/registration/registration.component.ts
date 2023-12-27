@@ -1,6 +1,6 @@
 import { Component,ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
-import { CustomValidator } from '../validators/custom.validator';
+import { CustomValidator } from '../shared/custom-validators/custom.validator';
 
 @Component({
   selector: 'app-registration',

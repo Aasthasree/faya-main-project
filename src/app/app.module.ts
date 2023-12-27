@@ -11,10 +11,10 @@ import { RegistrationComponent } from './registration/registration.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
-import { PercentagePipe } from './pipes/percentage.pipe';
-import { FilterPipePipe } from './pipes/filter-pipe.pipe';
-import { CapitalizePipe } from './pipes/capitalize.pipe';
-import { ValidationComponent } from './validation/validation.component';
+import { PercentagePipe } from './shared/pipes/percentage.pipe';
+import { FilterPipePipe } from './shared/pipes/filter-pipe.pipe';
+import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
+import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
 
 
 
@@ -28,7 +28,8 @@ import { ValidationComponent } from './validation/validation.component';
     PercentagePipe,
     FilterPipePipe,
     CapitalizePipe,
-    ValidationComponent,
+    ValidationComponentComponent,
+    ValidationComponentComponent,
     
   ],
   imports: [
