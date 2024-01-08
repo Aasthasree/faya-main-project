@@ -1,26 +1,6 @@
-<!-- <div>
-  <h2>All Data</h2>
-  <ul>
-    <li *ngFor="let data of allData">
-      <a [routerLink]="['/data', data.id]">{{ data.name }}</a>
-    </li>
-  </ul>
-</div>
-
-<div *ngIf="selectedData">
-  <h2>Selected Data</h2>
-  <pre>{{ selectedData | json }}</pre>
-</div> -->
-
-<!-- <div>
-  <h2>All Data</h2>
-  <ul>
-    <li *ngFor="let data of allData">
-      <a [routerLink]="['/customer-service', data.id]">{{ data.First_name }} {{ data.Last_name }}</a>
-    </li>
-  </ul>
-</div> -->
-
+<button type="button" class="btn" data-bs-toggle="modal"
+data-bs-target="#staticBackdrop" style="background-color: green; color: white; position: absolute; top: 10px; right: 10px;" (click)="openEditModal(false)">Add customer</button>
+    
 <div class="table-container">
   <h2>All Data</h2>
   <table border="1">
@@ -38,38 +18,23 @@
     </thead>
     <tbody>
       <tr *ngFor="let data of allData">
-        <td>{{ data.First_name }}</td>
-        <td>{{ data.Last_name }}</td>
-        <td>{{ data.Ph_num }}</td>
-        <td>{{ data.Gender }}</td>
-        <td>{{ data.skill }}</td>
-        <td>{{ data.Email }}</td>
-        <!-- <td>{{ data.DOB }}</td> -->
-        <!-- Other table cells... -->
-        <td>{{ data.DOB | validDate }}</td>
-        <!-- <app-edit-form></app-edit-form> -->
-        <button type="button"  class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-          <i class="fa fa-edit" ></i>
-        </button><i class="fa fa-trash custom" aria-hidden="true"></i>
-        <td><app-edit-form></app-edit-form></td>
-
-
-        
-          
-          
-        
-<!-- Other table cells... -->
-
-
-
-
-
-
-
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-
+        <td>{{ data.f_name }}</td>
+        <td>{{ data.l_name }}</td>
+        <td>{{ data.phone_number }}</td>
+        <td>{{ data.gender }}</td>
+        <td>{{ data.Skills }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.dob | validDate }}</td>
+        <!-- Action buttons for editing and deleting data -->
+        <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
+        <button type="button" class="btn" (click)="openEditModal(true,data.id)" data-bs-toggle="modal"
+          data-bs-target="#staticBackdrop" >
+          <i class="fa fa-edit"></i>
+          <!-- Button to delete a row of data -->
+        </button><i class="fa fa-trash custom" aria-hidden="true" (click)="deleteRow(data)"
+          style="cursor: pointer;"></i>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <app-edit-form   [id]="selectedId" (updateData)="checkBooleanValue($event)" [editClick]="isEditModalVisible"></app-edit-form>

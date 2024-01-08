@@ -2,44 +2,38 @@ import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DataServiceService } from '../shared/services/data-service.service';
 
-
-
 @Component({
   selector: 'app-customer-service-injection',
   templateUrl: './customer-service-injection.component.html',
   styleUrls: ['./customer-service-injection.component.scss']
 })
-export class CustomerServiceInjectionComponent implements OnInit {
-  allData: any[];
-  selectedData: any;
+export class CustomerServiceInjectionComponent  {
+  allData: any;
+  selectedId: any;
   datePipe: any;
   isEditModalVisible = false;
   editedData:any;
-
+  isCreateMode = false;
+  
   constructor(private dataService: DataServiceService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.loadData();
-    this.route.paramMap.subscribe((params) => {
-      const id = +params.get('id');
-      if (id) {
-        this.loadSelectedData(id);
-      }
-    });
   }
 
-  // private loadData() {
-  //   this.dataService.getData().subscribe((data) => {
-  //     this.allData = data;
-  //   });
-  // }
+  ngOnChanges(){
+    console.log('changes-hit')
+  }
 
   private loadData() {
+    // Using the dataService to fetch data
     this.dataService.getData().subscribe(
       (data) => {
-        console.log(data);  // Log the retrieved data to the console
+        // Log the retrieved data to the console for debugging or informational purposes
+        console.log(data); 
         this.allData = data;
       },
+      // Callback function for handling errors during data retrieval
       (error) => {
         console.error('Error fetching data:', error);
       }
@@ -47,34 +41,61 @@ export class CustomerServiceInjectionComponent implements OnInit {
   }
   
 
-  private loadSelectedData(id: number) {
-    this.dataService.getDataById(id).subscribe((data) => {
-      this.selectedData = data;
-    });
+  openEditModal(isEdit:boolean,id?: any): void {
+    // Assign the passed 'id' to the component's 'selectedId' property
+   
+      this.selectedId = id;
+    
+    // Set the 'isEditModalVisible' property to true, indicating that the edit modal should be displayed
+    this.isEditModalVisible = isEdit;
+
   }
 
-  openEditModal(data: any): void {
-    this.selectedData = data;
+  openCreateModal(): void {
+    this.selectedId = null;
     this.isEditModalVisible = true;
+    this.isCreateMode = true; // Set to true for the create mode
   }
   
   closeEditModal(): void {
     this.isEditModalVisible = false;
   }
   
-  saveChanges(updatedData: any): void {
-    // Implement logic to save the changes to your data source
-    console.log('Updated Data:', updatedData);
+
+  deleteRow(data: any): void {
+    // Implement logic to delete the data from your data source
+    // For now, let's remove it from the local array
+    const index = this.allData.indexOf(data);
+    if (index !== -1) {
+      this.allData.splice(index, 1);
+
+      // Make an HTTP DELETE request to your backend API to delete the data from the database
+      this.dataService.deleteData(data.id).subscribe(
+        () => {
+          // alert('Customer deleted successfully!');
+          console.log('Data deleted successfully from the database.');
+        },
+        (error) => {
+          console.error('Error deleting data from the database:', error);
+          // If there is an error, you might want to add the data back to the array
+          this.allData.splice(index, 0, data);
+        }
+      );
+    }
   }
 
+  // customer-service-injection.component.ts
 
-  
-
-
-
-  
+  checkBooleanValue(check:boolean){
+    if(check){
+      this.loadData();
+    }
+  }
 
  
+
   
 
+
+  
 }
