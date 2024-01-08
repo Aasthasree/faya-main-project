@@ -1,8 +1,7 @@
-
-import { Component, Input, Output , OnInit,EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter, OnChanges } from '@angular/core';
 import { DataServiceService } from '../shared/services/data-service.service';
 import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {map} from 'rxjs'
+import { map } from 'rxjs'
 import { CustomValidator } from '../shared/custom-validators/custom.validator';
 
 @Component({
@@ -11,134 +10,121 @@ import { CustomValidator } from '../shared/custom-validators/custom.validator';
   styleUrls: ['./edit-form.component.scss']
 })
 export class EditFormComponent implements OnChanges {
-  customer_data:FormGroup;
-  isUpdated:boolean=false;
+  customer_data: FormGroup; //property represents the Angular FormGroup that holds the form controls for user data
+  isUpdated: boolean = false; //property indicating whether the data has been updated
   isCreateMode: boolean = false; // New property to track create mode
-  @Input() editClick:boolean;
-  user_data:any='';
-  @Input() id: any;
-  @Output() updateData=new EventEmitter<any>();
+  @Input() editClick: boolean; //property that receives a boolean value indicating whether the edit mode is active.
+  user_data: any = '';  //Holds the data of the user being edited.
+  @Input() id: any;  //An input property representing the user ID.
+  @Output() updateData = new EventEmitter<any>();  // EventEmitter used to notify the parent component about data updates.
   date = new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
-  constructor(private data:DataServiceService,private fb:FormBuilder){
+
+  constructor(private data: DataServiceService, private fb: FormBuilder) {
   }
+
   ngOnChanges() {
     this.customerData();
-    console.log("hit",this.editClick);
-    
-    
+    // If in edit mode, fetch data for the specified ID
     if (this.editClick) {
       this.getallData();
-    } 
+    }
   }
 
 
-  customerData(){
-    this.customer_data=this.fb.group({
-      f_name:['',[Validators.required,CustomValidator.cannotContainSpace]],
-      l_name:['',[Validators.required,CustomValidator.cannotContainSpace]],
-      email:['',[Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),CustomValidator.cannotContainSpace]],
-      phone_number:['',[Validators.required,CustomValidator.cannotContainSpace]],
-      gender:['',[Validators.required,CustomValidator.cannotContainSpace]],
-      dob:['',[Validators.required]],
-      Skills:this.fb.array([this.fb.control('',[Validators.required,CustomValidator.cannotContainSpace])])
+  customerData() {
+    this.customer_data = this.fb.group({
+      f_name: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      l_name: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      email: ['', [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), CustomValidator.cannotContainSpace]],
+      phone_number: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      gender: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      dob: ['', [Validators.required]],
+      Skills: this.fb.array([this.fb.control('', [Validators.required, CustomValidator.cannotContainSpace])])
     })
   }
 
+  // -------Fetch user-specific data by ID and update the user_data property------
   getallData() {
-    this.data.getDataById(this.id).subscribe((response)=>{
-      this.user_data=response;
-      console.log(this.user_data)
-      this.userValue();
+    this.data.getDataById(this.id).subscribe((response) => {
+      // this.user_data = response;
+      this.userValue(response);
     })
   }
 
-  private userValue(){
-    
-    console.log(this.user_data);
-    
+  // ------Update the form with user-specific data received from the API------
+  userValue(patchData) {
     this.customer_data.patchValue({
-      f_name:this.user_data.f_name,
-      l_name:this.user_data.l_name,
-      email:this.user_data.email,
-      phone_number:this.user_data.phone_number,
-      gender:this.user_data.gender,
-      Skills:this.user_data.Skills,
-      dob:this.user_data.dob,
+      // Form controls are updated with corresponding user data
+      f_name: patchData.f_name,
+      l_name: patchData.l_name,
+      email: patchData.email,
+      phone_number: patchData.phone_number,
+      gender: patchData.gender,
+      Skills: patchData.Skills,
+      dob: patchData.dob,
     })
-  this.setSkills(this.user_data.Skills);
+    this.setSkills(patchData.Skills);
   }
 
-  get skills(){
+  //getter method that returns the 'Skills' form array from the parent form (customer_data)
+  get skills() {
     return this.customer_data.get('Skills') as FormArray
   }
-
-  setSkills(skills:any[]){
-  const skillsArray = skills.map((skill)=>this.fb.control(skill));
-  this.customer_data.setControl('Skills',this.fb.array(skillsArray));
-  console.log('skillsArray',skillsArray)
+  //setSkills method is used to initialize or update the 'Skills' form array based on an array of skills
+  setSkills(skills: any[]) {
+    const skillsArray = skills.map((skill) => this.fb.control(skill));
+    this.customer_data.setControl('Skills', this.fb.array(skillsArray));
+    console.log('skillsArray', skillsArray)
   }
-
-  addSkill(){
-    this.skills.push(this.fb.control('',[Validators.required,CustomValidator.cannotContainSpace]));
-   }
- 
-   delete(index:any){
-     this.skills.removeAt(index);
-   }
-
-onChanges(){
-  if(this.customer_data.valid){
-    if(this.editClick){
-      this.updateChanges();
-    this.data.updatebyId(this.id,this.user_data).subscribe((response)=>{
-      console.log('customer updated successfully')
-      alert('Changes updated successfully!');
-      this.isUpdated=true;
-      this.updateData.emit(this.isUpdated)
-    })
-    }
-   if(!this.editClick){
-      this.createCustomer();  
-  } 
-  }else{
-    {this.customer_data.markAllAsTouched();}
+  //addSkill method is called when you want to add a new skill to the 'Skills' form array.
+  addSkill() {
+    this.skills.push(this.fb.control('', [Validators.required, CustomValidator.cannotContainSpace]));
   }
+  //delete method is used to remove a skill from the 'Skills' form array at a specific index.
+  delete(index: any) {
+    this.skills.removeAt(index);
+  }
+  //-------responsible for handling changes in the form and deciding whether to update an existing customer's information or create a new customer based on the form's validity--
+  onChanges() {
+    if (this.customer_data.valid) {
+      // If in edit mode
+      if (this.editClick) {
   
-}
 
-private updateChanges(){
-  const formValue=this.customer_data.value;
-    this.user_data.f_name=formValue.f_name;
-    this.user_data.l_name=formValue.l_name;
-    this.user_data.email=formValue.email;
-    this.user_data.phone_number=formValue.phone_number;
-    this.user_data.dob=formValue.dob;
-    this.user_data.Skills=formValue.Skills;
-    this.user_data.gender=formValue.gender;
-}
+        // Make a request to update the customer data by ID
+        this.data.updatebyId(this.id, this.customer_data.value).subscribe((response) => {
+          alert('Changes updated successfully!');
+          //allows the parent component or any component listening to this event to be notified of the update status.
+          this.isUpdated = true;
+          this.updateData.emit(this.isUpdated)
+        })
+      }
+      // If in create mode
+      if (!this.editClick) {
+        // Create a new customer
+        this.createCustomer();
+      }
+    } else {
+      // If the form is not valid, mark all fields as touched to trigger validation messages
+      { this.customer_data.markAllAsTouched(); }
+    }
+  }
 
-// private resetForm() {
-//   // Reset the form to initial state (null values)
-//   this.customer_data.reset();
-// }
+  createCustomer() {
+    // Sending a request to create a new user using the data from the form
+    this.data.createUser(this.customer_data.value).subscribe((res) => {
+      console.log(this.customer_data);
+      this.customer_data.reset();
+      console.log(this.customer_data);
+      
+      this.user_data='';
+      this.isUpdated = true;
+      this.updateData.emit(this.isUpdated);
+      alert("User is Created");
 
-createCustomer(){
-  this.data.createUser(this.customer_data.value).subscribe((res) => {
-    
-    this.isUpdated = true;
-    this.updateData.emit(this.isUpdated);
-    this.customer_data.reset();
-    alert("User is Created");
-
-});
-}
-
-
-  // onClickApplyChanges() {
-  //   // Trigger the applyChanges event with the updated data
-  //   this.applyChanges.emit(this.id);
-  // }
+    });
+  }
 }
 
 

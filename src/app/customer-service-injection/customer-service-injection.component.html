@@ -1,6 +1,8 @@
-<button type="button" class="btn" data-bs-toggle="modal"
-data-bs-target="#staticBackdrop" style="background-color: green; color: white; position: absolute; top: 10px; right: 10px;" (click)="openEditModal(false)">Add customer</button>
-    
+<!--Create CUstomer Button-->
+<button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+  style="background-color: green; color: white; position: absolute; top: 10px; right: 10px;"
+  (click)="openEditModal(false)">Add customer</button>
+<!--Table-->
 <div class="table-container">
   <h2>All Data</h2>
   <table border="1">
@@ -28,13 +30,20 @@ data-bs-target="#staticBackdrop" style="background-color: green; color: white; p
         <!-- Action buttons for editing and deleting data -->
         <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
         <button type="button" class="btn" (click)="openEditModal(true,data.id)" data-bs-toggle="modal"
-          data-bs-target="#staticBackdrop" >
+          data-bs-target="#staticBackdrop">
           <i class="fa fa-edit"></i>
           <!-- Button to delete a row of data -->
         </button><i class="fa fa-trash custom" aria-hidden="true" (click)="deleteRow(data)"
           style="cursor: pointer;"></i>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <app-edit-form   [id]="selectedId" (updateData)="checkBooleanValue($event)" [editClick]="isEditModalVisible"></app-edit-form>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- 
+  Edit form component:
+  - [id]: Selected data item's ID for editing.
+  - (updateData): Triggers checkBooleanValue on form changes.
+  - [editClick]: Controls edit form modal visibility.
+-->
+<app-edit-form [id]="selectedId" (updateData)="checkBooleanValue($event)"
+  [editClick]="isEditModalVisible"></app-edit-form>
