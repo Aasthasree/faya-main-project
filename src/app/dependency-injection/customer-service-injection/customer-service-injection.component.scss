@@ -2,6 +2,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  
 }
 
 thead {
@@ -22,4 +23,21 @@ tr:hover {
 .icon {
   margin-right: 10px;
   /* Adjust the value as needed */
+}
+
+.table-container h2{
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.table-container{
+  padding: 20px;
+}
+
+.customer-btn{
+  float: right;
+ 
 }

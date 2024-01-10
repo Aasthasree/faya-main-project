@@ -1,4 +1,4 @@
-<div class="container" *ngIf="!go_login">
+<div class="container" *ngIf="!goLogin">
     <form class="form" [formGroup]="regform" (ngSubmit)="onSubmit()">
         <div class="mb-4">
             <h3>Registration Form</h3>
@@ -126,8 +126,8 @@
     </form>
 </div>
 <!-- To render login component -->
-<div *ngIf="go_login">
-    <app-login [regValue]="regform_output"></app-login>
+<div *ngIf="goLogin">
+    <app-login [regValue]="regFormOutput"></app-login>
 </div>
 <!-- ng template -->
 <ng-template #addressTemplate let-addressType="addressType" let-formGroup="formGroup">

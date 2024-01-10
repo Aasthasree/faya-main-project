@@ -6,48 +6,48 @@
       <div class="modal-header">
         <!--Heading-->
         <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  (click)="onClickClose()" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form [formGroup]="customer_data">
+      <form [formGroup]="formData">
         <div class="modal-body" style="padding: 20px;">
           <!--First Name-->
           <div class="form-group mb-3">
             <label for="firstname"><span class="text-danger">*</span>First Name</label>
             <input type="text" class="form-control" id="firstname" placeholder="First Name" formControlName="f_name">
-            <app-validation [control]="customer_data.get('f_name')" [key]=" 'First Name'"></app-validation>
+            <app-validation [control]="formData.get('f_name')" [key]=" 'First Name'"></app-validation>
           </div>
           <!--Last Name-->
           <div class="form-group mb-3">
             <label for="lastname"><span class="text-danger">*</span>Last Name</label>
             <input type="text" class="form-control" id="lastname" placeholder="Last Name" formControlName="l_name">
-            <app-validation [control]="customer_data.get('l_name')" [key]=" 'Last Name'"></app-validation>
+            <app-validation [control]="formData.get('l_name')" [key]=" 'Last Name'"></app-validation>
           </div>
           <!--Email-->
           <div class="form-group mb-3">
             <label for="email"><span class="text-danger">*</span>Email</label>
             <input type="text" class="form-control" id="email" placeholder="Email" formControlName="email">
-            <app-validation [control]="customer_data.get('email')" [key]=" 'Email'"></app-validation>
+            <app-validation [control]="formData.get('email')" [key]=" 'Email'"></app-validation>
           </div>
           <!--Phone Number-->
           <div class="form-group mb-3">
             <label for="phone"><span class="text-danger">*</span>Phone Number</label>
             <input type="text" class="form-control" id="phone" placeholder="Phone Number" formControlName="phone_number"
               mask='(000)000-0000'>
-            <app-validation [control]="customer_data.get('phone_number')" [key]=" 'Phone Number'"></app-validation>
+            <app-validation [control]="formData.get('phone_number')" [key]=" 'Phone Number'"></app-validation>
           </div>
           <!--Plan-->
           <div class="form-group mb-3">
             <label for="plan"><span class="text-danger">*</span>Plan</label>
             <input type="text" class="form-control" id="plan" placeholder="Plan" formControlName="gender">
-            <app-validation [control]="customer_data.get('gender')" [key]=" 'Plan'"></app-validation>
+            <app-validation [control]="formData.get('gender')" [key]=" 'Plan'"></app-validation>
           </div>
           <!--DOB-->
           <div class="form-group mb-3">
             <label for="dob"><span class="text-danger">*</span>DOB</label>
             <input type="date" class="form-control" id="dob" formControlName="dob" max="{{ formattedDate }}">
-            <app-validation [control]="customer_data.get('dob')" [key]=" 'DOB'"></app-validation>
+            <app-validation [control]="formData.get('dob')" [key]=" 'DOB'"></app-validation>
           </div>
           <!--Skills-->
           <div formArrayName="Skills">
@@ -76,11 +76,9 @@
             </div>
           </div>
           <!--Button-->
-          <div class="modal-footer d-flex justify-content-center">
-            <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="onChanges()"
-              [attr.data-bs-dismiss]="customer_data.valid ? 'modal' : null">{{editClick? 'Apply Changes':'Create
+            <button type="button" class="btn btn-success mt-3 mb-3 submit" data-bs-dismiss="modal" (click)="submitForm()"
+              [attr.data-bs-dismiss]="formData.valid ? 'modal' : null">{{editClick? 'Update':'Add
               Customer'}}</button>
-          </div>
         </div>
       </form>
     </div>
