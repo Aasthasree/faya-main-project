@@ -1,31 +1,49 @@
-<!-- Heading -->
-<h2>List of Customers</h2>
-<!-- Table -->
-<table>
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Name</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>State</th>
-      <th>Country</th>
-      <th>Edit</th>
-    </tr>
-  </thead>
-  <!-- dynamically generating table rows based on the data in the customers array. -->
-  <tbody>
-    <tr *ngFor="let people of customers; let i=index;">
-      <td>{{i+1}}</td>
-      <td>{{people.name}}</td>
-      <td>{{people.address}}</td>
-      <td>{{people.city}}</td>
-      <td>{{people.state}}</td>
-      <td>{{people.country}}</td>
-      <td><button type="button" (click)="onEdit(people)">Edit</button></td>
-    </tr>
-  </tbody>
-</table>
-<!-- used to pass data from the parent component to its child component. -->
-<!-- 'updateCustomer' is an output event binding -->
-<app-child [selectedCustomer]="selectedCustomer" (updateCustomer)="updateCustomerInParent($event)"></app-child>
+<div class="header-container container-fluid mt-5">
+  <!-- Header -->
+  <div class="student-header">
+    <div class="student-header-title">
+      <h2>Students List</h2>
+    </div>
+    <!-- filter box -->
+    <div class="student-header-filter">
+      <select name="gender" class="select-box" [(ngModel)]="filterText">
+        <option value="All">All</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+  </div>
+  <!-- Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Address</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Course</th>
+          <th>Mark</th>
+          <th>Percentage</th>
+          <th>Fees</th>
+          <!-- <th>Edit</th> -->
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let people of customers|filterPipe:filterText; let i=index;"
+          [ngClass]="{'white-row':i % 2 == 0,'black-row':i % 2 !== 0,'highlight':(people.mark/600)*100>=90}">
+          <td>{{i+1}}</td>
+          <td>{{people.name|lowercase}}</td>
+          <td>{{people.address|slice:10}}</td>
+          <td>{{people.dob|date: 'longDate'|uppercase}}</td>
+          <td [ngStyle]="{ 'color': people.gender === 'Male' ? 'red' : 'green' }">{{people.gender}}</td>
+          <td>{{people.course|uppercase}}</td>
+          <td>{{people.mark}}</td>
+          <td>{{people.mark|percentage:totalMarks:2}}</td>
+          <td>{{people.fees|currency}}</td>
+          <!-- <td><button type="button" (click)="onEdit(people)">Edit</button></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </div>

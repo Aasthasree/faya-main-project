@@ -1,5 +1,7 @@
 import { Component,ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+//validator
+import { CustomValidator } from '../shared/custom-validators/custom.validator';
 
 @Component({
   selector: 'app-registration',
@@ -8,10 +10,10 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 })
 export class RegistrationComponent {
   regform: FormGroup;
-  addressesAreSame: boolean = false;
+  addressesAreSame: boolean=false;
   disableDeleteIcon = false;
-  go_login: boolean = false;//To render login component
-  regform_output: any;//object initializing globally
+  goLogin: boolean;//To render login component
+  regFormOutput: any;//object initializing globally
 
   constructor(private fb: FormBuilder, private el: ElementRef) { }
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
@@ -27,33 +29,32 @@ export class RegistrationComponent {
   //function calling
   private initializeForm() {
     this.regform = this.fb.group({
-      firstname: ['', Validators.required],
-      lastname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      date_of_birth: ['', Validators.required],
-      Phone: ['', Validators.required],
-      gender: ['male', Validators.required],
-
-      permanent_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
-      communication_address: this.fb.group({
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        city: ['', Validators.required],
-        region: ['', Validators.required],
-        postal_code: ['', Validators.required],
-      }),
+      firstname: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
+      lastname: ['' , [Validators.required,CustomValidator.cannotContainSpace]],
+      email: ['' , [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),CustomValidator.cannotContainSpace]],
+      date_of_birth: ['' ,Validators.required],
+      Phone: ['' ,Validators.required],
+      gender: ['male',Validators.required],
+      permanent_address: this.createAddressFormGroup(),
+      communication_address: this.createAddressFormGroup(),
+      
       //form array
       skills: this.fb.array([
-        this.fb.control('', Validators.required)
+        this.fb.control('' , [Validators.required,CustomValidator.cannotContainSpace])
       ])
     });
   }
+
+  private createAddressFormGroup(): FormGroup {
+    return this.fb.group({
+      street: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
+      country: ['' , Validators.required],
+      city: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
+      region: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
+      postal_code: ['' , Validators.required],
+    });
+  }
+
 
   //checkbox reset
   onCheckboxChange(event: any) {
@@ -79,7 +80,7 @@ export class RegistrationComponent {
       this.regform.addControl("isSameAsPermanent", new FormControl(this.addressesAreSame));
       this.getFormData()
       //To render login component
-      this.go_login = true;
+      this.goLogin = true;
 
     } else {
       //scroll if error occurs
@@ -92,7 +93,7 @@ export class RegistrationComponent {
   getFormData() {
     const formData = this.regform.value;
     // Transforming form values to the desired output format
-    this.regform_output = {
+    this.regFormOutput = {
       First_name: formData.firstname,
       Last_name: formData.lastname,
       Email: formData.email,
@@ -116,7 +117,7 @@ export class RegistrationComponent {
       },
       skill: formData.skills,
     };
-    console.log(this.regform_output)
+    console.log(this.regFormOutput)
   }
 
   //skill 
@@ -125,8 +126,15 @@ export class RegistrationComponent {
   }
 
   addSKill() {
-    this.skills.push(this.fb.control('', Validators.required))
+    this.skills.push(this.fb.control('' , Validators.required))
   }
+
+  // removeSKill(){
+  //    this.skills.controls.forEach((skill, i) => {
+  //      this.skills.removeAt(i)
+  //    })
+  //   // this.skills.controls=[]
+  // }
 
   //skill delete icon
   delete(index: number) {
