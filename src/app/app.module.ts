@@ -21,7 +21,7 @@ import { LoginComponent } from './login/login.component';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
 import { customerListComponent } from './customer/customer-list/customer-list.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
-import { EditFormComponent } from './customer/edit-form/edit-form.component';
+import { customerFormComponent } from './customer/customer-form/customer-form.component';
 
 //pipes
 import { PercentagePipe } from './shared/pipes/percentage.pipe';
@@ -51,7 +51,7 @@ const routes: Routes = [
     ValidationComponentComponent,
     ValidationComponentComponent,
     customerListComponent,
-    EditFormComponent,
+    customerFormComponent,
 
      // Pipes
      PercentagePipe,

@@ -3,15 +3,15 @@ import { Form, FormArray, FormBuilder, FormGroup, Validators } from '@angular/fo
 //validator
 import { CustomValidator } from '../../shared/custom-validators/custom.validator';
 //service
-import { CustomerDataService } from '../services/customer-data.service';
+import { CustomerDataService } from '../customer-data.service';
 
 
 @Component({
-  selector: 'app-edit-form',
-  templateUrl: './edit-form.component.html',
-  styleUrls: ['./edit-form.component.scss']
+  selector: 'app-customer-form',
+  templateUrl: './customer-form.component.html',
+  styleUrls: ['./customer-form.component.scss']
 })
-export class EditFormComponent implements OnChanges {
+export class customerFormComponent implements OnChanges {
   @Input() editClick: boolean;
   @Input() id: any; 
   @Output() updateData = new EventEmitter<any>(); 
@@ -26,7 +26,7 @@ export class EditFormComponent implements OnChanges {
   
 
   constructor(
-    private data: CustomerDataService , 
+    private data: CustomerDataService, 
     private fb: FormBuilder
     ) {}
 
