@@ -4,11 +4,11 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 import { CustomValidator } from '../shared/custom-validators/custom.validator';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  selector: 'app-customer-registration',
+  templateUrl: './customer-registration.component.html',
+  styleUrls: ['./customer-registration.component.scss']
 })
-export class RegistrationComponent {
+export class customerRegistrationComponent {
   regform: FormGroup;
   addressesAreSame: boolean=false;
   disableDeleteIcon = false;
