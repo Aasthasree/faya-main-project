@@ -19,9 +19,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { ChildComponent } from './input-output-decorator/child/child.component';
 import { LoginComponent } from './login/login.component';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
-import { CustomerServiceInjectionComponent } from './dependency-injection/customer-service-injection/customer-service-injection.component';
+import { customerListComponent } from './customer/customer-list/customer-list.component';
 import { InputOutputDecoratorComponent } from './input-output-decorator/input-output-decorator.component';
-import { EditFormComponent } from './dependency-injection/edit-form/edit-form.component';
+import { EditFormComponent } from './customer/edit-form/edit-form.component';
 
 //pipes
 import { PercentagePipe } from './shared/pipes/percentage.pipe';
@@ -33,9 +33,10 @@ import { ValidDatePipe } from './shared/pipes/valid-date.pipe';
 import { NgxMaskModule } from 'ngx-mask';
 
 
+
 const routes: Routes = [
-  { path: 'data/:id', component: CustomerServiceInjectionComponent },
-  { path: 'data', component: CustomerServiceInjectionComponent},
+  { path: 'data/:id', component: customerListComponent },
+  { path: 'data', component: customerListComponent},
   { path: '', redirectTo: '/data', pathMatch: 'full' },
 ];
 
@@ -49,7 +50,7 @@ const routes: Routes = [
     LoginComponent,
     ValidationComponentComponent,
     ValidationComponentComponent,
-    CustomerServiceInjectionComponent,
+    customerListComponent,
     EditFormComponent,
 
      // Pipes

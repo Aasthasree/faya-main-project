@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CustomerDataService } from '../services/customer-data.service';
+import { Component } from '@angular/core';
+import { CustomerDataService } from '../customer-data.service';
+
 
 @Component({
-  selector: 'app-customer-service-injection',
-  templateUrl: './customer-service-injection.component.html',
-  styleUrls: ['./customer-service-injection.component.scss']
+  selector: 'app-customer-list',
+  templateUrl: './customer-list.component.html',
+  styleUrls: ['./customer-list.component.scss']
 })
-export class CustomerServiceInjectionComponent {
+export class customerListComponent {
   allData: any;
   selectedId: any;
   datePipe: any;
   isEditModalVisible = false;
   isCreateMode = false;
 
-  constructor(private dataService: CustomerDataService) { }
+  constructor(private dataService:CustomerDataService ) { }
 
   ngOnInit(): void {
     this.loadData();
