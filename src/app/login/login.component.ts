@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-customer-login',
-  templateUrl: './customer-login.component.html',
-  styleUrls: ['./customer-login.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class customerLoginComponent {
+export class LoginComponent {
   // Input property to receive registration data from the parent component
   @Input() regValue: any;
   // Property to store the concatenated password

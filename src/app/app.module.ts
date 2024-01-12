@@ -16,7 +16,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 //components
 import { AppComponent } from './app.component';
 import { customerRegistrationComponent } from './customer-registration/customer-registration.component';
-import { customerLoginComponent } from './customer-login/customer-login.component';
+import { LoginComponent } from './login/login.component';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
 import { customerListComponent } from './customer/customer-list/customer-list.component';
 import { customerFormComponent } from './customer/customer-form/customer-form.component';
@@ -43,7 +43,7 @@ const routes: Routes = [
     // Components
     AppComponent,
     customerRegistrationComponent,
-    customerLoginComponent,
+    LoginComponent,
     ValidationComponentComponent,
     ValidationComponentComponent,
     customerListComponent,
