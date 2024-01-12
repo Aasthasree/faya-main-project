@@ -15,12 +15,12 @@ export class customerFormComponent implements OnChanges {
   @Input() editClick: boolean;
   @Input() id: any; 
   @Output() updateData = new EventEmitter<any>(); 
+
   formData: FormGroup;
    //Holds the data of the user being edited.
   userData: any = ''; 
   //property indicating whether the data has been updated
   isUpdated: boolean; 
-  isCreateMode: boolean; 
   date = new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
   
