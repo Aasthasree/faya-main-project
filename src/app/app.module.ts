@@ -49,14 +49,16 @@ import { NgxMaskModule } from 'ngx-mask';
   ],
   
   imports: [
+    // Angular modules
     BrowserModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+   // Third-party modules
+    NgxMaskModule.forRoot(),
+   // Custom modules
     AppRoutingModule,
     ReactiveFormsModule,
-    NgxMaskModule.forRoot(),
-    FormsModule,
-    HttpClientModule,
-    CommonModule
-    
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
