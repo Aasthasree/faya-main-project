@@ -38,7 +38,6 @@ import { NgxMaskModule } from 'ngx-mask';
     RegistrationComponent,
     LoginComponent,
     ValidationComponentComponent,
-    ValidationComponentComponent,
     customerListComponent,
     customerFormComponent,
 
