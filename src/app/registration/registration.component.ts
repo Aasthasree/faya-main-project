@@ -17,7 +17,10 @@ export class RegistrationComponent {
   //object initializing globally
   regFormOutput: any;
 
-  constructor(private fb: FormBuilder, private el: ElementRef) { }
+  constructor(
+    private fb: FormBuilder,
+     private el: ElementRef
+     ) { }
 
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
