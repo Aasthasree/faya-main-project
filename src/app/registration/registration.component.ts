@@ -1,3 +1,4 @@
+//Angular Modules
 import { Component,ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
@@ -11,10 +12,13 @@ import { CustomValidator } from '../shared/custom-validators/custom.validator';
 export class RegistrationComponent {
   regform: FormGroup;
   addressesAreSame: boolean=false;
-  goLogin: boolean;//To render login component
-  regFormOutput: any;//object initializing globally
+  //To render login component
+  goLogin: boolean;
+  //object initializing globally
+  regFormOutput: any;
 
   constructor(private fb: FormBuilder, private el: ElementRef) { }
+
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
     return (<FormArray>this.regform.get('skills')).controls;
@@ -43,7 +47,10 @@ export class RegistrationComponent {
       ])
     });
   }
-
+  
+  /**
+ * Create address form group with validations.
+ */
   private createAddressFormGroup(): FormGroup {
     return this.fb.group({
       street: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
@@ -55,7 +62,10 @@ export class RegistrationComponent {
   }
 
 
-  //checkbox reset
+ /**
+ * Handle checkbox change event to toggle address synchronization.
+ * @param event - The checkbox change event.
+ */
   onCheckboxChange(event: any) {
     this.addressesAreSame = event.target.checked;
     if (!this.addressesAreSame) {
@@ -64,7 +74,8 @@ export class RegistrationComponent {
     this.regform.get(['communication_address', 'country']).setValue('');
   }
 
-  //---------submit start---------------
+
+ //Handle form submission, validate, and manage address synchronization.
   onSubmit() {
     const communicationAddressValue = this.addressesAreSame ? this.regform.value.permanent_address : this.regform.value.communication_address;
     this.regform.patchValue({
@@ -80,7 +91,6 @@ export class RegistrationComponent {
       this.getFormData()
       //To render login component
       this.goLogin = true;
-
     } else {
       //scroll if error occurs
       this.regform.markAllAsTouched();
@@ -88,10 +98,9 @@ export class RegistrationComponent {
     }
   }
 
-  //---------submit ends---------
+ //Extract and transform form data into desired output format.
   getFormData() {
     const formData = this.regform.value;
-    // Transforming form values to the desired output format
     this.regFormOutput = {
       First_name: formData.firstname,
       Last_name: formData.lastname,
@@ -119,35 +128,35 @@ export class RegistrationComponent {
     console.log(this.regFormOutput)
   }
 
-  //skill 
+  //Retrieve the 'skills' FormArray from the registration form.
   get skills() {
     return this.regform.get('skills') as FormArray
   }
-
+ 
+  //Add a new skill FormControl to the 'skills' FormArray
   addSKill() {
     this.skills.push(this.fb.control('' , Validators.required))
   }
 
-  // removeSKill(){
-  //    this.skills.controls.forEach((skill, i) => {
-  //      this.skills.removeAt(i)
-  //    })
-  //   // this.skills.controls=[]
-  // }
-
-  //skill delete icon
+  /**
+ * Remove a skill FormControl at the specified index from the 'skills' FormArray.
+ * Ensures there is at least one skill remaining.
+ * @param index - The index of the skill to be removed.
+ */
   onClickDelete(index: number) {
     if (this.skills.length > 1) {
       this.skills.removeAt(index);
     }
   }
 
-  //----scroll bar------
+  /**
+   * Scroll to the top of the first invalid form control.
+   * Uses smooth scrolling to navigate to the top of the first invalid control.
+   */
   private scrollToFirstInvalidControl() {
     const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
       "form .ng-invalid"
     );
-
     if (firstInvalidControl) {
       window.scroll({
         top: this.getTopOffset(firstInvalidControl),
@@ -162,11 +171,15 @@ export class RegistrationComponent {
   }
 
   //To disable future calender dates
+  //Get the current date in string format (YYYY-MM-DD).
   getToday(): string {
     const today = new Date();
     return today.toISOString().split('T')[0];
   }
-
+/**
+ * Validate the selected date against the current date.
+ * If the selected date is in the future, set 'invalidDate' error; otherwise, clear errors.
+ */
   validateDate() {
     const selectedDate = new Date(this.regform.get('date_of_birth').value);
     const today = new Date();
