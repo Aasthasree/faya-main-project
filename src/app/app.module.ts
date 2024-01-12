@@ -31,13 +31,6 @@ import { ValidDatePipe } from './shared/pipes/valid-date.pipe';
 import { NgxMaskModule } from 'ngx-mask';
 
 
-
-const routes: Routes = [
-  { path: 'data/:id', component: customerListComponent },
-  { path: 'data', component: customerListComponent},
-  { path: '', redirectTo: '/data', pathMatch: 'full' },
-];
-
 @NgModule({
   declarations: [
     // Components
