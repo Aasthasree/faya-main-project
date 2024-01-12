@@ -13,7 +13,7 @@ import { CustomerService } from '../service/customer.service';
 })
 export class customerFormComponent implements OnChanges {
   @Input() editClick: boolean;
-  @Input() id: any; 
+  @Input() id: number; 
   @Output() updateData = new EventEmitter<any>(); 
 
   formData: FormGroup;
