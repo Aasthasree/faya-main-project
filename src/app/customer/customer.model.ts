@@ -1,4 +1,4 @@
-interface CustomerData {
+export interface CustomerData {
   id: number;
   dob: string;
   email: string;
@@ -7,6 +7,4 @@ interface CustomerData {
   gender: string;
   l_name: string;
   phone_number: string;
-}
-
-export { CustomerData }; 
+};
