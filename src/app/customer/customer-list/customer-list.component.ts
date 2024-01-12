@@ -2,6 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 //service
 import { CustomerService } from '../service/customer.service';
+//model
+import { CustomerData } from '../customer.model';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { CustomerService } from '../service/customer.service';
   styleUrls: ['./customer-list.component.scss']
 })
 export class customerListComponent implements OnInit {
-  allData: any;
+  allData: CustomerData[];
   selectedId: any;
   isEditModalVisible = false;
 
