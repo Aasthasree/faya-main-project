@@ -109,7 +109,7 @@
                         <div class="d-flex">
                             <input type="text" class="form-control mt-3" placeholder="Skill" [formControlName]="i">
                             <ng-container *ngIf="skills.controls.length>1">
-                                <i class="fa fa-trash bin " aria-hidden="true" (click)="delete(i)"
+                                <i class="fa fa-trash bin " aria-hidden="true" (click)="onClickDelete(i)"
                                     [attr.disabled]="skills.controls.length <= 1 ? true : null"
                                     [style.cursor]="skills.controls.length <= 1 ? 'not-allowed' : 'pointer'"></i>
                             </ng-container>

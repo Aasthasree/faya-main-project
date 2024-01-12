@@ -136,7 +136,7 @@ export class RegistrationComponent {
   // }
 
   //skill delete icon
-  delete(index: number) {
+  onClickDelete(index: number) {
     if (this.skills.length > 1) {
       this.skills.removeAt(index);
     }
