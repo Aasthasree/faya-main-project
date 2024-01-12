@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 //validator
 import { CustomValidator } from '../../shared/custom-validators/custom.validator';
 //service
-import { CustomerDataService } from '../customer-data.service';
+import { CustomerDataService } from '../service/customer-data.service';
 
 
 @Component({
