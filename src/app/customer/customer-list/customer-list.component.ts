@@ -1,4 +1,6 @@
+//component
 import { Component } from '@angular/core';
+//service
 import { CustomerService } from '../service/customer.service';
 
 
@@ -33,13 +35,20 @@ export class customerListComponent {
     );
   }
 
-  //-----provides a way to control the visibility of the edit modal----
+  /**
+ * Toggles the visibility of the edit modal and updates the selected ID for editing.
+ * @param isEdit - Indicates whether the modal is in edit mode.
+ * @param id - (Optional) The identifier associated with the item being edited.
+ */
   openEditModal(isEdit: boolean, id?: any): void {
     this.selectedId = id;
     this.isEditModalVisible = isEdit;
   }
 
-  //----responsible for deleting a row of data-----
+  /**
+ * Handles the click event to delete a row.
+ * @param data - The data associated with the row to be deleted.
+ */
   onClickDeleteRow(data: any): void {
     const index = this.allData.indexOf(data);
     if (index !== -1) {
@@ -56,7 +65,10 @@ export class customerListComponent {
     }
   }
 
-  //-----Triggers data loading if the specified condition is true---
+ /**
+ * Conditionally triggers form update by loading data if the check is true.
+ * @param check - A boolean flag determining whether to update the form.
+ */
   checkAndUpdateForm(check: boolean) {
     if (check) {
       this.loadData();
