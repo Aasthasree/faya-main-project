@@ -3,7 +3,7 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 //validator
 import { CustomValidator } from '../../shared/custom-validators/custom.validator';
 //service
-import { CustomerDataService } from '../service/customer-data.service';
+import { CustomerService } from '../service/customer.service';
 
 
 @Component({
@@ -26,7 +26,7 @@ export class customerFormComponent implements OnChanges {
   
 
   constructor(
-    private data: CustomerDataService, 
+    private data: CustomerService, 
     private fb: FormBuilder
     ) {}
 

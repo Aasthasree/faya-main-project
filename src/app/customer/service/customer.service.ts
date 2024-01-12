@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class CustomerDataService {
+export class CustomerService {
 
   private apiUrl = 'https://retoolapi.dev/TMekp1/data';
 

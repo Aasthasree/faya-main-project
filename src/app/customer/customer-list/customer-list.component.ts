@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CustomerDataService } from '../service/customer-data.service';
+import { CustomerService } from '../service/customer.service';
 
 
 @Component({
@@ -14,7 +14,7 @@ export class customerListComponent {
   isEditModalVisible = false;
   isCreateMode = false;
 
-  constructor(private dataService:CustomerDataService ) { }
+  constructor(private dataService:CustomerService ) { }
 
   ngOnInit(): void {
     this.loadData();
