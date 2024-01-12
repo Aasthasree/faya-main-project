@@ -12,7 +12,9 @@ export class CustomerService {
 
   private apiUrl = 'https://retoolapi.dev/TMekp1/data';
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   // -------------Service method to fetch data from the API endpoint---------------------
   getData(): Observable<any[]> {
