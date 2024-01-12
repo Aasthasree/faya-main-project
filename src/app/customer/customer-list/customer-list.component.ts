@@ -10,9 +10,7 @@ import { CustomerService } from '../service/customer.service';
 export class customerListComponent {
   allData: any;
   selectedId: any;
-  datePipe: any;
   isEditModalVisible = false;
-  isCreateMode = false;
 
   constructor(private dataService:CustomerService ) { }
 
