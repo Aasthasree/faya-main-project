@@ -1,5 +1,5 @@
 //component
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //service
 import { CustomerService } from '../service/customer.service';
 
@@ -9,7 +9,7 @@ import { CustomerService } from '../service/customer.service';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss']
 })
-export class customerListComponent {
+export class customerListComponent implements OnInit {
   allData: any;
   selectedId: any;
   isEditModalVisible = false;
