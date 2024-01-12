@@ -11,7 +11,6 @@ import { CustomValidator } from '../shared/custom-validators/custom.validator';
 export class RegistrationComponent {
   regform: FormGroup;
   addressesAreSame: boolean=false;
-  disableDeleteIcon = false;
   goLogin: boolean;//To render login component
   regFormOutput: any;//object initializing globally
 
