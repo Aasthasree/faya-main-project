@@ -1,5 +1,5 @@
 //Angular Modules
-import { Component,ElementRef } from '@angular/core';
+import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
 import { CustomValidator } from '../shared/custom-validators/custom.validator';
@@ -9,7 +9,7 @@ import { CustomValidator } from '../shared/custom-validators/custom.validator';
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
+export class RegistrationComponent implements OnInit{
   regform: FormGroup;
   addressesAreSame: boolean=false;
   //To render login component
