@@ -24,7 +24,6 @@ export class customerFormComponent implements OnChanges {
   date = new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
   
-
   constructor(
     private data: CustomerService, 
     private fb: FormBuilder
