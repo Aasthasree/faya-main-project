@@ -13,8 +13,8 @@ import { CustomerData } from '../customer.model';
 })
 export class customerListComponent implements OnInit {
   allData: CustomerData[];
-  selectedId: any;
-  isEditModalVisible = false;
+  selectedId: number;
+  isEditModalVisible : boolean;
 
   constructor(
     private dataService:CustomerService
