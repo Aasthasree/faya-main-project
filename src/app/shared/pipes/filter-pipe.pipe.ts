@@ -9,8 +9,8 @@ export class FilterPipePipe implements PipeTransform {
       return list;
     } else {
       return list.filter((std) => {
-        return std.gender.toLowerCase() === filterBy.toLowerCase()
-      })
+        return std.gender.toLowerCase() === filterBy.toLowerCase();
+      });
     }
   }
 }

@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit{
     this.regform = this.fb.group({
       firstname: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       lastname: ['' , [Validators.required,CustomValidator.cannotContainSpace]],
-      email: ['' , [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),CustomValidator.cannotContainSpace]],
+      email: ['' , [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),CustomValidator.cannotContainSpace]],
       date_of_birth: ['' ,Validators.required],
       Phone: ['' ,Validators.required],
       gender: ['male',Validators.required],
@@ -90,8 +90,8 @@ export class RegistrationComponent implements OnInit{
         this.regform.removeControl('isSameAsPermanent');
       }
       //to show ouput isSameAsPermanent true or false
-      this.regform.addControl("isSameAsPermanent", new FormControl(this.addressesAreSame));
-      this.getFormData()
+      this.regform.addControl('isSameAsPermanent', new FormControl(this.addressesAreSame));
+      this.getFormData();
       //To render login component
       this.goLogin = true;
     } else {
@@ -128,17 +128,17 @@ export class RegistrationComponent implements OnInit{
       },
       skill: formData.skills,
     };
-    console.log(this.regFormOutput)
+    console.log(this.regFormOutput);
   }
 
   //Retrieve the 'skills' FormArray from the registration form.
   get skills() {
-    return this.regform.get('skills') as FormArray
+    return this.regform.get('skills') as FormArray;
   }
  
   //Add a new skill FormControl to the 'skills' FormArray
   addSKill() {
-    this.skills.push(this.fb.control('' , Validators.required))
+    this.skills.push(this.fb.control('' , Validators.required));
   }
 
   /**
@@ -158,13 +158,13 @@ export class RegistrationComponent implements OnInit{
    */
   private scrollToFirstInvalidControl() {
     const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
-      "form .ng-invalid"
+      'form .ng-invalid'
     );
     if (firstInvalidControl) {
       window.scroll({
         top: this.getTopOffset(firstInvalidControl),
         left: 0,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   }

@@ -44,14 +44,14 @@ export class CustomerService {
     let url = `${this.apiUrl}/${id}`;
     return this.http.patch(url, value).pipe((map((data) => {
       return data;
-    })))
+    })));
   }
 
   //-------------------------Creates a new data item by sending an HTTP POST request to the API endpoint.---------------
   createUser(value: any): Observable<any> {
     return this.http.post(this.apiUrl, value).pipe((map((data) => {
       return data;
-    })))
+    })));
   }
 
   //-------Handles API errors uniformly-----

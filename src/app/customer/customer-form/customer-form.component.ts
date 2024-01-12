@@ -42,12 +42,12 @@ export class customerFormComponent implements OnChanges {
     this.formData = this.fb.group({
       f_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       l_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
-      email: ['' , [Validators.required, Validators.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), CustomValidator.cannotContainSpace]],
+      email: ['' , [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'), CustomValidator.cannotContainSpace]],
       phone_number: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       gender: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       dob: ['' , [Validators.required]],
       Skills: this.fb.array([this.fb.control('' , [Validators.required, CustomValidator.cannotContainSpace])])
-    })
+    });
     
   }
 
@@ -58,7 +58,7 @@ export class customerFormComponent implements OnChanges {
   getallData() {
     this.data.getDataById(this.id).subscribe((response) => {
       this.userValue(response);
-    })
+    });
   }
 
   // ------Update the form with user-specific data received from the API------
@@ -71,20 +71,20 @@ export class customerFormComponent implements OnChanges {
       gender: patchData.gender,
       Skills: patchData.Skills,
       dob: patchData.dob,
-    })
+    });
     this.setSkills(patchData.Skills);
   }
 
   //getter method that returns the 'Skills' form array from the parent form (formData)
   get skills() {
-    return this.formData.get('Skills') as FormArray
+    return this.formData.get('Skills') as FormArray;
   }
 
   //setSkills method is used to initialize or update the 'Skills' form array based on an array of skills
   setSkills(skills: any[]) {
     const skillsArray = skills.map((skill) => this.fb.control(skill));
     this.formData.setControl('Skills', this.fb.array(skillsArray));
-    console.log('skillsArray', skillsArray)
+    console.log('skillsArray', skillsArray);
   }
 
   //addSkill method is called when you want to add a new skill to the 'Skills' form array.
@@ -107,8 +107,8 @@ export class customerFormComponent implements OnChanges {
         this.data.updatebyId(this.id, this.formData.value).subscribe((response) => {
           alert('Changes updated successfully!');
           this.isUpdated = true;
-          this.updateData.emit(this.isUpdated)
-        })
+          this.updateData.emit(this.isUpdated);
+        });
       }
       if (!this.editClick) {
         this.createCustomer();
@@ -128,7 +128,7 @@ export class customerFormComponent implements OnChanges {
       this.userData='';
       this.isUpdated = true;
       this.updateData.emit(this.isUpdated);
-      alert("User is Created");
+      alert('User is Created');
 
     });
   }
