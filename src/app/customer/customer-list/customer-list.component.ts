@@ -12,7 +12,9 @@ export class customerListComponent {
   selectedId: any;
   isEditModalVisible = false;
 
-  constructor(private dataService:CustomerService ) { }
+  constructor(
+    private dataService:CustomerService
+     ) { }
 
   ngOnInit(): void {
     this.loadData();
