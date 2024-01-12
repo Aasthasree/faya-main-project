@@ -1,11 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   // Input property to receive registration data from the parent component
   @Input() regValue: any;
   // Property to store the concatenated password
