@@ -6,5 +6,5 @@ export interface CustomerData {
   f_name: string;
   gender: string;
   l_name: string;
-  phone_number: string;
+  phone_number: number;
 };
