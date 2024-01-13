@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 //service
 import { CustomerService } from '../service/customer.service';
 //model
-import { CustomerData } from '../customer';
+import { Customer } from '../customer';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { CustomerData } from '../customer';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  customerList: CustomerData[]=[];
+  customerList: Customer[]=[];
   selectedId: number;
   isEditModalVisible : boolean;
 
