@@ -42,7 +42,7 @@ export class CustomerListComponent implements OnInit {
  * @param isEdit - Indicates whether the modal is in edit mode.
  * @param id - (Optional) The identifier associated with the item being edited.
  */
-  openEditModal(isEdit: boolean, id?: any): void {
+  openEditModal(isEdit: boolean, id?: number): void {
     this.selectedId = id;
     this.isEditModalVisible = isEdit;
   }
@@ -51,7 +51,7 @@ export class CustomerListComponent implements OnInit {
  * Handles the click event to delete a row.
  * @param data - The data associated with the row to be deleted.
  */
-  deleteCustomer(data: any): void {
+  deleteCustomer(data: Customer): void {
     const index = this.customerList.indexOf(data);
     if (index !== -1) {
       this.customerList.splice(index, 1);

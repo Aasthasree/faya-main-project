@@ -78,7 +78,7 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   //setSkills method is used to initialize or update the 'Skills' form array based on an array of skills
-  setSkills(skills: any[]) {
+  setSkills(skills: string[]) {
     const skillsArray = skills.map((skill) => this.fb.control(skill));
     this.formData.setControl('Skills', this.fb.array(skillsArray));
     console.log('skillsArray', skillsArray);
@@ -90,7 +90,7 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   //delete method is used to remove a skill from the 'Skills' form array at a specific index.
-  deleteSkill(index: any) {
+  deleteSkill(index: number) {
     this.skills.removeAt(index);
   }
 
