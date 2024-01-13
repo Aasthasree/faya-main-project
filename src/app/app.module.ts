@@ -1,16 +1,9 @@
-// Angular Core Modules
+// Angular Modules
 import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
-// Angular Routing
 import { AppRoutingModule } from './app-routing.module';
-import { Routes } from '@angular/router';
-
-// Angular HTTP
 import { HttpClientModule } from '@angular/common/http';
-
-// Angular Common Modules
 import { CommonModule, DatePipe } from '@angular/common';
 
 //components
