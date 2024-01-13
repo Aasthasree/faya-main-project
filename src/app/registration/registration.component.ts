@@ -3,6 +3,8 @@ import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
 import { CustomValidator } from '../shared/custom-validators/custom.validator';
+//interface
+import { Registration } from './registration';
 
 @Component({
   selector: 'app-registration',
@@ -15,7 +17,7 @@ export class RegistrationComponent implements OnInit{
   //To render login component
   goLogin: boolean;
   //object initializing globally
-  regFormOutput: any;
+  regFormOutput: Registration;
 
   constructor(
     private fb: FormBuilder,
