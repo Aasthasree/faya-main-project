@@ -17,16 +17,16 @@ export class CustomerListComponent implements OnInit {
   isEditModalVisible : boolean;
 
   constructor(
-    private dataService:CustomerService
+    private customerService:CustomerService
      ) { }
 
   ngOnInit(): void {
     this.loadData();
   }
 
-  //------To fetch data from dataservice------
+  //------To fetch data from customerService------
   private loadData() {
-    this.dataService.getData().subscribe(
+    this.customerService.getData().subscribe(
       (data) => {
         console.log(data);
         this.customerList = data;
@@ -55,7 +55,7 @@ export class CustomerListComponent implements OnInit {
     const index = this.customerList.indexOf(data);
     if (index !== -1) {
       this.customerList.splice(index, 1);
-      this.dataService.deleteData(data.id).subscribe(
+      this.customerService.deleteData(data.id).subscribe(
         () => {
           alert('Customer deleted successfully!');
         },

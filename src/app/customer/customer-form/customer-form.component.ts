@@ -25,7 +25,7 @@ export class CustomerFormComponent implements OnChanges {
   formattedDate = this.date.toISOString().slice(0, 10);
   
   constructor(
-    private data: CustomerService, 
+    private customerService: CustomerService, 
     private fb: FormBuilder
     ) {}
 
@@ -56,7 +56,7 @@ export class CustomerFormComponent implements OnChanges {
  * Subscribes to the response and invokes the 'userValue' method with the received data.
  */
   getallData() {
-    this.data.getDataById(this.id).subscribe((response) => {
+    this.customerService.getDataById(this.id).subscribe((response) => {
       this.userValue(response);
     });
   }
@@ -104,7 +104,7 @@ export class CustomerFormComponent implements OnChanges {
   submitForm() {
     if (this.formData.valid) {
       if (this.editClick) {
-        this.data.updatebyId(this.id, this.formData.value).subscribe((response) => {
+        this.customerService.updatebyId(this.id, this.formData.value).subscribe((response) => {
           alert('Changes updated successfully!');
           this.isUpdated = true;
           this.updateData.emit(this.isUpdated);
@@ -123,7 +123,7 @@ export class CustomerFormComponent implements OnChanges {
  * Resets the form, updates relevant properties, and emits an event to notify the parent component of the update.
  */
   createCustomer() {
-    this.data.createUser(this.formData.value).subscribe((res) => {
+    this.customerService.createUser(this.formData.value).subscribe((res) => {
       this.formData.reset();
       this.userData='';
       this.isUpdated = true;
