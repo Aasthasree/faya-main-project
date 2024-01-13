@@ -11,7 +11,7 @@ import { CustomerData } from '../customer.model';
   templateUrl: './customer-list.component.html',
   styleUrls: ['./customer-list.component.scss']
 })
-export class customerListComponent implements OnInit {
+export class CustomerListComponent implements OnInit {
   customerList: CustomerData[]=[];
   selectedId: number;
   isEditModalVisible : boolean;

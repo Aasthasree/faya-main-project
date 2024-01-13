@@ -11,7 +11,7 @@ import { CustomerService } from '../service/customer.service';
   templateUrl: './customer-form.component.html',
   styleUrls: ['./customer-form.component.scss']
 })
-export class customerFormComponent implements OnChanges {
+export class CustomerFormComponent implements OnChanges {
   @Input() editClick: boolean;
   @Input() id: number; 
   @Output() updateData = new EventEmitter<any>(); 

@@ -18,8 +18,8 @@ import { AppComponent } from './app.component';
 import { RegistrationComponent} from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { ValidationComponentComponent } from './shared/common-validation-error/validation-component.component';
-import { customerListComponent } from './customer/customer-list/customer-list.component';
-import { customerFormComponent } from './customer/customer-form/customer-form.component';
+import { CustomerListComponent} from './customer/customer-list/customer-list.component';
+import { CustomerFormComponent} from './customer/customer-form/customer-form.component';
 
 //pipes
 import { PercentagePipe } from './shared/pipes/percentage.pipe';
@@ -38,8 +38,8 @@ import { NgxMaskModule } from 'ngx-mask';
     RegistrationComponent,
     LoginComponent,
     ValidationComponentComponent,
-    customerListComponent,
-    customerFormComponent,
+    CustomerListComponent,
+    CustomerFormComponent,
 
      // Pipes
      PercentagePipe,
