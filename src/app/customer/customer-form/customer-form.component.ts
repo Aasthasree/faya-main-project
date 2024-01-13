@@ -17,8 +17,6 @@ export class CustomerFormComponent implements OnChanges {
   @Output() updateData = new EventEmitter<any>(); 
 
   formData: FormGroup;
-   //Holds the data of the user being edited.
-  userData: any = ''; 
   //property indicating whether the data has been updated
   isUpdated: boolean; 
   date = new Date();
@@ -125,7 +123,6 @@ export class CustomerFormComponent implements OnChanges {
   createCustomer() {
     this.customerService.createNewCustomer(this.formData.value).subscribe((res) => {
       this.formData.reset();
-      this.userData='';
       this.isUpdated = true;
       this.updateData.emit(this.isUpdated);
       alert('User is Created');
