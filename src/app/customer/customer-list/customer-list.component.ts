@@ -12,7 +12,7 @@ import { CustomerData } from '../customer.model';
   styleUrls: ['./customer-list.component.scss']
 })
 export class customerListComponent implements OnInit {
-  allData: CustomerData[]=[];
+  customerList: CustomerData[]=[];
   selectedId: number;
   isEditModalVisible : boolean;
 
@@ -29,7 +29,7 @@ export class customerListComponent implements OnInit {
     this.dataService.getData().subscribe(
       (data) => {
         console.log(data);
-        this.allData = data;
+        this.customerList = data;
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -52,16 +52,16 @@ export class customerListComponent implements OnInit {
  * @param data - The data associated with the row to be deleted.
  */
   onClickDeleteRow(data: any): void {
-    const index = this.allData.indexOf(data);
+    const index = this.customerList.indexOf(data);
     if (index !== -1) {
-      this.allData.splice(index, 1);
+      this.customerList.splice(index, 1);
       this.dataService.deleteData(data.id).subscribe(
         () => {
           alert('Customer deleted successfully!');
         },
         (error) => {
           console.error('Error deleting data from the database:', error);
-          this.allData.splice(index, 0, data);
+          this.customerList.splice(index, 0, data);
         }
       );
     }

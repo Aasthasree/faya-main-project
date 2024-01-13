@@ -20,8 +20,8 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="allData.length!==0; else noData">
-        <tr *ngFor="let data of allData">
+      <ng-container *ngIf="customerList.length!==0; else noData">
+        <tr *ngFor="let data of customerList">
           <td>{{ data.f_name }}</td>
           <td>{{ data.l_name }}</td>
           <td>{{ data.phone_number }}</td>
