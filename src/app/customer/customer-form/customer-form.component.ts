@@ -33,7 +33,7 @@ export class CustomerFormComponent implements OnChanges {
     this.customerData();
     // If in edit mode, fetch data for the specified ID
     if (this.editClick) {
-      this.getallData();
+      this.getCustomer();
     }
   }
 
@@ -55,14 +55,14 @@ export class CustomerFormComponent implements OnChanges {
  * Fetches all data by making an HTTP GET request to the backend API using the specified ID.
  * Subscribes to the response and invokes the 'userValue' method with the received data.
  */
-  getallData() {
+  getCustomer() {
     this.customerService.getDataById(this.id).subscribe((response) => {
-      this.userValue(response);
+      this.updateCustomer(response);
     });
   }
 
   // ------Update the form with user-specific data received from the API------
-  userValue(patchData) {
+  updateCustomer(patchData) {
     this.formData.patchValue({
       f_name: patchData.f_name,
       l_name: patchData.l_name,
@@ -93,7 +93,7 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   //delete method is used to remove a skill from the 'Skills' form array at a specific index.
-  delete(index: any) {
+  deleteSkill(index: any) {
     this.skills.removeAt(index);
   }
 
@@ -123,7 +123,7 @@ export class CustomerFormComponent implements OnChanges {
  * Resets the form, updates relevant properties, and emits an event to notify the parent component of the update.
  */
   createCustomer() {
-    this.customerService.createUser(this.formData.value).subscribe((res) => {
+    this.customerService.createNewCustomer(this.formData.value).subscribe((res) => {
       this.formData.reset();
       this.userData='';
       this.isUpdated = true;

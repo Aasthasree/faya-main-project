@@ -48,7 +48,7 @@ export class CustomerService {
   }
 
   //-------------------------Creates a new data item by sending an HTTP POST request to the API endpoint.---------------
-  createUser(value: any): Observable<any> {
+  createNewCustomer(value: any): Observable<any> {
     return this.http.post(this.apiUrl, value).pipe((map((data) => {
       return data;
     })));
