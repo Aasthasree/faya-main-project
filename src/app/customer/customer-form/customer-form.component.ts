@@ -102,7 +102,7 @@ export class CustomerFormComponent implements OnChanges {
     if (this.formData.valid) {
       if (this.editClick) {
         this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
-          alert('Changes updated successfully!');
+          alert('Customer information updated successfully!');
           this.isUpdated = true;
           this.updateData.emit(this.isUpdated);
         });
@@ -124,7 +124,7 @@ export class CustomerFormComponent implements OnChanges {
       this.formData.reset();
       this.isUpdated = true;
       this.updateData.emit(this.isUpdated);
-      alert('User is Created');
+      alert('Customer has been created successfully!');
 
     });
   }

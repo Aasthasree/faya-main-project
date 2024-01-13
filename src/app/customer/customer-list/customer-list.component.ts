@@ -57,7 +57,7 @@ export class CustomerListComponent implements OnInit {
       this.customerList.splice(index, 1);
       this.customerService.deleteCustomer(data.id).subscribe(
         () => {
-          alert('Customer deleted successfully!');
+          alert('Customer has been deleted successfully!');
         },
         (error) => {
           console.error('Error deleting data from the database:', error);
