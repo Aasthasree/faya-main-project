@@ -12,7 +12,7 @@ import { CustomerData } from '../customer.model';
   styleUrls: ['./customer-list.component.scss']
 })
 export class customerListComponent implements OnInit {
-  allData: CustomerData[];
+  allData: CustomerData[]=[];
   selectedId: number;
   isEditModalVisible : boolean;
 
