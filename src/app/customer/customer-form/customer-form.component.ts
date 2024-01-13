@@ -14,7 +14,7 @@ import { CustomerService } from '../service/customer.service';
 export class CustomerFormComponent implements OnChanges {
   @Input() editClick: boolean;
   @Input() id: number; 
-  @Output() updateData = new EventEmitter<any>(); 
+  @Output() updateData = new EventEmitter<boolean>(); 
 
   formData: FormGroup;
   //property indicating whether the data has been updated
