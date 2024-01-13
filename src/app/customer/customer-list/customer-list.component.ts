@@ -42,7 +42,7 @@ export class CustomerListComponent implements OnInit {
  * @param isEdit - Indicates whether the modal is in edit mode.
  * @param id - (Optional) The identifier associated with the item being edited.
  */
-  openEditModal(isEdit: boolean, id?: number): void {
+  showCustomerForm(isEdit: boolean, id?: number): void {
     this.selectedId = id;
     this.isEditModalVisible = isEdit;
   }

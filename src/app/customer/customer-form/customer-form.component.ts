@@ -130,7 +130,7 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   // Resets the form's 'touched' status, marking all form controls as 'untouched'.
-  onClickClose(){
+  closeCustomerForm(){
     this.formData.markAsUntouched();
   }
 
