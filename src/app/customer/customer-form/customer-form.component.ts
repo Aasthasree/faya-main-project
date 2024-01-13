@@ -51,10 +51,9 @@ export class CustomerFormComponent implements OnChanges {
 
   /**
  * Fetches all data by making an HTTP GET request to the backend API using the specified ID.
- * Subscribes to the response and invokes the 'userValue' method with the received data.
  */
   getCustomer() {
-    this.customerService.getDataById(this.id).subscribe((response) => {
+    this.customerService.getCustomer(this.id).subscribe((response) => {
       this.updateCustomer(response);
     });
   }
@@ -102,7 +101,7 @@ export class CustomerFormComponent implements OnChanges {
   submitForm() {
     if (this.formData.valid) {
       if (this.editClick) {
-        this.customerService.updatebyId(this.id, this.formData.value).subscribe((response) => {
+        this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
           alert('Changes updated successfully!');
           this.isUpdated = true;
           this.updateData.emit(this.isUpdated);
@@ -121,7 +120,7 @@ export class CustomerFormComponent implements OnChanges {
  * Resets the form, updates relevant properties, and emits an event to notify the parent component of the update.
  */
   createCustomer() {
-    this.customerService.createNewCustomer(this.formData.value).subscribe((res) => {
+    this.customerService.createCustomer(this.formData.value).subscribe((res) => {
       this.formData.reset();
       this.isUpdated = true;
       this.updateData.emit(this.isUpdated);

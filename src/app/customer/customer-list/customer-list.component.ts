@@ -21,12 +21,12 @@ export class CustomerListComponent implements OnInit {
      ) { }
 
   ngOnInit(): void {
-    this.loadData();
+    this.getCustomers();
   }
 
   //------To fetch data from customerService------
-  private loadData() {
-    this.customerService.getData().subscribe(
+  private getCustomers() {
+    this.customerService.getCustomers().subscribe(
       (data) => {
         console.log(data);
         this.customerList = data;
@@ -51,11 +51,11 @@ export class CustomerListComponent implements OnInit {
  * Handles the click event to delete a row.
  * @param data - The data associated with the row to be deleted.
  */
-  onClickDeleteRow(data: any): void {
+  deleteCustomer(data: any): void {
     const index = this.customerList.indexOf(data);
     if (index !== -1) {
       this.customerList.splice(index, 1);
-      this.customerService.deleteData(data.id).subscribe(
+      this.customerService.deleteCustomer(data.id).subscribe(
         () => {
           alert('Customer deleted successfully!');
         },
@@ -73,7 +73,7 @@ export class CustomerListComponent implements OnInit {
  */
   checkAndUpdateForm(check: boolean) {
     if (check) {
-      this.loadData();
+      this.getCustomers();
     }
   }
 }

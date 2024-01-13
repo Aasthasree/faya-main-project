@@ -17,14 +17,14 @@ export class CustomerService {
     ) { }
 
   // -------------Service method to fetch data from the API endpoint---------------------
-  getData(): Observable<any[]> {
+  getCustomers(): Observable<any[]> {
     return this.http.get<any[]>(this.apiUrl).pipe(
       catchError(this.handleError)
     );
   }
 
   //-------------------------Fetches a single data item from the API endpoint by its identifier--------------------
-  getDataById(id: number): Observable<any> {
+  getCustomer(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<any>(url).pipe(
       catchError(this.handleError)
@@ -32,7 +32,7 @@ export class CustomerService {
   }
 
   //------------------- Deletes a data item from the API endpoint by its identifier.-------------------
-  deleteData(id: number): Observable<any> {
+  deleteCustomer(id: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url).pipe(
       catchError(this.handleError)
@@ -40,7 +40,7 @@ export class CustomerService {
   }
 
   //-------------------Updates a data item at the API endpoint by its identifier.----------------------
-  updatebyId(id: any, value: any): Observable<any> {
+  updateCustomerById(id: any, value: any): Observable<any> {
     let url = `${this.apiUrl}/${id}`;
     return this.http.patch(url, value).pipe((map((data) => {
       return data;
@@ -48,7 +48,7 @@ export class CustomerService {
   }
 
   //-------------------------Creates a new data item by sending an HTTP POST request to the API endpoint.---------------
-  createNewCustomer(value: any): Observable<any> {
+  createCustomer(value: any): Observable<any> {
     return this.http.post(this.apiUrl, value).pipe((map((data) => {
       return data;
     })));
