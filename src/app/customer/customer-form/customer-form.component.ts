@@ -25,18 +25,18 @@ export class CustomerFormComponent implements OnChanges {
   constructor(
     private customerService: CustomerService, 
     private fb: FormBuilder
-    ) {}
-
+  ) {
+    this.initCustomerForm();
+  }
+  
   ngOnChanges() {
-    this.customerData();
     // If in edit mode, fetch data for the specified ID
     if (this.editClick) {
       this.getCustomer();
     }
   }
-
-  customerData() {
-    
+  
+  private initCustomerForm() {
     this.formData = this.fb.group({
       f_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       l_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
@@ -46,8 +46,8 @@ export class CustomerFormComponent implements OnChanges {
       dob: ['' , [Validators.required]],
       Skills: this.fb.array([this.fb.control('' , [Validators.required, CustomValidator.cannotContainSpace])])
     });
-    
   }
+  
 
   /**
  * Fetches all data by making an HTTP GET request to the backend API using the specified ID.
