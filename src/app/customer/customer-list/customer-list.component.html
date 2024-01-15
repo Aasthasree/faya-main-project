@@ -3,9 +3,9 @@
   <h2>Customer Details</h2>
   <div class="customer-btn">
     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-    (click)=" onClickShowCustomerForm(false)" >Add customer</button>
+      (click)=" onClickShowCustomerForm(null)">Add customer</button>
   </div>
- 
+
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -31,7 +31,7 @@
           <td>{{ data.dob | validDate }}</td>
           <!-- Action buttons for editing and deleting data -->
           <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
-          <button type="button" class="btn" (click)=" onClickShowCustomerForm(true,data.id)" data-bs-toggle="modal"
+          <button type="button" class="btn" (click)=" onClickShowCustomerForm(data.id)" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
             <i class="fa fa-edit"></i>
             <!-- Button to delete a row of data -->
@@ -39,7 +39,7 @@
             style="cursor: pointer;"></i>
         </tr>
       </ng-container>
-       <ng-template #noData>
+      <ng-template #noData>
         <h1>No Data!</h1>
       </ng-template>
     </tbody>
@@ -49,7 +49,19 @@
   Edit form component:
   - [id]: Selected data item's ID for editing.
   - (updateData): Triggers checkBooleanValue on form changes.
-  - [editClick]: Controls edit form modal visibility.
 -->
-<app-customer-form [id]="selectedId" (updateData)="checkAndUpdateForm($event)"
-  [editClick]="isEditModalVisible"></app-customer-form>
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
+        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <app-customer-form [id]="selectedId" *ngIf="showCustomerForm" (updateData)="checkAndUpdateForm($event)"></app-customer-form>` 
+    </div>
+  </div>
+</div>                          

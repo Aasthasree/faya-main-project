@@ -14,7 +14,7 @@ import { Customer } from '../../shared/models/customer-model/customer';
 export class CustomerListComponent implements OnInit {
   customerList: Customer[]=[];
   selectedId: number;
-  isEditModalVisible : boolean;
+  showCustomerForm: boolean;
 
   constructor(
     private customerService:CustomerService
@@ -42,9 +42,9 @@ export class CustomerListComponent implements OnInit {
  * @param isEdit - Indicates whether the modal is in edit mode.
  * @param id - (Optional) The identifier associated with the item being edited.
  */
-  onClickShowCustomerForm(isEdit: boolean, id?: number): void {
-    this.selectedId = id;
-    this.isEditModalVisible = isEdit;
+  onClickShowCustomerForm(id?: number): void {
+    this.selectedId = id || null;
+    this.showCustomerForm = true;
   }
 
   /**

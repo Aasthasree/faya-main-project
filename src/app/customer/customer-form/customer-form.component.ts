@@ -12,7 +12,6 @@ import { CustomerService } from '../service/customer.service';
   styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnChanges {
-  @Input() editClick: boolean;
   @Input() id: number; 
   @Output() updateData = new EventEmitter<boolean>(); 
 
@@ -31,12 +30,15 @@ export class CustomerFormComponent implements OnChanges {
   
   ngOnChanges() {
     // If in edit mode, fetch data for the specified ID
-    if (this.editClick) {
+    if (this.id) {
       this.getCustomer();
+    } else {
+      this.formData.reset();
     }
   }
   
   private initCustomerForm() {
+    console.log('hit')
     this.formData = this.fb.group({
       f_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       l_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
@@ -100,14 +102,14 @@ export class CustomerFormComponent implements OnChanges {
  */
   onClickSubmitForm() {
     if (this.formData.valid) {
-      if (this.editClick) {
+      if (this.id) {
         this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
           alert('Customer information updated successfully!');
           this.isUpdated = true;
           this.updateData.emit(this.isUpdated);
         });
       }
-      if (!this.editClick) {
+      if (!this.id) {
         this.onClickCreateCustomer();
       }
     } else {
