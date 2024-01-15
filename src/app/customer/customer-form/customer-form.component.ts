@@ -54,12 +54,12 @@ export class CustomerFormComponent implements OnChanges {
  */
   getCustomer() {
     this.customerService.getCustomer(this.id).subscribe((response) => {
-      this.updateCustomer(response);
+      this.setCustomerFormData(response);
     });
   }
 
   // ------Update the form with user-specific data received from the API------
-  updateCustomer(patchData) {
+  setCustomerFormData(patchData) {
     this.formData.patchValue({
       f_name: patchData.f_name,
       l_name: patchData.l_name,
