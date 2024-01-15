@@ -12,7 +12,7 @@ import { Component, Input } from '@angular/core';
   styles: ['small{ color: red; }']
 })
 
-export class ValidationComponentComponent {
+export class ValidationComponent {
   @Input() control: any = '';
   @Input() key: any = '';
 
