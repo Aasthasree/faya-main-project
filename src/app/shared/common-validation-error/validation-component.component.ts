@@ -14,6 +14,6 @@ import { Component, Input } from '@angular/core';
 
 export class ValidationComponent {
   @Input() control: any = '';
-  @Input() key: any = '';
+  @Input() key: string = '';
 
 }
