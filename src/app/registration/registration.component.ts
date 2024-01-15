@@ -12,12 +12,12 @@ import { Registration } from '../shared/models/registration-model/registration';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit{
-  regform: FormGroup;
+  registrationForm: FormGroup;
   addressesAreSame: boolean=false;
   //To render login component
-  goLogin: boolean;
+  showLoginForm: boolean;
   //object initializing globally
-  regFormOutput: Registration;
+  registrationFormOutput: Registration;
 
   constructor(
     private fb: FormBuilder,
@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit{
 
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
-    return (<FormArray>this.regform.get('skills')).controls;
+    return (<FormArray>this.registrationForm.get('skills')).controls;
   }
 
   //ngonit
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit{
 
   //function calling
   private initializeForm() {
-    this.regform = this.fb.group({
+    this.registrationForm = this.fb.group({
       firstname: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       lastname: ['' , [Validators.required,CustomValidator.cannotContainSpace]],
       email: ['' , [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),CustomValidator.cannotContainSpace]],
@@ -74,39 +74,39 @@ export class RegistrationComponent implements OnInit{
   onCheckboxChange(event: any) {
     this.addressesAreSame = event.target.checked;
     if (!this.addressesAreSame) {
-      this.regform.get('communication_address').reset();
+      this.registrationForm.get('communication_address').reset();
     }
-    this.regform.get(['communication_address', 'country']).setValue('');
+    this.registrationForm.get(['communication_address', 'country']).setValue('');
   }
 
 
  //Handle form submission, validate, and manage address synchronization.
-  onSubmit() {
-    const communicationAddressValue = this.addressesAreSame ? this.regform.value.permanent_address : this.regform.value.communication_address;
-    this.regform.patchValue({
+  onClickSubmit() {
+    const communicationAddressValue = this.addressesAreSame ? this.registrationForm.value.permanent_address : this.registrationForm.value.communication_address;
+    this.registrationForm.patchValue({
       communication_address: communicationAddressValue
     });
 
-    if (this.regform.valid) {
-      if (this.regform.get('isSameAsPermanent')) {
-        this.regform.removeControl('isSameAsPermanent');
+    if (this.registrationForm.valid) {
+      if (this.registrationForm.get('isSameAsPermanent')) {
+        this.registrationForm.removeControl('isSameAsPermanent');
       }
       //to show ouput isSameAsPermanent true or false
-      this.regform.addControl('isSameAsPermanent', new FormControl(this.addressesAreSame));
-      this.getFormData();
+      this.registrationForm.addControl('isSameAsPermanent', new FormControl(this.addressesAreSame));
+      this.transformFormData();
       //To render login component
-      this.goLogin = true;
+      this.showLoginForm = true;
     } else {
       //scroll if error occurs
-      this.regform.markAllAsTouched();
+      this.registrationForm.markAllAsTouched();
       this.scrollToFirstInvalidControl();
     }
   }
 
  //Extract and transform form data into desired output format.
-  getFormData() {
-    const formData = this.regform.value;
-    this.regFormOutput = {
+  transformFormData() {
+    const formData = this.registrationForm.value;
+    this.registrationFormOutput = {
       First_name: formData.firstname,
       Last_name: formData.lastname,
       Email: formData.email,
@@ -130,16 +130,16 @@ export class RegistrationComponent implements OnInit{
       },
       skill: formData.skills,
     };
-    console.log(this.regFormOutput);
+    console.log(this.registrationFormOutput);
   }
 
   //Retrieve the 'skills' FormArray from the registration form.
   get skills() {
-    return this.regform.get('skills') as FormArray;
+    return this.registrationForm.get('skills') as FormArray;
   }
  
   //Add a new skill FormControl to the 'skills' FormArray
-  addSKill() {
+  onClickAddSKill() {
     this.skills.push(this.fb.control('' , Validators.required));
   }
 
@@ -148,7 +148,7 @@ export class RegistrationComponent implements OnInit{
  * Ensures there is at least one skill remaining.
  * @param index - The index of the skill to be removed.
  */
-  onClickDelete(index: number) {
+  onClickDeleteSkill(index: number) {
     if (this.skills.length > 1) {
       this.skills.removeAt(index);
     }
@@ -186,12 +186,12 @@ export class RegistrationComponent implements OnInit{
  * If the selected date is in the future, set 'invalidDate' error; otherwise, clear errors.
  */
   validateDate() {
-    const selectedDate = new Date(this.regform.get('date_of_birth').value);
+    const selectedDate = new Date(this.registrationForm.get('date_of_birth').value);
     const today = new Date();
     if (selectedDate > today) {
-      this.regform.get('date_of_birth').setErrors({ 'invalidDate': true });
+      this.registrationForm.get('date_of_birth').setErrors({ 'invalidDate': true });
     } else {
-      this.regform.get('date_of_birth').setErrors(null);
+      this.registrationForm.get('date_of_birth').setErrors(null);
     }
   }
 
