@@ -14,7 +14,7 @@ import { Customer } from '../customer-model/customer.model';
 export class CustomerListComponent implements OnInit {
   customerList: Customer[]=[];
   selectedId: number;
-  showCustomerForm: boolean;
+  customerFormVisible: boolean;
 
   constructor(
     private customerService:CustomerService
@@ -44,7 +44,7 @@ export class CustomerListComponent implements OnInit {
  */
   onClickShowCustomerForm(id?: number): void {
     this.selectedId = id || null;
-    this.showCustomerForm = true;
+    this.customerFormVisible = true;
   }
 
   /**

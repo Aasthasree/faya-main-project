@@ -45,11 +45,6 @@
     </tbody>
   </table>
 </div>
-<!-- 
-  Edit form component:
-  - [id]: Selected data item's ID for editing.
-  - (updateData): Triggers checkBooleanValue on form changes.
--->
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -57,11 +52,11 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close" (click)="showCustomerForm = false" >
+        <button type="button" class="close"  data-bs-dismiss="modal" aria-label="Close" (click)="customerFormVisible = false" >
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <app-customer-form [id]="selectedId" *ngIf="showCustomerForm" (updateData)="checkAndUpdateForm($event)"></app-customer-form>` 
+      <app-customer-form [id]="selectedId" *ngIf="customerFormVisible" (updateData)="checkAndUpdateForm($event)"></app-customer-form>` 
     </div>
   </div>
 </div>                          
