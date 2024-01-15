@@ -5,7 +5,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
-        <button type="button" class="close"  (click)="closeCustomerForm()" data-bs-dismiss="modal" aria-label="Close">
+        <button type="button" class="close"  (click)="onClickCloseCustomerForm()" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -46,7 +46,7 @@
             <div class="row mt-5">
               <div class="col form-inline">
                 <label for="Address" class="form-label heading"><span class="text-danger">*</span>Add Skill
-                  <button type="button" (click)="addSkill()" class="btn btn-sm btn-primary">Add New
+                  <button type="button" (click)="onClickAddSkill()" class="btn btn-sm btn-primary">Add New
                     Skill</button>
                 </label>
               </div>
@@ -56,7 +56,7 @@
                 <div class="d-flex">
                   <input type="text" class="form-control mt-3" placeholder="Skill" [formControlName]="i">
                   <ng-container *ngIf="skills.controls.length>1">
-                    <i class="fa fa-trash bin " aria-hidden="true" (click)="deleteSkill(i)"
+                    <i class="fa fa-trash bin " aria-hidden="true" (click)="onClickDeleteSkill(i)"
                       [attr.disabled]="skills.controls.length <= 1 ? true : null"
                       [style.cursor]="skills.controls.length <= 1 ? 'not-allowed' : 'pointer'"></i>
                   </ng-container>
@@ -68,7 +68,7 @@
             </div>
           </div>
           <!--Button-->
-            <button type="button" class="btn btn-success mt-3 mb-3 submit" data-bs-dismiss="modal" (click)="submitForm()"
+            <button type="button" class="btn btn-success mt-3 mb-3 submit" data-bs-dismiss="modal" (click)="onClickSubmitForm()"
               [attr.data-bs-dismiss]="formData.valid ? 'modal' : null">{{editClick? 'Update':'Add
               Customer'}}</button>
         </div>

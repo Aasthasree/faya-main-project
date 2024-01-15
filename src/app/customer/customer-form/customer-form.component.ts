@@ -85,12 +85,12 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   //addSkill method is called when you want to add a new skill to the 'Skills' form array.
-  addSkill() {
+  onClickAddSkill() {
     this.skills.push(this.fb.control('' , [Validators.required, CustomValidator.cannotContainSpace]));
   }
 
   //delete method is used to remove a skill from the 'Skills' form array at a specific index.
-  deleteSkill(index: number) {
+  onClickDeleteSkill(index: number) {
     this.skills.removeAt(index);
   }
 
@@ -98,7 +98,7 @@ export class CustomerFormComponent implements OnChanges {
  * Handles form submission, updating or creating customer data based on edit mode.
  * Notifies parent components of the update status.
  */
-  submitForm() {
+  onClickSubmitForm() {
     if (this.formData.valid) {
       if (this.editClick) {
         this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
@@ -108,7 +108,7 @@ export class CustomerFormComponent implements OnChanges {
         });
       }
       if (!this.editClick) {
-        this.createCustomer();
+        this.onClickCreateCustomer();
       }
     } else {
       { this.formData.markAllAsTouched(); }
@@ -119,7 +119,7 @@ export class CustomerFormComponent implements OnChanges {
  * Sends a request to create a new user using the data from the form.
  * Resets the form, updates relevant properties, and emits an event to notify the parent component of the update.
  */
-  createCustomer() {
+  onClickCreateCustomer() {
     this.customerService.createCustomer(this.formData.value).subscribe((res) => {
       this.formData.reset();
       this.isUpdated = true;
@@ -130,7 +130,7 @@ export class CustomerFormComponent implements OnChanges {
   }
 
   // Resets the form's 'touched' status, marking all form controls as 'untouched'.
-  closeCustomerForm(){
+  onClickCloseCustomerForm(){
     this.formData.markAsUntouched();
   }
 
