@@ -5,7 +5,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //interface
-import { Customer } from '../customer-model/customer';
+import { Customer } from '../customer-model/customer.model';
 
 @Injectable({
   providedIn: 'root',
