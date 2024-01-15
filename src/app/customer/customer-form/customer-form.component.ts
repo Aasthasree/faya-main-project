@@ -1,7 +1,7 @@
 import { Component, Input, Output,EventEmitter, OnChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 //validator
-import { CustomValidator } from '../../shared/custom-validators/custom.validator';
+import { CustomValidator } from '../../shared/custom-validators/custom-validator';
 //service
 import { CustomerService } from '../service/customer.service';
 

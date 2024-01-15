@@ -2,7 +2,7 @@
 import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
-import { CustomValidator } from '../shared/custom-validators/custom.validator';
+import { CustomValidator } from '../shared/custom-validators/custom-validator';
 //interface
 import { Registration } from './registration-model/registration.model';
 
