@@ -3,7 +3,7 @@
   <h2>Customer Details</h2>
   <div class="customer-btn">
     <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-    (click)="showCustomerForm(false)" >Add customer</button>
+    (click)=" onClickShowCustomerForm(false)" >Add customer</button>
   </div>
  
   <table class="table table-bordered">
@@ -31,11 +31,11 @@
           <td>{{ data.dob | validDate }}</td>
           <!-- Action buttons for editing and deleting data -->
           <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
-          <button type="button" class="btn" (click)="showCustomerForm(true,data.id)" data-bs-toggle="modal"
+          <button type="button" class="btn" (click)=" onClickShowCustomerForm(true,data.id)" data-bs-toggle="modal"
             data-bs-target="#staticBackdrop">
             <i class="fa fa-edit"></i>
             <!-- Button to delete a row of data -->
-          </button><i class="fa fa-trash custom" aria-hidden="true" (click)="deleteCustomer(data)"
+          </button><i class="fa fa-trash custom" aria-hidden="true" (click)="onClickDeleteCustomer(data)"
             style="cursor: pointer;"></i>
         </tr>
       </ng-container>
