@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
 
 import { CustomerListComponent} from './customer/customer-list/customer-list.component';
 import { CustomerFormComponent} from './customer/customer-form/customer-form.component';
-import { ValidationComponent } from './shared/common-validation-error/validation-component.component';
+import { ValidationComponent } from './shared/common-validation-error/validation-component';
 
 //pipes
 import { PercentagePipe } from './shared/pipes/percentage.pipe';
