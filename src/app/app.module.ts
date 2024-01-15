@@ -16,7 +16,7 @@ import { CustomerFormComponent} from './customer/customer-form/customer-form.com
 
 //pipes
 import { PercentagePipe } from './shared/pipes/percentage.pipe';
-import { FilterPipePipe } from './shared/pipes/filter-pipe.pipe';
+import { FilterPipe } from './shared/pipes/filter-pipe.pipe';
 import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
 import { ValidDatePipe } from './shared/pipes/valid-date.pipe';
 
@@ -36,7 +36,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
      // Pipes
      PercentagePipe,
-     FilterPipePipe,
+     FilterPipe,
      CapitalizePipe,
      ValidDatePipe,
   ],
