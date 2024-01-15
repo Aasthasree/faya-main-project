@@ -34,6 +34,7 @@ export class CustomerFormComponent implements OnChanges {
       this.getCustomer();
     } else {
       this.formData.reset();
+      this.formData.markAsUntouched();
     }
   }
   
@@ -130,10 +131,6 @@ export class CustomerFormComponent implements OnChanges {
     });
   }
 
-  // Resets the form's 'touched' status, marking all form controls as 'untouched'.
-  onClickCloseCustomerForm(){
-    this.formData.markAsUntouched();
-  }
 
 }
 
