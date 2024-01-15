@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@ang
 //validator
 import { CustomValidator } from '../shared/custom-validators/custom.validator';
 //interface
-import { Registration } from '../shared/models/registration-model/registration';
+import { Registration } from './registration-model/registration';
 
 @Component({
   selector: 'app-registration',
