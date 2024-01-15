@@ -38,7 +38,6 @@ export class CustomerFormComponent implements OnChanges {
   }
   
   private initCustomerForm() {
-    console.log('hit')
     this.formData = this.fb.group({
       f_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       l_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
