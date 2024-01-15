@@ -29,7 +29,6 @@ export class CustomerFormComponent implements OnChanges {
   }
   
   ngOnChanges() {
-    // If in edit mode, fetch data for the specified ID
     if (this.id) {
       this.getCustomer();
     } else {
