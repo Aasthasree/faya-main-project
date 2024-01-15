@@ -56,7 +56,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <app-customer-form [id]="selectedId" *ngIf="customerFormVisible" (updateData)="checkAndUpdateForm($event)"></app-customer-form>` 
+      <app-customer-form [id]="selectedId" *ngIf="customerFormVisible" (updateData)="updateCustomerListOnFormChange($event)"></app-customer-form>` 
     </div>
   </div>
 </div>                          

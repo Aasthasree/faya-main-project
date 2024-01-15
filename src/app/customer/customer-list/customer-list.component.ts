@@ -71,7 +71,7 @@ export class CustomerListComponent implements OnInit {
  * Conditionally triggers form update by loading data if the check is true.
  * @param check - A boolean flag determining whether to update the form.
  */
-  checkAndUpdateForm(check: boolean) {
+ updateCustomerListOnFormChange(check: boolean) {
     if (check) {
       this.getCustomers();
     }
