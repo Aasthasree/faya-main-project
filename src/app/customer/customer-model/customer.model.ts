@@ -7,4 +7,4 @@ export interface Customer {
   gender: string;
   l_name: string;
   phone_number: number;
-};
+}

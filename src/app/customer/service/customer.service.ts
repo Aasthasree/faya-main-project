@@ -43,7 +43,7 @@ export class CustomerService {
 
   //-------------------Updates a data item at the API endpoint by its identifier.----------------------
   updateCustomerById(id: number, value: Customer): Observable<Customer> {
-    let url = `${this.apiUrl}/${id}`;
+    const url = `${this.apiUrl}/${id}`;
     return this.http.patch<Customer>(url, value).pipe((map((data) => {
       return data;
     })));

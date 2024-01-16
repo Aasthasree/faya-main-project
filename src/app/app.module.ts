@@ -42,7 +42,7 @@ import { NgxMaskModule } from 'ngx-mask';
      CapitalizePipe,
      ValidDatePipe,
   ],
-  
+
   imports: [
     // Angular modules
     BrowserModule,

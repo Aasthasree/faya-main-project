@@ -12,22 +12,22 @@ import { CustomerService } from '../service/customer.service';
   styleUrls: ['./customer-form.component.scss']
 })
 export class CustomerFormComponent implements OnChanges {
-  @Input() id: number; 
-  @Output() updateData = new EventEmitter<boolean>(); 
+  @Input() id: number;
+  @Output() updateData = new EventEmitter<boolean>();
 
   formData: FormGroup;
   //property indicating whether the data has been updated
-  isUpdated: boolean; 
+  isUpdated: boolean;
   date = new Date();
   formattedDate = this.date.toISOString().slice(0, 10);
-  
+
   constructor(
-    private customerService: CustomerService, 
+    private customerService: CustomerService,
     private fb: FormBuilder
   ) {
     this.initCustomerForm();
   }
-  
+
   ngOnChanges() {
     if (this.id) {
       this.getCustomer();
@@ -36,7 +36,7 @@ export class CustomerFormComponent implements OnChanges {
       this.formData.markAsUntouched();
     }
   }
-  
+
   private initCustomerForm() {
     this.formData = this.fb.group({
       f_name: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
@@ -48,7 +48,7 @@ export class CustomerFormComponent implements OnChanges {
       Skills: this.fb.array([this.fb.control('' , [Validators.required, CustomValidator.cannotContainSpace])])
     });
   }
-  
+
 
   /**
  * Fetches all data by making an HTTP GET request to the backend API using the specified ID.

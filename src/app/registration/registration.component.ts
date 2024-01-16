@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit{
 
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
-    return (<FormArray>this.registrationForm.get('skills')).controls;
+    return (<FormArray> this.registrationForm.get('skills')).controls;
   }
 
   //ngonit
@@ -45,14 +45,14 @@ export class RegistrationComponent implements OnInit{
       gender: ['male',Validators.required],
       permanent_address: this.createAddressFormGroup(),
       communication_address: this.createAddressFormGroup(),
-      
+
       //form array
       skills: this.fb.array([
         this.fb.control('' , [Validators.required,CustomValidator.cannotContainSpace])
       ])
     });
   }
-  
+
   /**
  * Create address form group with validations.
  */
@@ -137,7 +137,7 @@ export class RegistrationComponent implements OnInit{
   get skills() {
     return this.registrationForm.get('skills') as FormArray;
   }
- 
+
   //Add a new skill FormControl to the 'skills' FormArray
   onClickAddSKill() {
     this.skills.push(this.fb.control('' , Validators.required));
