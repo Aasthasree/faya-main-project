@@ -1,24 +1,32 @@
-import { Component,ElementRef } from '@angular/core';
+//Angular Modules
+import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
-import { CustomValidator } from '../shared/custom-validators/custom.validator';
+import { CustomValidator } from '../shared/custom-validators/custom-validator';
+//interface
+import { Registration } from './registration-model/registration.model';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
-  regform: FormGroup;
+export class RegistrationComponent implements OnInit{
+  registrationForm: FormGroup;
   addressesAreSame: boolean=false;
-  disableDeleteIcon = false;
-  goLogin: boolean;//To render login component
-  regFormOutput: any;//object initializing globally
+  //To render login component
+  showLoginForm: boolean;
+  //object initializing globally
+  registrationFormOutput: Registration;
 
-  constructor(private fb: FormBuilder, private el: ElementRef) { }
+  constructor(
+    private fb: FormBuilder,
+     private el: ElementRef
+     ) { }
+
   // Retrieve the controls within the 'skills' FormArray for easy access and manipulation
   get skillControls() {
-    return (<FormArray>this.regform.get('skills')).controls;
+    return (<FormArray> this.registrationForm.get('skills')).controls;
   }
 
   //ngonit
@@ -28,16 +36,16 @@ export class RegistrationComponent {
 
   //function calling
   private initializeForm() {
-    this.regform = this.fb.group({
+    this.registrationForm = this.fb.group({
       firstname: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
       lastname: ['' , [Validators.required,CustomValidator.cannotContainSpace]],
-      email: ['' , [Validators.required, Validators.email,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"),CustomValidator.cannotContainSpace]],
+      email: ['' , [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$'),CustomValidator.cannotContainSpace]],
       date_of_birth: ['' ,Validators.required],
       Phone: ['' ,Validators.required],
       gender: ['male',Validators.required],
       permanent_address: this.createAddressFormGroup(),
       communication_address: this.createAddressFormGroup(),
-      
+
       //form array
       skills: this.fb.array([
         this.fb.control('' , [Validators.required,CustomValidator.cannotContainSpace])
@@ -45,6 +53,9 @@ export class RegistrationComponent {
     });
   }
 
+  /**
+ * Create address form group with validations.
+ */
   private createAddressFormGroup(): FormGroup {
     return this.fb.group({
       street: ['' , [Validators.required, CustomValidator.cannotContainSpace]],
@@ -56,44 +67,46 @@ export class RegistrationComponent {
   }
 
 
-  //checkbox reset
+ /**
+ * Handle checkbox change event to toggle address synchronization.
+ * @param event - The checkbox change event.
+ */
   onCheckboxChange(event: any) {
     this.addressesAreSame = event.target.checked;
     if (!this.addressesAreSame) {
-      this.regform.get('communication_address').reset();
+      this.registrationForm.get('communication_address').reset();
     }
-    this.regform.get(['communication_address', 'country']).setValue('');
+    this.registrationForm.get(['communication_address', 'country']).setValue('');
   }
 
-  //---------submit start---------------
-  onSubmit() {
-    const communicationAddressValue = this.addressesAreSame ? this.regform.value.permanent_address : this.regform.value.communication_address;
-    this.regform.patchValue({
+
+ //Handle form submission, validate, and manage address synchronization.
+  onClickSubmit() {
+    const communicationAddressValue = this.addressesAreSame ? this.registrationForm.value.permanent_address : this.registrationForm.value.communication_address;
+    this.registrationForm.patchValue({
       communication_address: communicationAddressValue
     });
 
-    if (this.regform.valid) {
-      if (this.regform.get('isSameAsPermanent')) {
-        this.regform.removeControl('isSameAsPermanent');
+    if (this.registrationForm.valid) {
+      if (this.registrationForm.get('isSameAsPermanent')) {
+        this.registrationForm.removeControl('isSameAsPermanent');
       }
       //to show ouput isSameAsPermanent true or false
-      this.regform.addControl("isSameAsPermanent", new FormControl(this.addressesAreSame));
-      this.getFormData()
+      this.registrationForm.addControl('isSameAsPermanent', new FormControl(this.addressesAreSame));
+      this.transformFormData();
       //To render login component
-      this.goLogin = true;
-
+      this.showLoginForm = true;
     } else {
       //scroll if error occurs
-      this.regform.markAllAsTouched();
+      this.registrationForm.markAllAsTouched();
       this.scrollToFirstInvalidControl();
     }
   }
 
-  //---------submit ends---------
-  getFormData() {
-    const formData = this.regform.value;
-    // Transforming form values to the desired output format
-    this.regFormOutput = {
+ //Extract and transform form data into desired output format.
+  transformFormData() {
+    const formData = this.registrationForm.value;
+    this.registrationFormOutput = {
       First_name: formData.firstname,
       Last_name: formData.lastname,
       Email: formData.email,
@@ -117,43 +130,43 @@ export class RegistrationComponent {
       },
       skill: formData.skills,
     };
-    console.log(this.regFormOutput)
+    console.log(this.registrationFormOutput);
   }
 
-  //skill 
+  //Retrieve the 'skills' FormArray from the registration form.
   get skills() {
-    return this.regform.get('skills') as FormArray
+    return this.registrationForm.get('skills') as FormArray;
   }
 
-  addSKill() {
-    this.skills.push(this.fb.control('' , Validators.required))
+  //Add a new skill FormControl to the 'skills' FormArray
+  onClickAddSKill() {
+    this.skills.push(this.fb.control('' , Validators.required));
   }
 
-  // removeSKill(){
-  //    this.skills.controls.forEach((skill, i) => {
-  //      this.skills.removeAt(i)
-  //    })
-  //   // this.skills.controls=[]
-  // }
-
-  //skill delete icon
-  delete(index: number) {
+  /**
+ * Remove a skill FormControl at the specified index from the 'skills' FormArray.
+ * Ensures there is at least one skill remaining.
+ * @param index - The index of the skill to be removed.
+ */
+  onClickDeleteSkill(index: number) {
     if (this.skills.length > 1) {
       this.skills.removeAt(index);
     }
   }
 
-  //----scroll bar------
+  /**
+   * Scroll to the top of the first invalid form control.
+   * Uses smooth scrolling to navigate to the top of the first invalid control.
+   */
   private scrollToFirstInvalidControl() {
     const firstInvalidControl: HTMLElement = this.el.nativeElement.querySelector(
-      "form .ng-invalid"
+      'form .ng-invalid'
     );
-
     if (firstInvalidControl) {
       window.scroll({
         top: this.getTopOffset(firstInvalidControl),
         left: 0,
-        behavior: "smooth"
+        behavior: 'smooth'
       });
     }
   }
@@ -163,18 +176,22 @@ export class RegistrationComponent {
   }
 
   //To disable future calender dates
+  //Get the current date in string format (YYYY-MM-DD).
   getToday(): string {
     const today = new Date();
     return today.toISOString().split('T')[0];
   }
-
+/**
+ * Validate the selected date against the current date.
+ * If the selected date is in the future, set 'invalidDate' error; otherwise, clear errors.
+ */
   validateDate() {
-    const selectedDate = new Date(this.regform.get('date_of_birth').value);
+    const selectedDate = new Date(this.registrationForm.get('date_of_birth').value);
     const today = new Date();
     if (selectedDate > today) {
-      this.regform.get('date_of_birth').setErrors({ 'invalidDate': true });
+      this.registrationForm.get('date_of_birth').setErrors({ 'invalidDate': true });
     } else {
-      this.regform.get('date_of_birth').setErrors(null);
+      this.registrationForm.get('date_of_birth').setErrors(null);
     }
   }
 
