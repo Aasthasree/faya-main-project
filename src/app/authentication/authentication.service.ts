@@ -11,7 +11,7 @@ export class AuthenticationService {
 
   login(username: string, password: string): boolean {
     if (username === this.validUsername && password === this.validPassword) {
-      this.defaultAuthToken = 'your_generated_token';
+      this.defaultAuthToken = 'generatedToken';
       this.isAuthenticated = true;
       return true;
     }
