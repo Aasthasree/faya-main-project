@@ -18,6 +18,13 @@ export class AuthenticationService {
     return false;
   }
 
+  logout(): void {
+    // Reset authentication status, clear the token, and any other user data
+    this.isAuthenticated = false;
+    this.defaultAuthToken = null;
+  }
+
+
 
 
   constructor() { }
