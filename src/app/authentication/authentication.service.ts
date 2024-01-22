@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class AuthenticationService {
   private readonly validUsername = 'admin@gmail.com';
   private readonly validPassword = 'admin123';
-  private isAuthenticated = false;
+  isAuthenticated: boolean = false;
   private defaultAuthToken: string | null = null;
 
   login(username: string, password: string): boolean {
@@ -31,9 +31,6 @@ export class AuthenticationService {
   getAuthToken(): string | null {
     return this.defaultAuthToken;
   }
-  
-
-
 
 
   constructor() { }
