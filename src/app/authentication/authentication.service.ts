@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly validUsername = 'admin@gmail.com';
-  private readonly validPassword = 'admin123';
+  private readonly validUsername = 'aastha';
+  private readonly validPassword = '12345';
   isAuthenticated: boolean = false;
   private defaultAuthToken: string | null = null;
 
