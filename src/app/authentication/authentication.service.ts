@@ -7,6 +7,8 @@ export class AuthenticationService {
   private readonly validUsername = 'admin@gmail.com';
   private readonly validPassword = 'admin123';
   private isAuthenticated = false;
+  private readonly defaultAuthToken: string | null = null;
+
 
 
   constructor() { }
