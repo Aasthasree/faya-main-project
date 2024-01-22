@@ -28,6 +28,11 @@ export class AuthenticationService {
     return this.isAuthenticated;
   }
 
+  getAuthToken(): string | null {
+    return this.defaultAuthToken;
+  }
+  
+
 
 
 
