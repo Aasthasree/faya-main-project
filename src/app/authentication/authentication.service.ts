@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
+  private readonly validUsername = 'admin@gmail.com';
+  private readonly validPassword = 'admin123';
+
 
   constructor() { }
 }
