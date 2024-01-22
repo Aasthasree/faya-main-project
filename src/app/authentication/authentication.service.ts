@@ -4,34 +4,69 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private readonly validUsername = 'aastha';
-  private readonly validPassword = '12345';
-  isAuthenticated: boolean = false;
-  private defaultAuthToken: string | null = null;
+  private tokenKey = 'authToken';
 
   login(username: string, password: string): boolean {
-    if (username === this.validUsername && password === this.validPassword) {
-      this.defaultAuthToken = 'generatedToken';
-      this.isAuthenticated = true;
+    if (this.verifyCredentials(username, password)) {
+      this.setAuthentication(username, password);
+      console.log('Authentication successful');
       return true;
     }
+
+    console.log('Authentication failed');
     return false;
   }
 
   logout(): void {
-    // Reset authentication status, clear the token, and any other user data
-    this.isAuthenticated = false;
-    this.defaultAuthToken = null;
+    this.clearAuthentication();
+    console.log('Logged out');
   }
 
   isAuthenticatedUser(): boolean {
-    return this.isAuthenticated;
+    return this.isAuthenticated() || this.getAuthToken() !== null;
   }
 
   getAuthToken(): string | null {
-    return this.defaultAuthToken;
+    return localStorage.getItem(this.tokenKey);
   }
 
+  setToken(username: string, password: string): void {
+    this.setAuthentication(username, password);
+    console.log('Token set');
+  }
+
+  private setAuthentication(username: string, password: string): void {
+    const authToken = this.generateAuthToken();
+    localStorage.setItem(this.tokenKey, authToken);
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
+  }
+
+  private clearAuthentication(): void {
+    localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+  }
+
+  private generateAuthToken(): string {
+    return 'generatedToken';
+  }
+
+  private verifyCredentials(username: string, password: string): boolean {
+    // Specify your required username and password here
+    const requiredUsername = 'aastha';
+    const requiredPassword = '12345';
+
+    return (
+      username === requiredUsername &&
+      password === requiredPassword
+    );
+  }
+
+  private isAuthenticated(): boolean {
+    return localStorage.getItem(this.tokenKey) !== null;
+  }
 
   constructor() { }
 }
+
