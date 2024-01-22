@@ -24,6 +24,10 @@ export class AuthenticationService {
     this.defaultAuthToken = null;
   }
 
+  isAuthenticatedUser(): boolean {
+    return this.isAuthenticated;
+  }
+
 
 
 
