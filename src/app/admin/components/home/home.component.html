@@ -1,1 +1,47 @@
-<p>home works!</p>
+<!--Table-->
+<div class="table-container">
+  <h2>Customer Details</h2>
+  <div class="customer-btn">
+    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+      (click)=" onClickShowCustomerForm(null)">Add customer</button>
+  </div>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Plan</th>
+        <th>Skill</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="customerList.length!==0; else noData">
+        <tr *ngFor="let data of customerList">
+          <td>{{ data.f_name }}</td>
+          <td>{{ data.l_name }}</td>
+          <td>{{ data.phone_number }}</td>
+          <td>{{ data.gender }}</td>
+          <td>{{ data.Skills }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.dob}}</td>
+          <!-- Action buttons for editing and deleting data -->
+          <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
+          <button type="button" class="btn" (click)=" onClickShowCustomerForm(data.id)" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop">
+            <i class="fa fa-edit"></i>
+            <!-- Button to delete a row of data -->
+          </button><i class="fa fa-trash custom" aria-hidden="true" (click)="onClickDeleteCustomer(data)"
+            style="cursor: pointer;"></i>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <h1>No Data!</h1>
+      </ng-template>
+    </tbody>
+  </table>
+</div>
