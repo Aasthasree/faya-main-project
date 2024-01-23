@@ -1,6 +1,9 @@
+//Angular Modules
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+//Feature Module
 import { AdminRoutingModule } from './admin-routing.module';
+//components
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
