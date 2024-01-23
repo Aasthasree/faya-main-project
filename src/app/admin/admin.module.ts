@@ -5,6 +5,8 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 
@@ -13,7 +15,9 @@ import { ContactComponent } from './components/contact/contact.component';
     HomeComponent,
     AboutComponent,
     ServicesComponent,
-    ContactComponent
+    ContactComponent,
+    AdminComponent,
+    NavbarComponent
   ],
   imports: [
     CommonModule,
