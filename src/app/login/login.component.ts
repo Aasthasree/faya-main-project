@@ -27,7 +27,7 @@ constructor(private authService: AuthenticationService , private router: Router)
 onSubmit(): void {
   if (this.authService.login(this.username, this.password)) {
     // Redirect to the admin module's home component
-    this.router.navigate(['/home']);
+    this.router.navigate(['/admin']);
   } else {
     alert('Invalid username or password');
   }
