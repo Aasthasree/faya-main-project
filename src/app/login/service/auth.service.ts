@@ -6,8 +6,8 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  constructor(private router: Router){
-    
+  constructor(private router: Router) {
+
   }
   // Private member to store the key for the authentication token in local storage
   private tokenKey = 'authToken';
@@ -32,13 +32,13 @@ export class AuthenticationService {
     console.log('Logged out');
   }
 
-// Method to set an authentication token (placeholder implementation)
+  // Method to set an authentication token (placeholder implementation)
   setToken(username: string, password: string): void {
     this.setAuthentication(username, password);
     console.log('Token set');
   }
 
-   // Private method to set authentication information in local storage
+  // Private method to set authentication information in local storage
   private setAuthentication(username: string, password: string): void {
     const authToken = this.generateAuthToken();
     localStorage.setItem(this.tokenKey, authToken);
@@ -50,9 +50,9 @@ export class AuthenticationService {
   private clearAuthentication(): void {
     localStorage.clear();
   }
-  
 
-   // Private method to generate an authentication token (placeholder implementation)
+
+  // Private method to generate an authentication token (placeholder implementation)
   private generateAuthToken(): string {
     return 'generatedToken';
   }

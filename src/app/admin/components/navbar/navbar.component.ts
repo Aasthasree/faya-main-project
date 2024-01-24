@@ -10,7 +10,7 @@ import { AuthenticationService } from 'src/app/login/service/auth.service';
 export class NavbarComponent {
   constructor(
     private authenticationService: AuthenticationService
-    ) {}
+  ) { }
 
   onClicklogout(): void {
     this.authenticationService.logout();

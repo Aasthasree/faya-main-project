@@ -11,15 +11,17 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
-  {path: '',component: AdminComponent,
-children: [
-  {path: '',redirectTo: 'home',pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'home/:id',  component: CustomerComponent},
-  { path: 'about', component: AboutComponent },
-  { path: 'contact', component: ContactComponent },
-  { path: 'services', component: ServicesComponent },
-]},
+  {
+    path: '', component: AdminComponent,
+    children: [
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      { path: 'home/:id', component: CustomerComponent },
+      { path: 'about', component: AboutComponent },
+      { path: 'contact', component: ContactComponent },
+      { path: 'services', component: ServicesComponent },
+    ]
+  },
 ];
 
 @NgModule({

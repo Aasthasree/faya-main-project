@@ -12,12 +12,12 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  customerList: Customer[]=[];
-  
+  customerList: Customer[] = [];
+
   constructor(
-    private customerService:CustomerService,
+    private customerService: CustomerService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -35,9 +35,9 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  onClickNavigate(id){
+  onClickNavigate(id) {
     const url = this.router.url;
-    this.router.navigate([url,id]);
+    this.router.navigate([url, id]);
   }
 
 }

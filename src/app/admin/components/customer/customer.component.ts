@@ -12,20 +12,20 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.scss']
 })
-export class CustomerComponent implements OnInit{
-  customerData:Customer;
+export class CustomerComponent implements OnInit {
+  customerData: Customer;
 
   constructor(
     private activeRoute: ActivatedRoute,
     private customerService: CustomerService
-    ){}
+  ) { }
 
-  ngOnInit(): void{
+  ngOnInit(): void {
     this.getCustomerById();
   }
 
-  getCustomerById(){
-    this.activeRoute.paramMap.subscribe(params =>{
+  getCustomerById() {
+    this.activeRoute.paramMap.subscribe(params => {
       const userId = params.get('id');
       if (userId) {
         this.customerService.getCustomer(userId).subscribe(data => {
@@ -36,6 +36,6 @@ export class CustomerComponent implements OnInit{
     })
   }
 
-  }
-  
+}
+
 

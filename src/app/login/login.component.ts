@@ -5,7 +5,7 @@ import { AuthenticationService } from './service/auth.service';
 //router
 import { Router } from '@angular/router';
 //Angular FormsModule
-import { FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   // password: string = '';
 
 
-// Lifecycle hook called after component initialization
+  // Lifecycle hook called after component initialization
   // ngOnInit() {
   //  this.password = this.regValue.First_name + this.regValue.Last_name;
   //  }
@@ -27,23 +27,23 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-constructor(
-  private authenticationService: AuthenticationService,
-  private router: Router,
-  private fb: FormBuilder
-  ) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router,
+    private fb: FormBuilder
+  ) { }
 
-ngOnInit(){
+  ngOnInit() {
 
-  if(localStorage.getItem('authToken')){
-    console.log('hit')
-    this.router.navigate(['/admin']);
+    if (localStorage.getItem('authToken')) {
+      console.log('hit')
+      this.router.navigate(['/admin']);
+    }
   }
-}
 
-onClickSubmit(): void {
-  this.authenticationService.login(this.username, this.password);
-}
+  onClickSubmit(): void {
+    this.authenticationService.login(this.username, this.password);
+  }
 
 }
 
