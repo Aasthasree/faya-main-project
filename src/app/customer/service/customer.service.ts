@@ -26,7 +26,7 @@ export class CustomerService {
   }
 
   //-------------------------Fetches a single data item from the API endpoint by its identifier--------------------
-  getCustomer(id: number): Observable<Customer> {
+  getCustomer(id): Observable<Customer> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Customer>(url).pipe(
       catchError(this.handleError)
