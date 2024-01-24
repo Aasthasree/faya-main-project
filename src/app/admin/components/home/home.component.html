@@ -1,3 +1,4 @@
+<!-- <router-outlet></router-outlet> -->
 <!--Table-->
 <div class="table-container">
   <h2>Customer Details</h2>
@@ -21,7 +22,7 @@
     </thead>
     <tbody>
       <ng-container *ngIf="customerList.length!==0; else noData">
-        <tr *ngFor="let data of customerList">
+        <tr *ngFor="let data of customerList" (click)="onClickNavigate(data.id)" style="cursor: pointer;">
           <td>{{ data.f_name }}</td>
           <td>{{ data.l_name }}</td>
           <td>{{ data.phone_number }}</td>
@@ -31,8 +32,7 @@
           <td>{{ data.dob}}</td>
           <!-- Action buttons for editing and deleting data -->
           <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
-          <a type="button" class="btn" 
-          routerLink={{data.id}}>
+          <a type="button" class="btn">
             <i class="fa fa-edit"></i>
             <!-- Button to delete a row of data -->
           </a><i class="fa fa-trash custom" aria-hidden="true"
