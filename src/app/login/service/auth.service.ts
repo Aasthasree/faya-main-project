@@ -48,10 +48,9 @@ export class AuthenticationService {
 
   // Private method to clear authentication information from local storage
   private clearAuthentication(): void {
-    localStorage.removeItem(this.tokenKey);
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
+    localStorage.clear();
   }
+  
 
    // Private method to generate an authentication token (placeholder implementation)
   private generateAuthToken(): string {
