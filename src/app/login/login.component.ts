@@ -24,15 +24,16 @@ password = '';
 
 constructor(private authService: AuthenticationService , private router: Router) {}
 
-onSubmit(): void {
-  if (this.authService.login(this.username, this.password)) {
-    // Redirect to the admin module's home component
+ngOnInit(){
+  if(localStorage.getItem('authToken')){
+    console.log('hit')
     this.router.navigate(['/admin']);
-  } else {
-    alert('Invalid username or password');
   }
 }
 
-
+onSubmit(): void {
+  this.authService.login(this.username, this.password);
 }
+}
+
 

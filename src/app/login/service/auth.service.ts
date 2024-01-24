@@ -1,9 +1,14 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  constructor(private router: Router){
+
+  }
   // Private member to store the key for the authentication token in local storage
   private tokenKey = 'authToken';
 
@@ -12,10 +17,12 @@ export class AuthenticationService {
     if (this.verifyCredentials(username, password)) {
       this.setAuthentication(username, password);
       console.log('Authentication successful');
+      this.router.navigate(['/admin']);
       return true;
     }
 
     console.log('Authentication failed');
+    alert('Invalid username or password');
     return false;
   }
 
@@ -62,7 +69,5 @@ export class AuthenticationService {
     );
   }
 
-
-  constructor() { }
 }
 
