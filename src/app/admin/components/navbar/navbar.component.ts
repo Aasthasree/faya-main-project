@@ -9,11 +9,11 @@ import { AuthenticationService } from 'src/app/login/service/auth.service';
 })
 export class NavbarComponent {
   constructor(
-    private authService: AuthenticationService
+    private authenticationService: AuthenticationService
     ) {}
 
   onClicklogout(): void {
-    this.authService.logout();
+    this.authenticationService.logout();
   }
 
 }
