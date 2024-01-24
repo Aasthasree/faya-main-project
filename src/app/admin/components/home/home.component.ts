@@ -22,15 +22,6 @@ userId: any|string;
     this.getCustomers();
   }
 
-  onClickEdit(id: number): void {
-    // Handle the edit action with the id
-    console.log('Edit customer with id:', id);
-    // You can navigate to the edit form or perform any other actions as needed
-    
-    
-
-    
-  }
 
   // //------To fetch data from customerService------
   private getCustomers() {
