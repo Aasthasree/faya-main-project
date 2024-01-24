@@ -11,24 +11,10 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
 })
 export class HomeComponent {
   customerList: Customer[]=[];
-  selectedId: number;
-  customerFormVisible: boolean;
-userId: any|string;
-  showParentComponent: boolean = true;
   
-
   constructor(
     private customerService:CustomerService ,private router: Router,
     private activatedRoute:ActivatedRoute  ) {
-      // this.router.events.pipe(
-      //   filter(event => event instanceof NavigationEnd)
-      // ).subscribe(() => {
-      //   // Check if the current route has an 'id' parameter (child route)
-      //   const hasIdParameter = this.activatedRoute.snapshot.firstChild?.paramMap.has('id');
-      //   // Set the flag based on whether there's an 'id' parameter
-      //   this.showParentComponent = !hasIdParameter;
-      //   console.log(hasIdParameter,this.showParentComponent)
-      // });
      }
 
   ngOnInit(): void {
