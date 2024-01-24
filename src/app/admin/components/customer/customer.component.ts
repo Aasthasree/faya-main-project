@@ -10,8 +10,10 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
 export class CustomerComponent implements OnInit{
   customerData:any;
 
-
-  constructor(private activeRoute: ActivatedRoute,private customerService: CustomerService){}
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private customerService: CustomerService
+    ){}
 
   ngOnInit(): void{
     this.getCustomerById();
@@ -27,9 +29,7 @@ export class CustomerComponent implements OnInit{
         });
       }
     })
-
   }
-
 
   }
   

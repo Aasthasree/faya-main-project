@@ -7,9 +7,10 @@ import { AuthenticationService } from 'src/app/login/service/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(private authService: AuthenticationService) {}
+  constructor(
+    private authService: AuthenticationService
+    ) {}
 
-  // Logout method called when the logout button is clicked
   onClicklogout(): void {
     this.authService.logout();
   }

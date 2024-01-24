@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 import { CustomerService } from 'src/app/customer/service/customer.service';
 
@@ -13,14 +12,13 @@ export class HomeComponent {
   customerList: Customer[]=[];
   
   constructor(
-    private customerService:CustomerService ,private router: Router,
-    private activatedRoute:ActivatedRoute  ) {
-     }
+    private customerService:CustomerService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     this.getCustomers();
   }
-
 
   // //------To fetch data from customerService------
   private getCustomers() {
@@ -38,7 +36,6 @@ export class HomeComponent {
     const url = this.router.url;
     this.router.navigate([url,id]);
   }
-
 
 }
 
