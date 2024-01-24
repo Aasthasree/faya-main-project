@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./customer.component.scss']
 })
 export class CustomerComponent implements OnInit{
-  userData:any;
+  customerData:any;
 
 
   constructor(private activeRoute: ActivatedRoute,private customerService: CustomerService){}
@@ -22,7 +22,7 @@ export class CustomerComponent implements OnInit{
       const userId = params.get('id');
       if (userId) {
         this.customerService.getCustomer(userId).subscribe(data => {
-          this.userData = data;
+          this.customerData = data;
           // console.log(this.userData)
         });
       }
