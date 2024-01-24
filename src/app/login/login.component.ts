@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticationService } from './service/auth.service';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomValidator } from '../shared/custom-validators/custom-validator';
+import { FormBuilder} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -24,25 +23,24 @@ export class LoginComponent  {
   username: string = '';
   password: string = '';
 
-constructor(private authService: AuthenticationService , private router: Router,private fb: FormBuilder) {}
+constructor(
+  private authService: AuthenticationService,
+  private router: Router,
+  private fb: FormBuilder
+  ) {}
 
 ngOnInit(){
-  
 
-  
   if(localStorage.getItem('authToken')){
     console.log('hit')
     this.router.navigate(['/admin']);
   }
 }
 
-
 onClickSubmit(): void {
-
-  
-  
   this.authService.login(this.username, this.password);
 }
+
 }
 
 
