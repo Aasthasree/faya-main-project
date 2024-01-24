@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
 
     if (localStorage.getItem('authToken')) {
-      console.log('hit')
       this.router.navigate(['/admin']);
     }
   }
