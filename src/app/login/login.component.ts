@@ -31,7 +31,7 @@ ngOnInit(){
   }
 }
 
-onSubmit(): void {
+onClickSubmit(): void {
   this.authService.login(this.username, this.password);
 }
 }

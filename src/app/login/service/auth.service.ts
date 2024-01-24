@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 export class AuthenticationService {
 
   constructor(private router: Router){
-
+    
   }
   // Private member to store the key for the authentication token in local storage
   private tokenKey = 'authToken';

@@ -10,7 +10,7 @@ export class NavbarComponent {
   constructor(private authService: AuthenticationService) {}
 
   // Logout method called when the logout button is clicked
-  logout(): void {
+  onClicklogout(): void {
     this.authService.logout();
   }
 
