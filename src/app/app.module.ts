@@ -26,6 +26,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 
 
+
 @NgModule({
   declarations: [
     // Components
@@ -41,6 +42,7 @@ import { NgxMaskModule } from 'ngx-mask';
      FilterPipe,
      CapitalizePipe,
      ValidDatePipe,
+
   ],
 
   imports: [
