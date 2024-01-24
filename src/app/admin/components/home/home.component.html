@@ -2,8 +2,8 @@
 <div class="table-container">
   <h2>Customer Details</h2>
   <div class="customer-btn">
-    <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-      (click)=" onClickShowCustomerForm(null)">Add customer</button>
+    <button type="button" class="btn btn-success mb-3"
+      >Add customer</button>
   </div>
 
   <table class="table table-bordered">
@@ -31,11 +31,11 @@
           <td>{{ data.dob}}</td>
           <!-- Action buttons for editing and deleting data -->
           <!-- Button to trigger the edit modal and pass data to app-edit-form component -->
-          <button type="button" class="btn" (click)=" onClickShowCustomerForm(data.id)" data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop">
+          <button type="button" class="btn" 
+            (click)="onClickEditCustomer(data.id)">
             <i class="fa fa-edit"></i>
             <!-- Button to delete a row of data -->
-          </button><i class="fa fa-trash custom" aria-hidden="true" (click)="onClickDeleteCustomer(data)"
+          </button><i class="fa fa-trash custom" aria-hidden="true"
             style="cursor: pointer;"></i>
         </tr>
       </ng-container>
