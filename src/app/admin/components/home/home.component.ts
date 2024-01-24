@@ -1,6 +1,9 @@
+//Angular core imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//modal
 import { Customer } from 'src/app/customer/customer-model/customer.model';
+//service
 import { CustomerService } from 'src/app/customer/service/customer.service';
 
 @Component({
