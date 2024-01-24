@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 import { CustomerService } from 'src/app/customer/service/customer.service';
@@ -8,7 +8,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   customerList: Customer[]=[];
   
   constructor(

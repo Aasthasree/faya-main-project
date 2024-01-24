@@ -8,7 +8,7 @@ import { FormBuilder} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent  {
+export class LoginComponent implements OnInit {
   // Input property to receive registration data from the parent component
   // @Input() regValue: any;
   // // Property to store the concatenated password
