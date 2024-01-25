@@ -32,15 +32,9 @@ export class AuthenticationService {
     console.log('Logged out');
   }
 
-  // Method to set an authentication token (placeholder implementation)
-  setToken(): void {
-    this.setAuthentication();
-    console.log('Token set');
-  }
-
   // Private method to set authentication information in local storage
   private setAuthentication(): void {
-    const authToken = this.generateAuthToken();
+    const authToken = 'generatedToken';
     localStorage.setItem(this.tokenKey, authToken);
   }
   //
@@ -48,12 +42,6 @@ export class AuthenticationService {
   // Private method to clear authentication information from local storage
   private clearAuthentication(): void {
     localStorage.clear();
-  }
-
-
-  // Private method to generate an authentication token (placeholder implementation)
-  private generateAuthToken(): string {
-    return 'generatedToken';
   }
 
   // Private method to verify provided credentials against required values
