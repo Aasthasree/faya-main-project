@@ -9,7 +9,7 @@ import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { CustomerComponent } from './components/customer/customer.component';
+import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { HomeComponent } from './components/home/home.component';
 
 
@@ -22,7 +22,7 @@ import { HomeComponent } from './components/home/home.component';
     ContactComponent,
     AdminComponent,
     NavbarComponent,
-    CustomerComponent
+    CustomerDetailComponent
   ],
   imports: [
     CommonModule,

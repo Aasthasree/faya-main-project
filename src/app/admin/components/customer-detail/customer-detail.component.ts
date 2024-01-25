@@ -9,10 +9,10 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
 
 @Component({
   selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.scss']
+  templateUrl: './customer-detail.component.html',
+  styleUrls: ['./customer-detail.component.scss']
 })
-export class CustomerComponent implements OnInit {
+export class CustomerDetailComponent implements OnInit {
   customerData: Customer;
 
   constructor(
