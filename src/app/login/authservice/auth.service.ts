@@ -15,7 +15,7 @@ export class AuthenticationService {
   // Method for user login, returns true if authentication is successful, false otherwise
   login(username: string, password: string): boolean {
     if (this.verifyCredentials(username, password)) {
-      this.setAuthentication(username, password);
+      this.setAuthentication();
       console.log('Authentication successful');
       this.router.navigate(['/admin']);
       return true;
@@ -33,13 +33,13 @@ export class AuthenticationService {
   }
 
   // Method to set an authentication token (placeholder implementation)
-  setToken(username: string, password: string): void {
-    this.setAuthentication(username, password);
+  setToken(): void {
+    this.setAuthentication();
     console.log('Token set');
   }
 
   // Private method to set authentication information in local storage
-  private setAuthentication(username: string, password: string): void {
+  private setAuthentication(): void {
     const authToken = this.generateAuthToken();
     localStorage.setItem(this.tokenKey, authToken);
   }
