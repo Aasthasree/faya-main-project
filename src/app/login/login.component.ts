@@ -5,7 +5,8 @@ import { AuthenticationService } from './service/auth.service';
 //router
 import { Router } from '@angular/router';
 //Angular FormsModule
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CustomValidator } from '../shared/custom-validators/custom-validator';
 
 @Component({
   selector: 'app-login',
@@ -23,21 +24,29 @@ export class LoginComponent implements OnInit {
   // ngOnInit() {
   //  this.password = this.regValue.First_name + this.regValue.Last_name;
   //  }
-
+  
+  loginForm: FormGroup;
   username: string = '';
   password: string = '';
 
   constructor(
     private authenticationService: AuthenticationService,
-    private router: Router,
-    private fb: FormBuilder
+    private router: Router
   ) { }
 
   ngOnInit() {
+    this.initializeLoginForm();
 
     if (localStorage.getItem('authToken')) {
       this.router.navigate(['/admin']);
     }
+  }
+
+  initializeLoginForm(){
+    this.loginForm = new FormGroup({
+      'username': new FormControl('', [Validators.required,CustomValidator.cannotContainSpace]),
+      'password': new FormControl('', [Validators.required,CustomValidator.cannotContainSpace])
+    });
   }
 
   onClickSubmit(): void {
