@@ -7,7 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AboutComponent } from './components/about/about.component';
 import { ServicesComponent } from './components/services/services.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { AdminComponent } from './components/admin/admin.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,7 +20,7 @@ import { HomeComponent } from './components/home/home.component';
     AboutComponent,
     ServicesComponent,
     ContactComponent,
-    AdminComponent,
+    AdminDashboardComponent,
     NavbarComponent,
     CustomerDetailComponent
   ],
