@@ -43,7 +43,7 @@ export class AuthenticationService {
     const authToken = this.generateAuthToken();
     localStorage.setItem(this.tokenKey, authToken);
   }
-  // 
+  //
 
   // Private method to clear authentication information from local storage
   private clearAuthentication(): void {
