@@ -1,7 +1,7 @@
 //Angular Core imports
 import { Component, Input, OnInit } from '@angular/core';
 //service
-import { AuthenticationService } from './service/auth.service';
+import { AuthenticationService } from './authservice/auth.service';
 //router
 import { Router } from '@angular/router';
 //Angular FormsModule
