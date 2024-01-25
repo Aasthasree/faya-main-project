@@ -35,10 +35,11 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.initializeLoginForm();
 
     if (localStorage.getItem('authToken')) {
       this.router.navigate(['/admin']);
+    } else {
+      this.initializeLoginForm();
     }
   }
 
