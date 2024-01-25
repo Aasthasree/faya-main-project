@@ -42,9 +42,8 @@ export class AuthenticationService {
   private setAuthentication(username: string, password: string): void {
     const authToken = this.generateAuthToken();
     localStorage.setItem(this.tokenKey, authToken);
-    localStorage.setItem('username', username);
-    localStorage.setItem('password', password);
   }
+  // 
 
   // Private method to clear authentication information from local storage
   private clearAuthentication(): void {
