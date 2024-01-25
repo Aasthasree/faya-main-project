@@ -5,7 +5,7 @@ import { AuthenticationService } from './service/auth.service';
 //router
 import { Router } from '@angular/router';
 //Angular FormsModule
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CustomValidator } from '../shared/custom-validators/custom-validator';
 
 @Component({
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   // ngOnInit() {
   //  this.password = this.regValue.First_name + this.regValue.Last_name;
   //  }
-  
+
   loginForm: FormGroup;
   username: string = '';
   password: string = '';
