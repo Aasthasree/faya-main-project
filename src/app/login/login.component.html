@@ -6,8 +6,8 @@
             <label for="username" class="col-sm-4 col-form-label"><span class="text-danger">*</span>Username:</label>
             <div class="col-sm-8">
                 <input type="text" id="username" name="username" class="form-control" formControlName="username" [(ngModel)]="username" required>
-                <app-validation [control]="loginForm.get('username')" [key]="'Username'"></app-validation>
             </div>
+            <app-validation [control]="loginForm.get('username')" [key]="'Username'"></app-validation>
         </div>
         <!-- Password -->
         <div class="form-group row">
@@ -15,8 +15,8 @@
             <div class="col-sm-8">
                 <input type="password" id="password" name="password" class="form-control"  formControlName="password"[(ngModel)]="password"
                     required>
-                    <app-validation [control]="loginForm.get('password')" [key]="'password'"></app-validation>
             </div>
+            <app-validation [control]="loginForm.get('password')" [key]="'password'"></app-validation>
         </div>
         <!-- Login -->
         <div class="form-group row">
