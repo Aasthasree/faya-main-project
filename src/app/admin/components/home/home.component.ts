@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
       .pipe(
         catchError(error => {
           console.error('Error fetching data:', error);
-          return of([]); 
+          return of([]);
         })
       )
       .subscribe(data => {
