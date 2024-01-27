@@ -2,8 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 //Angular router imports
 import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 //modal
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
