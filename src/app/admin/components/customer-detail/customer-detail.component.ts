@@ -17,7 +17,7 @@ export class CustomerDetailComponent implements OnInit {
   constructor(
     private activeRoute: ActivatedRoute,
     private customerService: CustomerService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -28,19 +28,24 @@ export class CustomerDetailComponent implements OnInit {
     this.activeRoute.paramMap.subscribe(params => {
       const userId = params.get('id');
       if (userId) {
-        this.customerService.getCustomer(userId).subscribe(data => {
+        this.customerService.getCustomer(userId).subscribe(
+          data => {
             if (data) {
               this.customerData = data;
             } else {
-              console.error('Failed to fetch customer data');
+              this.router.navigate(['/admin/home']);
             }
-          },error=>{
-          this.router.navigate(['/admin/home']);
-          });
+          },
+          error => {
+            console.error('Error fetching customer data:', error);
+          }
+        );
       }
     });
+  }
+
 
 }
-}
+
 
 
