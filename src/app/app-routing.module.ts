@@ -12,15 +12,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
-  {path: 'registration',component: RegistrationComponent},
-  {path: 'customer-service',component: CustomerListComponent},
-  {path: 'login',component: LoginComponent,canActivate: [authGuard]},
+  {path: 'registration', component: RegistrationComponent},
+  {path: 'customer-service', component: CustomerListComponent},
+  {path: 'login', component: LoginComponent,canActivate: [authGuard]},
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [authGuard]
   },
-  {path: '**',component: NotFoundComponent}
+  {path: '**', component: NotFoundComponent}
 
 ];
 
