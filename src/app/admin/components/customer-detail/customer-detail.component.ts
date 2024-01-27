@@ -12,7 +12,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent implements OnInit {
-  customerData: Customer;
+  customerDetail: Customer;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -31,7 +31,7 @@ export class CustomerDetailComponent implements OnInit {
         this.customerService.getCustomer(userId).subscribe(
           data => {
             if (data) {
-              this.customerData = data;
+              this.customerDetail = data;
             } else {
               this.router.navigate(['/admin/home']);
             }
@@ -44,8 +44,4 @@ export class CustomerDetailComponent implements OnInit {
     });
   }
 
-
 }
-
-
-
