@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 //validator
-import { CustomValidator } from '../shared/custom-validators/custom-validator';
+import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
 import { AuthenticationService } from './authservice/auth.service';
 

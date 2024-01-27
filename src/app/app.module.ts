@@ -12,18 +12,12 @@ import { RegistrationComponent} from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { CustomerListComponent} from './customer/customer-list/customer-list.component';
 import { CustomerFormComponent} from './customer/customer-form/customer-form.component';
-import { ValidationComponent } from './shared/validation-component/validation-component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
-//pipes
-import { PercentagePipe } from './shared/pipes/percentage.pipe';
-import { FilterPipe } from './shared/pipes/filter-pipe.pipe';
-import { CapitalizePipe } from './shared/pipes/capitalize.pipe';
-import { ValidDatePipe } from './shared/pipes/valid-date.pipe';
 
 //Third-party
 import { NgxMaskModule } from 'ngx-mask';
-
-
+import { SharedModule } from './shared/sharedmodule/shared.module';
 
 
 @NgModule({
@@ -32,16 +26,9 @@ import { NgxMaskModule } from 'ngx-mask';
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    ValidationComponent,
     CustomerListComponent,
     CustomerFormComponent,
-
-     // Pipes
-     PercentagePipe,
-     FilterPipe,
-     CapitalizePipe,
-     ValidDatePipe,
-
+    NotFoundComponent
   ],
 
   imports: [
@@ -50,11 +37,12 @@ import { NgxMaskModule } from 'ngx-mask';
     CommonModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
    // Third-party modules
     NgxMaskModule.forRoot(),
    // Custom modules
     AppRoutingModule,
-    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
