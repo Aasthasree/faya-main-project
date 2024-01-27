@@ -10,7 +10,6 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RegistrationComponent} from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
-
 import { CustomerListComponent} from './customer/customer-list/customer-list.component';
 import { CustomerFormComponent} from './customer/customer-form/customer-form.component';
 import { ValidationComponent } from './shared/validation-component/validation-component';

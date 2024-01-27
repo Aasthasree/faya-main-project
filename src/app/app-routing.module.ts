@@ -1,9 +1,11 @@
+//Angular core imports
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 //component
 import { RegistrationComponent } from './registration/registration.component';
 import { CustomerListComponent } from './customer/customer-list/customer-list.component';
 import { LoginComponent } from './login/login.component';
+//Authguard
 import { authGuard } from './login/authguard/authguard';
 
 
