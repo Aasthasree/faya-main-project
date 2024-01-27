@@ -1,6 +1,8 @@
 //Angular core imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 //modal
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
@@ -25,14 +27,17 @@ export class HomeComponent implements OnInit {
 
   // //------To fetch data from customerService------
   private getCustomers() {
-    this.customerService.getCustomers().subscribe(
-      (data) => {
+    this.customerService.getCustomers()
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching data:', error);
+          return of([]); 
+        })
+      )
+      .subscribe(data => {
+        // Assign received data to customerList
         this.customerList = data;
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
+      });
   }
 
   onClickNavigate(id) {
