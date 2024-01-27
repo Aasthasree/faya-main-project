@@ -7,6 +7,7 @@ import { CustomerListComponent } from './customer/customer-list/customer-list.co
 import { LoginComponent } from './login/login.component';
 //Authguard
 import { authGuard } from './login/authguard/authguard';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [authGuard]
-  }
+  },
+  {path: '**',component: NotFoundComponent}
 
 ];
 
