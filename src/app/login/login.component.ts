@@ -1,7 +1,6 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 //validator
 import { CustomValidator } from '../shared/custom-validators/custom-validator';
 //service
@@ -19,8 +18,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
