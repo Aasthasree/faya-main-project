@@ -35,7 +35,6 @@ export class HomeComponent implements OnInit {
         })
       )
       .subscribe(data => {
-        // Assign received data to customerList
         this.customerList = data;
       });
   }
@@ -46,4 +45,3 @@ export class HomeComponent implements OnInit {
   }
 
 }
-
