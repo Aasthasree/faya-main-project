@@ -24,12 +24,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
-    if (localStorage.getItem('authToken')) {
-      this.router.navigate(['/admin']);
-    } else {
       this.initializeLoginForm();
-    }
   }
 
   initializeLoginForm(){

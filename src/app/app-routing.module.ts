@@ -11,12 +11,13 @@ const routes: Routes = [
   {path: '',redirectTo: 'login',pathMatch: 'full'},
   {path: 'registration',component: RegistrationComponent},
   {path: 'customer-service',component: CustomerListComponent},
-  {path: 'login',component: LoginComponent},
+  {path: 'login',component: LoginComponent,canActivate: [authGuard]},
   {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canActivate: [authGuard]
   }
+
 ];
 
 @NgModule({
