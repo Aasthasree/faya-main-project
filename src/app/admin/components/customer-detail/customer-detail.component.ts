@@ -25,23 +25,18 @@ export class CustomerDetailComponent implements OnInit {
   }
 
   getCustomerById() {
-    this.activeRoute.paramMap.subscribe(params => {
-      const userId = params.get('id');
-      if (userId) {
+    const userId = this.activeRoute.snapshot.paramMap.get('id');
+    if (userId) {
         this.customerService.getCustomer(userId).subscribe(
-          data => {
-            if (data) {
-              this.customerDetail = data;
-            } else {
-              this.router.navigate(['/admin/home']);
+            data => this.customerDetail = data,
+            error => {
+                console.error('Error fetching customer data:', error);
+                this.router.navigate(['/admin/home']);
             }
-          },
-          error => {
-            console.error('Error fetching customer data:', error);
-          }
         );
-      }
-    });
-  }
+    } else {
+        this.router.navigate(['/admin/home']);
+    }
+}
 
 }
