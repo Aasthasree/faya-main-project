@@ -1,7 +1,9 @@
 //Angular core imports
 import { Component, OnInit } from '@angular/core';
 //Angular router imports
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 //modal
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
@@ -17,7 +19,8 @@ export class CustomerDetailComponent implements OnInit {
 
   constructor(
     private activeRoute: ActivatedRoute,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -29,13 +32,18 @@ export class CustomerDetailComponent implements OnInit {
       const userId = params.get('id');
       if (userId) {
         this.customerService.getCustomer(userId).subscribe(data => {
-          this.customerData = data;
-          // console.log(this.userData)
-        });
+            if (data) {
+              this.customerData = data;
+            } else {
+              console.error('Failed to fetch customer data');
+            }
+          },error=>{
+          this.router.navigate(['/admin/home']);
+          });
       }
     });
-  }
 
+}
 }
 
 
