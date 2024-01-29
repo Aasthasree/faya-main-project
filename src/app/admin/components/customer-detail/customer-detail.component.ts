@@ -1,7 +1,7 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-//modal
+//model
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
 import { CustomerService } from 'src/app/customer/service/customer.service';

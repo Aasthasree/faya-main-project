@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 //service
 import { AuthenticationService } from 'src/app/login/authservice/auth.service';
 
-
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',

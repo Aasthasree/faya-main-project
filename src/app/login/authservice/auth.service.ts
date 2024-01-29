@@ -17,12 +17,9 @@ export class AuthenticationService {
   login(username: string, password: string): boolean {
     if (this.verifyCredentials(username, password)) {
       this.setAuthentication();
-      console.log('Authentication successful');
       this.router.navigate(['/admin']);
       return true;
     }
-
-    console.log('Authentication failed');
     alert('Invalid username or password');
     return false;
   }
@@ -30,7 +27,6 @@ export class AuthenticationService {
   // Method to log the user out by clearing authentication information
   logout(): void {
     this.clearAuthentication();
-    console.log('Logged out');
   }
 
   // Private method to set authentication information in local storage

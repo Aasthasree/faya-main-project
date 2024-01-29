@@ -14,9 +14,6 @@ import { AuthenticationService } from './authservice/auth.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  username: string = '';
-  password: string = '';
-
   constructor(
     private authenticationService: AuthenticationService
   ) { }

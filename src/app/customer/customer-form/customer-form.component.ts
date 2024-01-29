@@ -127,7 +127,6 @@ export class CustomerFormComponent implements OnChanges {
       this.isUpdated = true;
       this.updateData.emit(this.isUpdated);
       alert('Customer has been created successfully!');
-
     });
   }
 

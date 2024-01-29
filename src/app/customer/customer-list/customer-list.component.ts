@@ -12,12 +12,12 @@ import { Customer } from '../customer-model/customer.model';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  customerList: Customer[]=[];
+  customerList: Customer[] = [];
   selectedId: number;
   customerFormVisible: boolean;
 
   constructor(
-    private customerService:CustomerService
+    private customerService: CustomerService
      ) { }
 
   ngOnInit(): void {
