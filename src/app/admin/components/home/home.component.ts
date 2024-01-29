@@ -1,9 +1,10 @@
 //Angular core imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//RXJS imports
 import { of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-//modal
+//model
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
 import { CustomerService } from 'src/app/customer/service/customer.service';
