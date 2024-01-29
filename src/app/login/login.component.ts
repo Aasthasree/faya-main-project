@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 //validator
 import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
-import { AuthenticationService } from './authservice/auth.service';
+import { AuthenticationService } from './service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
 
   initializeLoginForm(){
     this.loginForm = new FormGroup({
-      'username': new FormControl('', [Validators.required,CustomValidator.cannotContainSpace]),
-      'password': new FormControl('', [Validators.required,CustomValidator.cannotContainSpace])
+      'username': new FormControl('', [Validators.required, CustomValidator.cannotContainSpace]),
+      'password': new FormControl('', [Validators.required, CustomValidator.cannotContainSpace])
     });
   }
 
