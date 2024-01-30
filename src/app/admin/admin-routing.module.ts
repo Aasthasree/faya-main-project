@@ -6,13 +6,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ServicesComponent } from './components/services/services.component';
-import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { LayoutComponent } from './components/layout/layout.component';
 import { CustomerDetailComponent } from './components/customer-detail/customer-detail.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
-    path: '', component: AdminDashboardComponent,
+    path: '', component: LayoutComponent,
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
