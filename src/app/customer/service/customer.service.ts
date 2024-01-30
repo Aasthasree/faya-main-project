@@ -1,12 +1,12 @@
-//Angular Modules
+//Angular imports
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 // RxJS Modules
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //interface
 import { Customer } from '../customer-model/customer.model';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',

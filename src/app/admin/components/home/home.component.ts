@@ -1,9 +1,6 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//RXJS imports
-import { of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 //model
 import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
