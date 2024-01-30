@@ -1,4 +1,4 @@
-//Angular core imports
+//Angular imports
 import { Component, OnInit } from '@angular/core';
 //service
 import { CustomerService } from '../service/customer.service';

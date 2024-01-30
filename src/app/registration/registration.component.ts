@@ -1,4 +1,4 @@
-//Angular Modules
+//Angular imports
 import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator

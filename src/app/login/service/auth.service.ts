@@ -1,4 +1,4 @@
-//Angular core imports
+//Angular imports
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
