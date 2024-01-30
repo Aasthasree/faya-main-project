@@ -9,21 +9,16 @@ export class AuthenticationService {
 
   constructor(
     private router: Router
-    ) {
-
-  }
-  // Private member to store the key for the authentication token in local storage
-  private tokenKey = 'authToken';
+    ) {}
 
   // Method for user login, returns true if authentication is successful, false otherwise
-  login(username: string, password: string): boolean {
+  login(username: string, password: string){
     if (this.verifyCredentials(username, password)) {
-      this.setAuthentication();
+      localStorage.setItem('authToken', 'generatedToken');
       this.router.navigate(['/admin']);
-      return true;
+    } else {
+      alert('Invalid username or password');
     }
-    alert('Invalid username or password');
-    return false;
   }
 
   // Method to log the user out by clearing authentication information
@@ -31,27 +26,22 @@ export class AuthenticationService {
     this.clearAuthentication();
   }
 
-  // Private method to set authentication information in local storage
-  private setAuthentication(): void {
-    const authToken = 'generatedToken';
-    localStorage.setItem(this.tokenKey, authToken);
-  }
-  //
-
   // Private method to clear authentication information from local storage
   private clearAuthentication(): void {
     localStorage.clear();
   }
 
-  // Private method to verify provided credentials against required values
-  private verifyCredentials(username: string, password: string): boolean {
-    const requiredUsername = 'aastha';
-    const requiredPassword = '12345';
+ // Private method to verify provided credentials against required values
+  private verifyCredentials(username: string, password: string) {
+  const requiredUsername = 'aastha';
+  const requiredPassword = '12345';
 
-    return (
-      username === requiredUsername &&
-      password === requiredPassword
-    );
+  if (username === requiredUsername && password === requiredPassword) {
+    return true;
+  } else {
+    return false;
   }
+}
+
 
 }
