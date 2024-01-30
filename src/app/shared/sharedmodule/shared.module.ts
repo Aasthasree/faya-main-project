@@ -1,4 +1,4 @@
-//Angular modules
+//Angular imports
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 //Components

@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-// RxJS Modules
+// RxJS imports
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //interface
