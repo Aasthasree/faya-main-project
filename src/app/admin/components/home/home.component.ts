@@ -26,18 +26,16 @@ export class HomeComponent implements OnInit {
     this.getCustomers();
   }
 
-  // //------To fetch data from customerService------
   private getCustomers() {
-    this.customerService.getCustomers()
-      .pipe(
-        catchError(error => {
-          console.error('Error fetching data:', error);
-          return of([]);
-        })
-      )
-      .subscribe(data => {
+    this.customerService.getCustomers().subscribe(
+      data => {
         this.customerList = data;
-      });
+      },
+      error => {
+        console.error('Error fetching data:', error);
+        alert(error);
+      }
+    );
   }
 
   onClickNavigate(id) {

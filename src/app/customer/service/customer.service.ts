@@ -6,6 +6,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //interface
 import { Customer } from '../customer-model/customer.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,14 @@ export class CustomerService {
   private apiUrl = 'https://retoolapi.dev/TMekp1/data';
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router
     ) { }
 
   // -------------Service method to fetch data from the API endpoint---------------------
   getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(this.apiUrl).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError.bind(this))
     );
   }
 
@@ -29,7 +31,7 @@ export class CustomerService {
   getCustomer(id): Observable<Customer> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.get<Customer>(url).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError.bind(this))
     );
   }
 
@@ -37,7 +39,7 @@ export class CustomerService {
   deleteCustomer(id: number): Observable<Customer> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete<Customer>(url).pipe(
-      catchError(this.handleError)
+      catchError(this.handleError.bind(this))
     );
   }
 
@@ -58,8 +60,17 @@ export class CustomerService {
 
   //-------Handles API errors uniformly-----
   private handleError(error: HttpErrorResponse) {
-    console.error('API Error:', error);
-    return throwError('Something went wrong; please try again later.');
+    if (error.status === 404) {
+      console.error('Resource not found:', error);
+      this.router.navigate(['/not-found']);
+      return throwError('The requested resource was not found.');
+    } else if (error.status === 500) {
+      console.error('Internal Server Error:', error);
+      return throwError('An internal server error occurred.');
+    } else {
+      console.error('API Error:', error);
+      return throwError('Something went wrong; please try again later.');
+    }
   }
 }
 
