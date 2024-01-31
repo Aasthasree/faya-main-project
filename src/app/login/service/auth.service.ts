@@ -33,8 +33,8 @@ export class AuthenticationService {
 
  // Private method to verify provided credentials against required values
   private verifyCredentials(username: string, password: string) {
-  const requiredUsername = 'aastha';
-  const requiredPassword = '12345';
+  const requiredUsername = 'admin';
+  const requiredPassword = 'admin';
 
   if (username === requiredUsername && password === requiredPassword) {
     return true;
