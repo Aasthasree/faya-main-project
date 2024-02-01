@@ -100,7 +100,6 @@
                         <label for="Address" class="form-label heading">Add Skill
                             <button type="button" (click)="onClickAddSKill()" class="btn btn-sm btn-primary">Add New
                                 Skill</button>
-                            <!-- <button type="button" (click)="removeSKill()" class="btn btn-sm btn-primary">Delete Skill></button> -->
                         </label>
                     </div>
                 </div>
@@ -125,11 +124,6 @@
         <button type="submit" class="submit-btn">Submit</button>
     </form>
 </div>
-<!-- To render login component -->
-<div *ngIf="showLoginForm">
-    <app-login [regValue]="registrationFormOutput"></app-login>
-</div>
-<!-- ng template -->
 <ng-template #addressTemplate let-addressType="addressType" let-formGroup="formGroup">
     <div class="mb-4" [formGroup]="formGroup">
         <h6 class="address-name mb-4 text-capitalize">{{ addressType|capitalize }}</h6>
@@ -177,6 +171,5 @@
                     [key]=" 'Postal Code'"></app-validation>
             </div>
         </div>
-        <!-- first row------------------------------>
     </div>
 </ng-template>

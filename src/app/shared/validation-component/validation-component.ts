@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   <small *ngIf="control.errors?.cannotContainSpace">No spaces allowed in {{key}}</small>
  </ng-container>
 `,
-  styles: ['small{ color: red; }']
+  styles: ['small { color: red; }']
 })
 
 export class ValidationComponent {

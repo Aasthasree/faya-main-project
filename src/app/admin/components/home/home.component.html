@@ -1,0 +1,36 @@
+<div class="table-container">
+  <h2>Customer Details</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Plan</th>
+        <th>Skill</th>
+        <th>Email</th>
+        <th>DOB</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="customerList.length!==0; else noData">
+        <tr *ngFor="let data of customerList" (click)="onClickNavigate(data.id)" style="cursor: pointer;">
+          <td>{{ data.f_name }}</td>
+          <td>{{ data.l_name }}</td>
+          <td>{{ data.phone_number }}</td>
+          <td>{{ data.gender }}</td>
+          <td>{{ data.Skills }}</td>
+          <td>{{ data.email }}</td>
+          <td>{{ data.dob}}</td>
+          <a type="button" class="btn">
+            <i class="fa fa-edit"></i>
+          </a>
+        </tr>
+      </ng-container>
+      <ng-template #noData>
+        <h1>No Data!</h1>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

@@ -1,21 +1,21 @@
 <div class="card">
     <h2>Login</h2>
-    <form>
+    <form [formGroup]="loginForm" (ngSubmit)="onClickSubmit()">
         <!-- Username -->
         <div class="form-group row">
-            <label for="username" class="col-sm-4 col-form-label">Username:</label>
+            <label for="username" class="col-sm-4 col-form-label"><span class="text-danger">*</span>Username:</label>
             <div class="col-sm-8">
-                <input type="text" id="username" name="username" class="form-control" [(ngModel)]="regValue.Email"
-                    required>
+                <input type="text" id="username" name="username" class="form-control" formControlName="username" required>
             </div>
+            <app-validation [control]="loginForm.get('username')" [key]="'Username'"></app-validation>
         </div>
         <!-- Password -->
         <div class="form-group row">
-            <label for="password" class="col-sm-4 col-form-label">Password:</label>
+            <label for="password" class="col-sm-4 col-form-label"><span class="text-danger">*</span>Password:</label>
             <div class="col-sm-8">
-                <input type="password" id="password" name="password" class="form-control" [(ngModel)]="password"
-                    required>
+                <input type="password" id="password" name="password" class="form-control" formControlName="password" required>
             </div>
+            <app-validation [control]="loginForm.get('password')" [key]="'password'"></app-validation>
         </div>
         <!-- Login -->
         <div class="form-group row">

@@ -1,8 +1,8 @@
-//Angular Modules
+//Angular imports
 import { Component,ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
 //validator
-import { CustomValidator } from '../shared/custom-validators/custom-validator';
+import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //interface
 import { Registration } from './registration-model/registration.model';
 
@@ -196,25 +196,3 @@ export class RegistrationComponent implements OnInit{
   }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

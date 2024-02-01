@@ -1,4 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+//Angular imports
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+//validator
+import { CustomValidator } from '../shared/custom-validator/custom-validator';
+//service
+import { AuthenticationService } from './service/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -6,14 +12,27 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  // Input property to receive registration data from the parent component
-  @Input() regValue: any;
-  // Property to store the concatenated password
-  password: string = '';
 
+  loginForm: FormGroup;
+  constructor(
+    private authenticationService: AuthenticationService
+  ) { }
 
-// Lifecycle hook called after component initialization
   ngOnInit() {
-   this.password = this.regValue.First_name + this.regValue.Last_name;
-   }
+      this.initializeLoginForm();
+  }
+
+  initializeLoginForm(){
+    this.loginForm = new FormGroup({
+      'username': new FormControl('', [Validators.required, CustomValidator.cannotContainSpace]),
+      'password': new FormControl('', [Validators.required, CustomValidator.cannotContainSpace])
+    });
+  }
+
+  onClickSubmit(): void {
+    const username = this.loginForm.get('username').value;
+    const password = this.loginForm.get('password').value;
+    this.authenticationService.login(username, password);
+}
+
 }
