@@ -1,47 +1,57 @@
 //Angular imports
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, catchError, of, tap, throwError } from 'rxjs';
 
+interface Login{
+  username:  string;
+  password: string;
+  grant_type: string;
+}
+
+export interface LoginResponse{
+  access_token: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+  baseUrl: string = 'https://pod6.salesonepro.com:5001';
 
   constructor(
-    private router: Router
-    ) {}
+    private router: Router,
+    private http: HttpClient
+  ) { }
 
-  // Method for user login, returns true if authentication is successful, false otherwise
-  login(username: string, password: string){
-    if (this.verifyCredentials(username, password)) {
-      localStorage.setItem('authToken', 'generatedToken');
-      this.router.navigate(['/admin']);
-    } else {
-      alert('Invalid username or password');
-    }
-  }
+login(credentials: Login): Observable<LoginResponse> {
+  const baseUrl = `${this.baseUrl}/signin/token/`;
+  const creds = 'grant_type=password&password='
+                  + (credentials['password']) 
+                  + '&username=' 
+                  + (credentials['username']);
 
-  // Method to log the user out by clearing authentication information
-  logout(): void {
-    this.clearAuthentication();
-  }
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: 'Basic ZlUza2tJMVpjMWd3R2NzOTdiN2RRWUh6Z2VCUzNUSEJLd0tldlp2aDpVdUdHWE12MnFDNGViS3lLeVNSWW95MUlUSmQxZU9uNUVZWE9hcTZDbU91QVV2Y0FVSGVKcDJzdjF3VFpmWkdXeFNWcWZvUTFwd3dnTkdnWDRVRm15MEpmTTgxNFJzcHB3NExQaHJ5d0FobGVnbUxVMnhkYWtvbkZyMWtmYWJYaA=='
+    })
+  };
+  
 
-  // Private method to clear authentication information from local storage
-  private clearAuthentication(): void {
-    localStorage.clear();
-  }
-
- // Private method to verify provided credentials against required values
-  private verifyCredentials(username: string, password: string) {
-  const requiredUsername = 'admin';
-  const requiredPassword = 'admin';
-
-  if (username === requiredUsername && password === requiredPassword) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
+  return this.http.post<LoginResponse>(baseUrl, creds, httpOptions)
 
 }
+
+
+
+getToken(){
+  return localStorage.getItem('token');
+}
+
+logout(){
+  localStorage.clear();
+
+}
+
+  }
