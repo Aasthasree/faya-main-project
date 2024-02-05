@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 //service
 import { CustomerService } from '../service/customer.service';
-//model
-import { Customer } from '../customer-model/customer.model';
+// //model
+// import { Customer } from '../customer-model/customer.model';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Customer } from '../customer-model/customer.model';
   styleUrls: ['./customer-list.component.scss']
 })
 export class CustomerListComponent implements OnInit {
-  customerList: Customer[] = [];
+  // customerList: Customer[] = [];
   selectedId: number;
   customerFormVisible: boolean;
 
@@ -28,7 +28,7 @@ export class CustomerListComponent implements OnInit {
   private getCustomers() {
     this.customerService.getCustomers().subscribe(
       (data) => {
-        this.customerList = data;
+        // this.customerList = data;
       },
       (error) => {
         console.error('Error fetching data:', error);
@@ -50,21 +50,21 @@ export class CustomerListComponent implements OnInit {
  * Handles the click event to delete a row.
  * @param data - The data associated with the row to be deleted.
  */
-  onClickDeleteCustomer(data: Customer): void {
-    const index = this.customerList.indexOf(data);
-    if (index !== -1) {
-      this.customerList.splice(index, 1);
-      this.customerService.deleteCustomer(data.id).subscribe(
-        () => {
-          alert('Customer has been deleted successfully!');
-        },
-        (error) => {
-          console.error('Error deleting data from the database:', error);
-          this.customerList.splice(index, 0, data);
-        }
-      );
-    }
-  }
+  // onClickDeleteCustomer(data: Customer): void {
+  //   const index = this.customerList.indexOf(data);
+  //   if (index !== -1) {
+  //     this.customerList.splice(index, 1);
+  //     this.customerService.deleteCustomer(data.id).subscribe(
+  //       () => {
+  //         alert('Customer has been deleted successfully!');
+  //       },
+  //       (error) => {
+  //         console.error('Error deleting data from the database:', error);
+  //         this.customerList.splice(index, 0, data);
+  //       }
+  //     );
+  //   }
+  // }
 
  /**
  * Conditionally triggers form update by loading data if the check is true.

@@ -31,7 +31,7 @@ export class CustomerFormComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.id) {
-      this.getCustomer();
+      // this.getCustomer();
     } else {
       this.formData.reset();
       this.formData.markAsUntouched();
@@ -53,12 +53,12 @@ export class CustomerFormComponent implements OnChanges {
 
   /**
  * Fetches all data by making an HTTP GET request to the backend API using the specified ID.
- */
-  getCustomer() {
-    this.customerService.getCustomer(this.id).subscribe((response) => {
-      this.setCustomerFormData(response);
-    });
-  }
+//  */
+//   getCustomer() {
+//     this.customerService.getCustomer(this.id).subscribe((response) => {
+//       this.setCustomerFormData(response);
+//     });
+//   }
 
   // ------Update the form with user-specific data received from the API------
   setCustomerFormData(patchData) {
@@ -100,34 +100,34 @@ export class CustomerFormComponent implements OnChanges {
  * Handles form submission, updating or creating customer data based on edit mode.
  * Notifies parent components of the update status.
  */
-  onClickSubmitForm() {
-    if (this.formData.valid) {
-      if (this.id) {
-        this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
-          alert('Customer information updated successfully!');
-          this.isUpdated = true;
-          this.updateData.emit(this.isUpdated);
-        });
-      }
-      if (!this.id) {
-        this.onClickCreateCustomer();
-      }
-    } else {
-      { this.formData.markAllAsTouched(); }
-    }
-  }
+  // onClickSubmitForm() {
+  //   if (this.formData.valid) {
+  //     if (this.id) {
+  //       this.customerService.updateCustomerById(this.id, this.formData.value).subscribe((response) => {
+  //         alert('Customer information updated successfully!');
+  //         this.isUpdated = true;
+  //         this.updateData.emit(this.isUpdated);
+  //       });
+  //     }
+  //     if (!this.id) {
+  //       this.onClickCreateCustomer();
+  //     }
+  //   } else {
+  //     { this.formData.markAllAsTouched(); }
+  //   }
+  // }
 
   /**
  * Sends a request to create a new user using the data from the form.
  * Resets the form, updates relevant properties, and emits an event to notify the parent component of the update.
  */
-  onClickCreateCustomer() {
-    this.customerService.createCustomer(this.formData.value).subscribe((res) => {
-      this.formData.reset();
-      this.isUpdated = true;
-      this.updateData.emit(this.isUpdated);
-      alert('Customer has been created successfully!');
-    });
-  }
+  // onClickCreateCustomer() {
+  //   this.customerService.createCustomer(this.formData.value).subscribe((res) => {
+  //     this.formData.reset();
+  //     this.isUpdated = true;
+  //     this.updateData.emit(this.isUpdated);
+  //     alert('Customer has been created successfully!');
+  //   });
+  // }
 
 }
