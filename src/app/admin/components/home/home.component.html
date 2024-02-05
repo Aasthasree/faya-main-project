@@ -14,15 +14,15 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngIf="customerList.length!==0; else noData">
-        <tr *ngFor="let data of customerList" (click)="onClickNavigate(data.id)" style="cursor: pointer;">
-          <td>{{ data.f_name }}</td>
-          <td>{{ data.l_name }}</td>
-          <td>{{ data.phone_number }}</td>
-          <td>{{ data.gender }}</td>
-          <td>{{ data.Skills }}</td>
-          <td>{{ data.email }}</td>
-          <td>{{ data.dob}}</td>
+      <ng-container *ngIf="customers?.results.length!==0; else noData">
+        <tr *ngFor="let data of customers?.results" (click)="onClickNavigate(data.id)" style="cursor: pointer;">
+          <td>{{ data?.default_contact?.first_name }}</td>
+          <td>{{ data?.default_contact?.last_name }}</td>
+          <td>{{ data?.default_contact?.email }}</td>
+          <td>{{ data?.default_contact?.phone }}</td>
+          <td>{{ data?.address?.country }}</td>
+          <td>{{ data?.address?.state}}</td>
+          <td>{{ data?.id}}</td>
           <a type="button" class="btn">
             <i class="fa fa-edit"></i>
           </a>
