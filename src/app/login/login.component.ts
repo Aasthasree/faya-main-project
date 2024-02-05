@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 //validator
 import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
-import { AuthenticationService } from './service/auth.service';
+import { AuthenticationService } from './service/login.service';
 
 
 @Component({
