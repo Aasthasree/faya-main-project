@@ -1,10 +1,9 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//model
-import { Customer } from 'src/app/customer/customer-model/customer.model';
-//service
+import { CustomerResponse } from 'src/app/customer/customer-model/customer.model';
 import { CustomerService } from 'src/app/customer/service/customer.service';
+
 
 @Component({
   selector: 'app-home',
@@ -12,10 +11,11 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  customerList: Customer[] = [];
+  customers: CustomerResponse;
+
 
   constructor(
-    private customerService: CustomerService,
+    private customerService: CustomerService ,
     private router: Router
   ) { }
 
@@ -26,7 +26,8 @@ export class HomeComponent implements OnInit {
   private getCustomers() {
     this.customerService.getCustomers().subscribe(
       data => {
-        this.customerList = data;
+        this.customers = data;
+        console.log(data);
       },
       error => {
         console.error('Error fetching data:', error);
