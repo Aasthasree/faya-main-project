@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //interface
-import { CustomerResponse } from '../customer-model/customer.model';
+import { Customer, CustomerResponse } from '../customer-model/customer.model';
 
 @Injectable({
   providedIn: 'root',
@@ -27,13 +27,15 @@ export class CustomerService {
     );
   }
 
-//   //-------------------------Fetches a single data item from the API endpoint by its identifier--------------------
-//   getCustomer(id): Observable<Customer> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.get<Customer>(url).pipe(
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
+  //-------------------------Fetches a single data item from the API endpoint by its identifier--------------------
+  getCustomer(id: string): Observable<Customer> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.get<Customer>(url).pipe(
+      catchError(this.handleError.bind(this))
+    );
+  }
+  
+  
 
 //   //------------------- Deletes a data item from the API endpoint by its identifier.-------------------
 //   deleteCustomer(id: number): Observable<Customer> {
