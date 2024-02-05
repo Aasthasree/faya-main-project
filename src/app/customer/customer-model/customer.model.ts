@@ -1,4 +1,4 @@
-interface Customer {
+export interface Customer {
   default_contact: {
     first_name: string;
     last_name: string;
