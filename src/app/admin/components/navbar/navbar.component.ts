@@ -12,7 +12,7 @@ export class NavbarComponent {
     private authenticationService: AuthenticationService
   ) { }
 
-  onClicklogout(): void {
+  onClickLogout(){
     this.authenticationService.logout();
   }
 
