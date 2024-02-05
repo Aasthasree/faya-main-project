@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CommonModule, DatePipe } from '@angular/common';
 
 //components
@@ -20,6 +20,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 //module
 import { SharedModule } from './shared/sharedmodule/shared.module';
+import { AuthInterceptor } from './shared/interceptor/interceptor';
 
 
 @NgModule({
@@ -46,7 +47,12 @@ import { SharedModule } from './shared/sharedmodule/shared.module';
     AppRoutingModule,
     SharedModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
