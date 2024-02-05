@@ -29,8 +29,8 @@ export class LoginComponent implements OnInit {
 
   initializeLoginForm(): void {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required, CustomValidator.cannotContainSpace],
-      password: ['', Validators.required, CustomValidator.cannotContainSpace]
+      username: ['', [Validators.required, CustomValidator.cannotContainSpace]],
+      password: ['', [Validators.required, CustomValidator.cannotContainSpace]]
     });
   }
 
