@@ -13,7 +13,7 @@ import { Customer, CustomerResponse } from '../customer-model/customer.model';
 })
 export class CustomerService {
 
-  private apiUrl = 'https://pod6.salesonepro.com:5001/api/e/customers';
+  private apiUrl = 'https://pod8.salesonepro.com:7001/api/e/customers';
 
   constructor(
     private http: HttpClient,
