@@ -1,6 +1,7 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Customer, CustomerResponse } from 'src/app/customer/customer-model/customer.model';
 //service
 import { CustomerService } from 'src/app/customer/service/customer.service';
 
@@ -10,7 +11,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./customer-detail.component.scss']
 })
 export class CustomerDetailComponent {
-  // customerDetail: Customer;
+  customerDetail: Customer;
 
   constructor(
     private activeRoute: ActivatedRoute,
@@ -18,22 +19,23 @@ export class CustomerDetailComponent {
     private router: Router
   ) { }
 
-  // ngOnInit(): void {
-  //   // this.getCustomerById();
-  // }
-
-  // getCustomerById() {
-  //   const userId = this.activeRoute.snapshot.paramMap.get('id');
-  //   if (userId) {
-  //     this.customerService.getCustomer(userId).subscribe(data => {
-  //       this.customerDetail = data;
-  //     }, error => {
-  //       console.error('Error fetching customer data:', error);
-  //       alert(error);
-  //     });
-  //   } else {
-  //     this.router.navigate(['/admin/home']);
-  //   }
+  ngOnInit(): void {
+    this.getCustomerById();
   }
 
+  getCustomerById() {
+    const userId = this.activeRoute.snapshot.paramMap.get('id');
+    if (userId) {
+      this.customerService.getCustomer(userId).subscribe(data => {
+        this.customerDetail = data;
+      }, error => {
+        console.error('Error fetching customer data:', error);
+        alert(error);
+      });
+    } else {
+      this.router.navigate(['/admin/home']);
+    }
+  }
+  
+}
 
