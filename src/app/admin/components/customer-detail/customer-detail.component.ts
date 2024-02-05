@@ -1,7 +1,8 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer, CustomerResponse } from 'src/app/customer/customer-model/customer.model';
+//Model
+import { Customer } from 'src/app/customer/customer-model/customer.model';
 //service
 import { CustomerService } from 'src/app/customer/service/customer.service';
 
@@ -10,7 +11,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   templateUrl: './customer-detail.component.html',
   styleUrls: ['./customer-detail.component.scss']
 })
-export class CustomerDetailComponent {
+export class CustomerDetailComponent implements OnInit{
   customerDetail: Customer;
 
   constructor(
@@ -38,4 +39,3 @@ export class CustomerDetailComponent {
   }
   
 }
-
