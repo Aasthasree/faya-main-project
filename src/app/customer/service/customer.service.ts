@@ -34,31 +34,29 @@ export class CustomerService {
       catchError(this.handleError.bind(this))
     );
   }
-  
-  
 
-//   //------------------- Deletes a data item from the API endpoint by its identifier.-------------------
-//   deleteCustomer(id: number): Observable<Customer> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.delete<Customer>(url).pipe(
-//       catchError(this.handleError.bind(this))
-//     );
-//   }
+//------------------- Deletes a data item from the API endpoint by its identifier.-------------------
+  deleteCustomer(id: number): Observable<Customer> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<Customer>(url).pipe(
+      catchError(this.handleError.bind(this))
+    );
+  }
 
 //   //-------------------Updates a data item at the API endpoint by its identifier.----------------------
-//   updateCustomerById(id: number, value: Customer): Observable<Customer> {
-//     const url = `${this.apiUrl}/${id}`;
-//     return this.http.patch<Customer>(url, value).pipe((map((data) => {
-//       return data;
-//     })));
-//   }
+  updateCustomerById(id: number, value: Customer): Observable<Customer> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.patch<Customer>(url, value).pipe((map((data) => {
+      return data;
+    })));
+  }
 
 //   //-------------------------Creates a new data item by sending an HTTP POST request to the API endpoint.---------------
-//   createCustomer(value: Customer): Observable<Customer> {
-//     return this.http.post<Customer>(this.apiUrl, value).pipe((map((data) => {
-//       return data;
-//     })));
-//   }
+  createCustomer(value: Customer): Observable<Customer> {
+    return this.http.post<Customer>(this.apiUrl, value).pipe((map((data) => {
+      return data;
+    })));
+  }
 
 //   //-------Handles API errors uniformly-----
   private handleError(error: HttpErrorResponse) {
@@ -74,6 +72,5 @@ export class CustomerService {
       return throwError('Something went wrong; please try again later.');
     }
   }
-// }
 
 }
