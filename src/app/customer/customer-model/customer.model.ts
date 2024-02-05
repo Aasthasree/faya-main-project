@@ -3,12 +3,18 @@ interface Customer {
     first_name: string;
     last_name: string;
     email: string;
-    phone: number | null;
 
   };
-  address: {
-    country: string;
-    state: string;
+  default_billing: {
+    company_name: string | null;
+  }
+
+  credit_term: {
+    name: string;
+  }
+
+  store:{
+    name: string
   }
   id: string;
 }
