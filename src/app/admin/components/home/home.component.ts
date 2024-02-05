@@ -1,7 +1,9 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+//Model
 import { CustomerResponse } from 'src/app/customer/customer-model/customer.model';
+//Service
 import { CustomerService } from 'src/app/customer/service/customer.service';
 
 
