@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 //validator
 import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
-import { AuthenticationService } from './service/login.service';
+import { AuthenticationService } from './service/authservice';
 
 
 @Component({
@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         if (response.access_token){
           console.log('Login successful:', response);
           localStorage.setItem('token',response.access_token);
+          localStorage.setItem('refreshtoken',response.refresh_token);
           this.router.navigate(['/admin']);
         }
 
