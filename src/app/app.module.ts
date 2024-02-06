@@ -20,7 +20,7 @@ import { NgxMaskModule } from 'ngx-mask';
 
 //module
 import { SharedModule } from './shared/sharedmodule/shared.module';
-import { AuthInterceptor } from './shared/interceptor/interceptor';
+import { AuthInterceptor } from './login/interceptor/interceptor';
 
 
 @NgModule({
