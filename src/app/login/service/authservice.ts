@@ -2,19 +2,11 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+// RxJS imports
 import { Observable, catchError, tap, throwError } from 'rxjs';
+//Models
+import { Login, LoginResponse } from '../login-model/login-model';
 
-interface Login{
-  username:  string;
-  password: string;
-  grant_type: string;
-}
-
-export interface LoginResponse{
-  access_token: string;
-  refresh_token: string;
-
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -29,10 +21,6 @@ export class AuthenticationService {
     private router: Router)
     {  this.currentRefreshToken = localStorage.getItem('refresh_token');}
 
-  // Method to retrieve the refresh token
-  getRefreshToken(): string | null {
-    return this.currentRefreshToken;
-  }
 
   // Method to refresh the access token using the refresh token
   refreshAccessToken(): Observable<any> {
