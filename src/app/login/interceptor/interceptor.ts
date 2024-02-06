@@ -1,3 +1,4 @@
+//Angular imports
 import { Injectable } from '@angular/core';
 import {
   HttpRequest,
@@ -5,16 +6,16 @@ import {
   HttpEvent,
   HttpInterceptor
 } from '@angular/common/http';
+//RXJS imports
 import { Observable, catchError, switchMap, throwError } from 'rxjs';
+//Service
 import { AuthenticationService } from 'src/app/login/service/authservice';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
+    private authenticationService: AuthenticationService
     ) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
@@ -63,7 +64,3 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     }
-
-
-
-

@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 // RxJS imports
 import { Observable, catchError, tap, throwError } from 'rxjs';
-//Models
+//Model
 import { Login, LoginResponse } from '../login-model/login-model';
 
 @Injectable({
