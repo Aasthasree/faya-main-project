@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 //service
-import { AuthenticationService } from 'src/app/login/service/login.service';
+import { AuthenticationService } from 'src/app/login/service/authservice';
 
 @Component({
   selector: 'app-navbar',
@@ -12,8 +12,9 @@ export class NavbarComponent {
     private authenticationService: AuthenticationService
   ) { }
 
-  onClickLogout(){
-    this.authenticationService.logout();
+
+  onClickLogout() {
+    this.authenticationService.logout().subscribe();
   }
 
 }
