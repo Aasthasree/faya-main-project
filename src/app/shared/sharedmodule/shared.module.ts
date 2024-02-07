@@ -15,11 +15,11 @@ import { ValidDatePipe } from '../pipes/valid-date.pipe';
   declarations: [
     //component
     ValidationComponent,
-     // Pipes
-     PercentagePipe,
-     FilterPipe,
-     CapitalizePipe,
-     ValidDatePipe,
+    // Pipes
+    PercentagePipe,
+    FilterPipe,
+    CapitalizePipe,
+    ValidDatePipe,
 
   ],
   imports: [
@@ -28,11 +28,11 @@ import { ValidDatePipe } from '../pipes/valid-date.pipe';
   exports: [
     //component
     ValidationComponent,
-     // Pipes
-     PercentagePipe,
-     FilterPipe,
-     CapitalizePipe,
-     ValidDatePipe,
+    // Pipes
+    PercentagePipe,
+    FilterPipe,
+    CapitalizePipe,
+    ValidDatePipe,
   ]
 })
 export class SharedModule { }
