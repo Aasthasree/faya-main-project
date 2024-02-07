@@ -2,9 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 //Model
-import { CustomerResponse } from 'src/app/customer/customer-model/customer.model';
+import { CustomerResponse } from 'src/app/admin/customer-model/customer.model';
 //Service
-import { CustomerService } from 'src/app/customer/service/customer.service';
+import { CustomerService } from 'src/app/admin/service/customer.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
 
 
   constructor(
-    private customerService: CustomerService ,
+    private customerService: CustomerService,
     private router: Router
   ) { }
 
@@ -26,19 +26,20 @@ export class HomeComponent implements OnInit {
   }
 
   private getCustomers() {
-    this.customerService.getCustomers().subscribe(
-      data => {
-        this.customers = data;
-        console.log(data);
+    this.customerService.getCustomers().subscribe({
+      next: (response) => {
+        if (response) {
+          this.customers = response;
+        }
       },
-      error => {
+      error: (error) => {
         console.error('Error fetching data:', error);
         alert(error);
       }
-    );
+    });
   }
 
-  onClickNavigate(id) {
+  onClickNavigate(id: string) {
     const url = this.router.url;
     this.router.navigate([url, id]);
   }
