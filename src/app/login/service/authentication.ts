@@ -12,8 +12,6 @@ import { Login, LoginResponse } from '../login-model/login-model';
 })
 export class AuthenticationService {
 
-  currentRefreshToken: string | null;
-
   baseUrl: string = 'https://pod8.salesonepro.com:7001';
 
   constructor(
@@ -37,7 +35,6 @@ export class AuthenticationService {
       })
     );
   }
-
 
   setToken(newToken: LoginResponse): void {
     localStorage.setItem('token', newToken.access_token);
@@ -72,10 +69,7 @@ export class AuthenticationService {
         localStorage.clear();
         this.router.navigate(['/login']);
       }),
-      catchError(error => {
-        console.error('Logout failed:', error);
-        return throwError(() => 'An error occurred during logout.');
-      })
+      catchError(this.handleError.bind(this))
     );
   }
 
