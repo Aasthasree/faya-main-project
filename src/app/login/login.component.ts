@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 //validator
 import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
-import { AuthenticationService } from './service/authservice';
+import { AuthenticationService } from './service/authentication';
 
 
 @Component({
@@ -15,7 +15,6 @@ import { AuthenticationService } from './service/authservice';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  errorMessage: string;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -40,20 +39,20 @@ export class LoginComponent implements OnInit {
     const grant_type = 'password';
 
     this.authenticationService.login({ grant_type, username, password })
-    .subscribe({
-      next: (response) => {
-        if (response.access_token){
-          console.log('Login successful:', response);
-          localStorage.setItem('token',response.access_token);
-          localStorage.setItem('refreshtoken',response.refresh_token);
-          this.router.navigate(['/admin']);
-        }
+      .subscribe({
+        next: (response) => {
+          if (response.access_token) {
+            console.log('Login successful:', response);
+            localStorage.setItem('token', response.access_token);
+            localStorage.setItem('refreshtoken', response.refresh_token);
+            this.router.navigate(['/admin']);
+          }
 
-       },
-      error: (error) => {
-        console.error( error);
-       },
-  });
+        },
+        error: (error) => {
+          console.error(error);
+        },
+      });
 
   }
 
