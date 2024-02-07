@@ -6,7 +6,6 @@ import { CustomerResponse } from 'src/app/admin/customer-model/customer.model';
 //Service
 import { CustomerService } from 'src/app/admin/service/customer.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +13,6 @@ import { CustomerService } from 'src/app/admin/service/customer.service';
 })
 export class HomeComponent implements OnInit {
   customers: CustomerResponse;
-
 
   constructor(
     private customerService: CustomerService,
