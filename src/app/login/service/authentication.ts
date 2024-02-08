@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/htt
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 // RxJS imports
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { Observable, catchError, map, tap, throwError } from 'rxjs';
 //Model
 import { Login, LoginResponse } from '../login-model/login-model';
 
@@ -12,33 +12,48 @@ import { Login, LoginResponse } from '../login-model/login-model';
 })
 export class AuthenticationService {
 
-  baseUrl: string = 'https://pod8.salesonepro.com:7001';
+  baseUrl: string = 'https://pod6.salesonepro.com:5001';
+  timeInterval: any;
 
   constructor(
     private http: HttpClient,
-    private router: Router) { }
+    private router: Router) {
+
+  }
+
+  startTokenRefresh() {
+    const expiryTimeString = localStorage.getItem('expirytime');
+    const expiryTime = parseInt(expiryTimeString);
+
+    if (!isNaN(expiryTime) && expiryTime > 0) {
+      this.timeInterval = setInterval(() => {
+        this.refreshAccessToken().subscribe();
+      }, expiryTime);
+    } else {
+      console.error('Invalid expiry time or token has expired.');
+    }
+  }
 
 
   refreshAccessToken(): Observable<LoginResponse> {
     const currentRefreshTokens = localStorage.getItem('refreshtoken');
-    const refreshTokenEndpoint = 'https://pod8.salesonepro.com:7001/signin/token/';
+    const refreshTokenEndpoint = 'https://pod6.salesonepro.com:5001/signin/token/';
 
-    const creds = 'grant_type=refresh_token&refresh_token='
-      + currentRefreshTokens;
+    const creds = 'grant_type=refresh_token&refresh_token=' + currentRefreshTokens;
 
     return this.http.post<LoginResponse>(refreshTokenEndpoint, creds).pipe(
       catchError(error => {
         console.error('Error refreshing access token:', error);
         localStorage.clear();
         this.router.navigate(['/login']);
+        clearInterval(this.timeInterval);
         return throwError(() => error);
+      }),
+      tap((response: LoginResponse) => {
+        localStorage.setItem('token', response.access_token);
+        localStorage.setItem('refreshtoken', response.refresh_token);
       })
     );
-  }
-
-  setToken(newToken: LoginResponse): void {
-    localStorage.setItem('token', newToken.access_token);
-    localStorage.setItem('refreshtoken', newToken.refresh_token);
   }
 
   login(credentials: Login): Observable<LoginResponse> {
@@ -50,7 +65,12 @@ export class AuthenticationService {
 
 
     return this.http.post<LoginResponse>(baseUrl, creds,).pipe(
-      catchError(this.handleError.bind(this))
+      map(
+        data => {
+          this.startTokenRefresh();
+          return data;
+        }
+      )
     );
 
   }
@@ -60,7 +80,7 @@ export class AuthenticationService {
   }
 
   logout(): Observable<HttpResponse<any>> {
-    const url = 'https://pod8.salesonepro.com:7001/signin/revoke_token/';
+    const url = 'https://pod6.salesonepro.com:5001/signin/revoke_token/';
     const accessToken = localStorage.getItem('token');
     const creds = `token=${accessToken}`;
 
@@ -72,6 +92,7 @@ export class AuthenticationService {
       catchError(this.handleError.bind(this))
     );
   }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 404) {
