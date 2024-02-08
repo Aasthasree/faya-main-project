@@ -7,13 +7,12 @@ import { CustomValidator } from '../shared/custom-validator/custom-validator';
 //service
 import { AuthenticationService } from './service/authentication';
 
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
   loginForm: FormGroup;
 
   constructor(
@@ -25,6 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initializeLoginForm();
   }
+
 
   initializeLoginForm(): void {
     this.loginForm = this.formBuilder.group({
@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
             console.log('Login successful:', response);
             localStorage.setItem('token', response.access_token);
             localStorage.setItem('refreshtoken', response.refresh_token);
+            localStorage.setItem('expirytime',response.expires_in.toString());
             this.router.navigate(['/admin']);
           }
 
@@ -53,7 +54,6 @@ export class LoginComponent implements OnInit {
           console.error(error);
         },
       });
-
   }
 
 }
