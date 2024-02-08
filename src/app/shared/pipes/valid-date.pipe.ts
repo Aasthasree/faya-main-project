@@ -1,3 +1,4 @@
+//Angular Imports
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 
@@ -5,7 +6,7 @@ import { DatePipe } from '@angular/common';
   name: 'validDate',
 })
 export class ValidDatePipe implements PipeTransform {
-  constructor() {}
+  constructor() { }
 
   transform(value: string): string {
     const datePipe = new DatePipe('en-US'); // Adjust the locale accordingly
@@ -21,4 +22,3 @@ export class ValidDatePipe implements PipeTransform {
     }
   }
 }
-

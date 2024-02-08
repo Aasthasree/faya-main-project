@@ -1,3 +1,4 @@
+//Angular Imports
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -9,5 +10,4 @@ export class CapitalizePipe implements PipeTransform {
     if (!value) return value;
     return value.replace(/_/g, ' ').replace(/\b\w/g, firstChar => firstChar.toUpperCase());
   }
-  }
-
+}

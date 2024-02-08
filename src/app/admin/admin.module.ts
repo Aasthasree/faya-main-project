@@ -13,7 +13,6 @@ import { CustomerDetailComponent } from './components/customer-detail/customer-d
 import { HomeComponent } from './components/home/home.component';
 
 
-
 @NgModule({
   declarations: [
     HomeComponent,

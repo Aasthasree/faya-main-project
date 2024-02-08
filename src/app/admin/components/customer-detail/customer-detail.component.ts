@@ -1,10 +1,10 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-//model
-import { Customer } from 'src/app/customer/customer-model/customer.model';
+//Model
+import { Customer} from 'src/app/admin/customer-model/customer.model';
 //service
-import { CustomerService } from 'src/app/customer/service/customer.service';
+import { CustomerService } from 'src/app/admin/service/customer.service';
 
 @Component({
   selector: 'app-customer',
@@ -27,11 +27,14 @@ export class CustomerDetailComponent implements OnInit {
   getCustomerById() {
     const userId = this.activeRoute.snapshot.paramMap.get('id');
     if (userId) {
-      this.customerService.getCustomer(userId).subscribe(data => {
-        this.customerDetail = data;
-      }, error => {
-        console.error('Error fetching customer data:', error);
-        alert(error);
+      this.customerService.getCustomer(userId).subscribe({
+        next: (data) => {
+          this.customerDetail = data;
+        },
+        error: (error) => {
+          console.error('Error fetching customer data:', error);
+          alert(error);
+        }
       });
     } else {
       this.router.navigate(['/admin/home']);

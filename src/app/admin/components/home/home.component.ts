@@ -1,10 +1,10 @@
 //Angular imports
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-//model
-import { Customer } from 'src/app/customer/customer-model/customer.model';
-//service
-import { CustomerService } from 'src/app/customer/service/customer.service';
+//Model
+import { CustomerResponse } from 'src/app/admin/customer-model/customer.model';
+//Service
+import { CustomerService } from 'src/app/admin/service/customer.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +12,7 @@ import { CustomerService } from 'src/app/customer/service/customer.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  customerList: Customer[] = [];
+  customers: CustomerResponse;
 
   constructor(
     private customerService: CustomerService,
@@ -24,18 +24,20 @@ export class HomeComponent implements OnInit {
   }
 
   private getCustomers() {
-    this.customerService.getCustomers().subscribe(
-      data => {
-        this.customerList = data;
+    this.customerService.getCustomers().subscribe({
+      next: (response) => {
+        if (response) {
+          this.customers = response;
+        }
       },
-      error => {
+      error: (error) => {
         console.error('Error fetching data:', error);
         alert(error);
       }
-    );
+    });
   }
 
-  onClickNavigate(id) {
+  onClickNavigate(id: string) {
     const url = this.router.url;
     this.router.navigate([url, id]);
   }
